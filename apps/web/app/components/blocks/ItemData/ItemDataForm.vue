@@ -153,7 +153,7 @@ import type { ItemDataContent, ItemDataFieldKey, ItemDataFieldLabels } from './t
 
 const route = useRoute();
 
-const { data } = useBlockTemplates(
+const { data } = useCategoryTemplate(
   route?.meta?.identifier as string,
   route.meta.type as string,
   useNuxtApp().$i18n.locale.value,
@@ -272,9 +272,9 @@ watch(
 
 watch(isCollapsible, (newValue) => {
   if (!hasTitle.value) {
-    if (isCollapsible.value !== false) {
+    nextTick(() => {
       isCollapsible.value = false;
-    }
+    });
     itemTableBlock.layout.displayAsCollapsable = false;
     return;
   }

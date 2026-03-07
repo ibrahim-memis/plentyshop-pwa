@@ -2,14 +2,14 @@
   <div>
     <label
       :for="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      class="leading-5 text-sm text-zinc-900"
+      class="leading-5 text-xs text-zinc-900 mb-2 block"
     >
-      <span>{{ productAttributeGetters.getAttributeName(attribute) }}</span>
-      <span v-if="value"
-        >: <b>{{ selectedAttributeValueName }}</b></span
+      <span class="font-semibold">{{ productAttributeGetters.getAttributeName(attribute) }}</span>
+      <span v-if="value" class="text-neutral-500"
+        >: <b class="text-neutral-700">{{ selectedAttributeValueName }}</b></span
       >
     </label>
-    <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="w-full flex gap-4 flex-wrap">
+    <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="flex gap-2 flex-wrap">
       <SfTooltip
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
@@ -19,10 +19,11 @@
         placement="top"
       >
         <div
-          class="p-2 border border-zinc-300 rounded-md cursor-pointer hover:bg-[#3C3C4226]"
+          class="w-10 h-10 rounded-full border-2 cursor-pointer overflow-hidden transition-all duration-150 hover:shadow-sm"
           :class="{
-            'text-zinc-300 border-dashed': productAttributeGetters.isAttributeValueDisabled(item),
-            '!border-primary-500 bg-zinc-100': value === productAttributeGetters.getAttributeValueId(item),
+            'opacity-40 border-dashed border-neutral-200 cursor-not-allowed': productAttributeGetters.isAttributeValueDisabled(item),
+            'border-neutral-800 ring-2 ring-neutral-800/20': value === productAttributeGetters.getAttributeValueId(item),
+            'border-neutral-200 hover:border-neutral-400': value !== productAttributeGetters.getAttributeValueId(item) && !productAttributeGetters.isAttributeValueDisabled(item),
             '!ring-negative-700 !border-negative-700 ring-1': Boolean(errors['selectedValue']),
           }"
           @click="doUpdateValue(item)"
@@ -31,6 +32,7 @@
             :src="getImagePath(item)"
             :alt="productAttributeGetters.getAttributeValueName(item)"
             loading="lazy"
+            class="w-full h-full object-cover"
           />
         </div>
       </SfTooltip>

@@ -1,8 +1,9 @@
 <template>
   <div :class="['h-full flex scroll-smooth relative', galleryDirClass, galleryGapClass]" data-testid="gallery">
+    <!-- Ana Gorsel -->
     <div
       ref="mainBox"
-      class="after:block after:pt-[100%] flex-1 relative overflow-hidden w-full max-h-[600px]"
+      class="after:block after:pt-[100%] flex-1 relative overflow-hidden w-full max-h-[650px] rounded-md bg-white border border-neutral-200"
       data-testid="gallery-images"
     >
       <Swiper
@@ -26,8 +27,29 @@
           />
         </SwiperSlide>
       </Swiper>
+
+      <!-- Ana gorsel navigasyon oklari (HomeDeluxe stili) -->
+      <template v-if="hasMoreImages && showNav">
+        <button
+          :disabled="atStart"
+          class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow-md border border-neutral-200 transition-all disabled:opacity-0 disabled:pointer-events-none"
+          aria-label="Previous"
+          @click="mainSwiper?.slidePrev()"
+        >
+          <SfIconChevronLeft class="text-neutral-600 !w-5 !h-5" />
+        </button>
+        <button
+          :disabled="atEnd"
+          class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow-md border border-neutral-200 transition-all disabled:opacity-0 disabled:pointer-events-none"
+          aria-label="Next"
+          @click="mainSwiper?.slideNext()"
+        >
+          <SfIconChevronRight class="text-neutral-600 !w-5 !h-5" />
+        </button>
+      </template>
     </div>
 
+    <!-- Thumbnail Alani -->
     <div
       v-show="configuration.thumbnails.showThumbnails"
       :class="['md:relative', thumbContainerClass, isSide ? 'md:self-stretch' : 'md:w-full']"
@@ -37,7 +59,7 @@
           :modules="thumbsModules"
           :direction="thumbsDirection"
           :slides-per-view="thumbsSlidesPerView"
-          :space-between="4"
+          :space-between="8"
           :free-mode="true"
           :watch-slides-progress="true"
           :centered-slides="false"
@@ -54,10 +76,9 @@
             <NuxtImg
               :alt="productImageGetters.getImageAlternate(image) || productImageGetters.getCleanImageName(image) || ''"
               :title="productImageGetters.getImageName(image) ? productImageGetters.getImageName(image) : null"
-              class="rounded h-full w-full object-contain"
-              :class="activeIndex === index ? 'border-primary-500' : ''"
-              :width="productImageGetters.getImageWidth(image) ?? 80"
-              :height="productImageGetters.getImageHeight(image) ?? 80"
+              class="h-full w-full object-contain transition-all duration-200 rounded-sm"
+              :width="productImageGetters.getImageWidth(image) ?? 78"
+              :height="productImageGetters.getImageHeight(image) ?? 78"
               :src="productImageGetters.getImageUrlPreview(image)"
               :quality="80"
               loading="lazy"
@@ -65,6 +86,7 @@
           </SwiperSlide>
         </Swiper>
 
+        <!-- Thumbnail navigasyon oklari -->
         <template v-if="hasMoreImages">
           <button
             v-if="showNav && mainSwiper"
@@ -73,7 +95,7 @@
             aria-label="Previous"
             @click="mainSwiper?.slidePrev()"
           >
-            <SfIconChevronLeft />
+            <SfIconChevronLeft class="!w-4 !h-4" />
           </button>
           <button
             v-if="showNav && mainSwiper"
@@ -82,19 +104,20 @@
             aria-label="Next"
             @click="mainSwiper?.slideNext()"
           >
-            <SfIconChevronRight />
+            <SfIconChevronRight class="!w-4 !h-4" />
           </button>
         </template>
       </div>
 
+      <!-- Mobil dot navigasyon -->
       <div v-if="hasMoreImages" class="flex md:hidden gap-0.5" v-bind="carouselProps">
         <button
           v-for="(image, index) in images"
           :key="productImageGetters.getImageUrl(image)"
           type="button"
           :aria-current="activeIndex === index"
-          class="relative shrink-0 pb-1 border-b-4 cursor-pointer transition-colors flex-grow"
-          :class="[activeIndex === index ? 'border-primary-500' : 'border-neutral-200']"
+          class="relative shrink-0 pb-1 border-b-[3px] cursor-pointer transition-colors flex-grow rounded-full"
+          :class="[activeIndex === index ? 'border-primary-700' : 'border-neutral-200']"
           @click="slideTo(index)"
         />
       </div>
@@ -137,7 +160,7 @@ const isSide = computed(() => type.value === 'left-vertical' || type.value === '
 const isLeft = computed(() => type.value === 'left-vertical');
 
 const galleryDirClass = computed(() => (isSide.value ? 'flex-col md:flex-row' : 'flex-col md:flex-col'));
-const galleryGapClass = computed(() => (isSide.value ? 'md:gap-4' : 'md:gap-2'));
+const galleryGapClass = computed(() => (isSide.value ? 'md:gap-3' : 'md:gap-2'));
 const thumbContainerClass = computed(() => [isLeft.value ? 'md:order-first' : 'md:order-last']);
 const hasMoreImages = computed(() => images.value.length > 1);
 
@@ -147,28 +170,26 @@ const thumbsSwiperClass = computed(() =>
   isSide.value ? 'hidden md:block md:h-full md:w-[5.5rem]' : 'hidden md:block md:w-full md:min-h-[5.5rem]',
 );
 
-const thumbSlideClass = (index: number) =>
-  isSide.value
-    ? [
-        '!w-[5rem] !h-[5rem] flex items-center justify-center cursor-pointer snap-start',
-        activeIndex.value === index ? 'opacity-100' : 'opacity-80 hover:opacity-100',
-      ]
-    : [
-        '!w-[5rem] !h-[5rem] inline-flex items-center justify-center cursor-pointer snap-start',
-        activeIndex.value === index ? 'opacity-100' : 'opacity-80 hover:opacity-100',
-      ];
+const thumbSlideClass = (index: number) => {
+  const isActive = activeIndex.value === index;
+  const base = isSide.value
+    ? '!w-[5rem] !h-[5rem] flex items-center justify-center cursor-pointer snap-start rounded-md border-2 overflow-hidden transition-all duration-200'
+    : '!w-[5rem] !h-[5rem] inline-flex items-center justify-center cursor-pointer snap-start rounded-md border-2 overflow-hidden transition-all duration-200';
+
+  return [base, isActive ? 'border-neutral-800 opacity-100' : 'border-neutral-200 opacity-70 hover:opacity-100 hover:border-neutral-400'];
+};
 
 const prevThumbBtnClass = computed(() =>
   [
-    'hidden md:flex items-center justify-center absolute z-[1] rounded-full p-2 bg-white ring-1 ring-neutral-300 disabled:opacity-40',
-    isSide.value ? 'left-1/2 -translate-x-1/2 top-2 rotate-90' : 'left-2 top-1/2 -translate-y-1/2',
+    'hidden md:flex items-center justify-center absolute z-[1] w-8 h-8 rounded-full bg-white shadow-sm border border-neutral-200 disabled:opacity-30 hover:bg-neutral-50 transition-all',
+    isSide.value ? 'left-1/2 -translate-x-1/2 top-1 rotate-90' : 'left-2 top-1/2 -translate-y-1/2',
   ].join(' '),
 );
 
 const nextThumbBtnClass = computed(() =>
   [
-    'hidden md:flex items-center justify-center absolute z-[1] rounded-full p-2 bg-white ring-1 ring-neutral-300 disabled:opacity-40',
-    isSide.value ? 'left-1/2 -translate-x-1/2 bottom-2 rotate-90' : 'right-2 top-1/2 -translate-y-1/2',
+    'hidden md:flex items-center justify-center absolute z-[1] w-8 h-8 rounded-full bg-white shadow-sm border border-neutral-200 disabled:opacity-30 hover:bg-neutral-50 transition-all',
+    isSide.value ? 'left-1/2 -translate-x-1/2 bottom-1 rotate-90' : 'right-2 top-1/2 -translate-y-1/2',
   ].join(' '),
 );
 

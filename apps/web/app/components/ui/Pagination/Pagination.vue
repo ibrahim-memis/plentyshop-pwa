@@ -1,165 +1,115 @@
 <template>
   <nav
-    class="flex justify-between items-end border-t border-neutral-200"
+    class="flex items-center justify-center gap-1 py-6"
     role="navigation"
     :aria-label="t('common.labels.pagination')"
     data-testid="pagination"
   >
-    <UiButton
-      size="lg"
+    <!-- Önceki -->
+    <button
+      type="button"
       :aria-label="t('common.navigation.previousAriaLabel')"
       :disabled="pagination.selectedPage <= 1 || disabled"
-      variant="tertiary"
-      class="gap-3"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
       data-testid="pagination-previous"
       @click="previousPage"
     >
-      <template #prefix>
-        <SfIconChevronLeft />
-      </template>
-      <span class="hidden sm:inline-flex">{{ t('common.actions.previous') }}</span>
-    </UiButton>
-    <ul class="flex justify-center">
-      <li v-if="!pagination.pages.includes(1)">
-        <div
-          :class="[
-            'flex pt-1 border-t-4 border-transparent',
-            { 'font-medium border-t-4 !border-primary-500': pagination.selectedPage === 1 },
-          ]"
-        >
-          <button
-            type="button"
-            :class="[
-              'px-4 py-3 md:w-12 rounded-md text-neutral-500',
-              {
-                'hover:bg-primary-50 hover:text-primary-800 active:bg-primary-50 active:text-primary-700': !disabled,
-              },
-            ]"
-            :aria-current="pagination.selectedPage === 1 || disabled"
-            :aria-label="getAriaLabel(pagination.selectedPage === 1 || disabled, 1)"
-            @click="setPage(1)"
-          >
-            1
-          </button>
-        </div>
-      </li>
-      <li v-if="pagination.startPage > 2">
-        <div class="flex pt-1 border-t-4 border-transparent">
-          <button type="button" disabled aria-hidden="true" class="px-4 py-3 md:w-12 rounded-md text-neutral-500">
-            ...
-          </button>
-        </div>
-      </li>
-      <li v-if="shouldDisplayPreviousLink">
-        <div class="flex pt-1 border-t-4 border-transparent">
-          <button
-            type="button"
-            :class="[
-              'px-4 py-3 md:w-12 rounded-md text-neutral-500',
-              {
-                'hover:bg-primary-50 hover:text-primary-800 active:bg-primary-50 active:text-primary-700': !disabled,
-              },
-            ]"
-            :aria-current="pagination.endPage - 1 === pagination.selectedPage"
-            :aria-label="getAriaLabel(pagination.endPage - 1 === pagination.selectedPage, pagination.endPage - 1)"
-            :disabled="disabled"
-            @click="setPage(pagination.endPage - 1)"
-          >
-            {{ pagination.endPage - 1 }}
-          </button>
-        </div>
-      </li>
-      <li v-for="page in pagination.pages" :key="`page-${page}`">
-        <div
-          :class="[
-            'flex pt-1 border-t-4 border-transparent',
-            { 'font-medium border-t-4 !border-primary-500': pagination.selectedPage === page },
-          ]"
-        >
-          <button
-            type="button"
-            :class="[
-              'px-4 py-3 md:w-12 text-neutral-500 rounded-md',
-              {
-                'hover:bg-primary-50 hover:text-primary-800 active:bg-primary-50 active:text-primary-700': !disabled,
-              },
-              {
-                '!text-neutral-900 hover:!text-primary-800 active:!text-primary-700': pagination.selectedPage === page,
-              },
-            ]"
-            :aria-current="pagination.selectedPage === page"
-            :aria-label="getAriaLabel(pagination.selectedPage === page, page)"
-            :disabled="disabled"
-            @click="setPage(page)"
-          >
-            {{ page }}
-          </button>
-        </div>
-      </li>
-      <li v-if="shouldDisplayNextLink">
-        <div class="flex pt-1 border-t-4 border-transparent">
-          <button
-            type="button"
-            :class="[
-              'px-4 py-3 md:w-12 rounded-md text-neutral-500',
-              {
-                'hover:bg-primary-50 hover:text-primary-800 active:bg-primary-50 active:text-primary-700': !disabled,
-              },
-            ]"
-            :aria-label="t('goToPage', { page: 2 })"
-            :disabled="disabled"
-            @click="setPage(2)"
-          >
-            2
-          </button>
-        </div>
-      </li>
-      <li v-if="pagination.endPage < pagination.totalPages - 1">
-        <div class="flex pt-1 border-t-4 border-transparent">
-          <button type="button" disabled aria-hidden="true" class="px-4 py-3 md:w-12 rounded-md text-neutral-500">
-            ...
-          </button>
-        </div>
-      </li>
-      <li v-if="!pagination.pages.includes(pagination.totalPages)">
-        <div
-          :class="[
-            'flex pt-1 border-t-4 border-transparent',
-            { 'font-medium border-t-4 !border-primary-500': pagination.selectedPage === pagination.totalPages },
-          ]"
-        >
-          <button
-            type="button"
-            :class="[
-              'px-4 py-3 md:w-12 rounded-md text-neutral-500',
-              {
-                'hover:bg-primary-50 hover:text-primary-800 active:bg-primary-50 active:text-primary-700': !disabled,
-              },
-            ]"
-            :aria-current="pagination.totalPages === pagination.selectedPage"
-            :aria-label="getAriaLabel(pagination.totalPages === pagination.selectedPage, pagination.selectedPage)"
-            :disabled="disabled"
-            @click="setPage(pagination.totalPages)"
-          >
-            {{ pagination.totalPages }}
-          </button>
-        </div>
-      </li>
-    </ul>
-    <UiButton
-      size="lg"
+      <SfIconChevronLeft class="!w-5 !h-5" />
+    </button>
+
+    <!-- İlk sayfa (görünmüyorsa) -->
+    <button
+      v-if="!pagination.pages.includes(1)"
+      type="button"
+      :aria-current="pagination.selectedPage === 1"
+      :aria-label="getAriaLabel(pagination.selectedPage === 1, 1)"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium transition-colors cursor-pointer"
+      :class="pagination.selectedPage === 1
+        ? 'bg-neutral-900 text-white'
+        : 'text-neutral-600 hover:bg-neutral-100'"
+      @click="setPage(1)"
+    >
+      1
+    </button>
+
+    <!-- Başlangıç ellipsis -->
+    <span v-if="pagination.startPage > 2" class="flex items-center justify-center w-10 h-10 text-neutral-400 text-sm">
+      ...
+    </span>
+
+    <!-- Önceki link (maxPages=1) -->
+    <button
+      v-if="shouldDisplayPreviousLink"
+      type="button"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+      :aria-label="getAriaLabel(false, pagination.endPage - 1)"
+      :disabled="disabled"
+      @click="setPage(pagination.endPage - 1)"
+    >
+      {{ pagination.endPage - 1 }}
+    </button>
+
+    <!-- Sayfa numaraları -->
+    <button
+      v-for="page in pagination.pages"
+      :key="`page-${page}`"
+      type="button"
+      :aria-current="pagination.selectedPage === page"
+      :aria-label="getAriaLabel(pagination.selectedPage === page, page)"
+      :disabled="disabled"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium transition-colors cursor-pointer"
+      :class="pagination.selectedPage === page
+        ? 'bg-neutral-900 text-white'
+        : 'text-neutral-600 hover:bg-neutral-100'"
+      @click="setPage(page)"
+    >
+      {{ page }}
+    </button>
+
+    <!-- Sonraki link (maxPages=1) -->
+    <button
+      v-if="shouldDisplayNextLink"
+      type="button"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+      :aria-label="t('goToPage', { page: 2 })"
+      :disabled="disabled"
+      @click="setPage(2)"
+    >
+      2
+    </button>
+
+    <!-- Bitiş ellipsis -->
+    <span v-if="pagination.endPage < pagination.totalPages - 1" class="flex items-center justify-center w-10 h-10 text-neutral-400 text-sm">
+      ...
+    </span>
+
+    <!-- Son sayfa (görünmüyorsa) -->
+    <button
+      v-if="!pagination.pages.includes(pagination.totalPages)"
+      type="button"
+      :aria-current="pagination.totalPages === pagination.selectedPage"
+      :aria-label="getAriaLabel(pagination.totalPages === pagination.selectedPage, pagination.totalPages)"
+      :disabled="disabled"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-sm font-medium transition-colors cursor-pointer"
+      :class="pagination.selectedPage === pagination.totalPages
+        ? 'bg-neutral-900 text-white'
+        : 'text-neutral-600 hover:bg-neutral-100'"
+      @click="setPage(pagination.totalPages)"
+    >
+      {{ pagination.totalPages }}
+    </button>
+
+    <!-- Sonraki -->
+    <button
+      type="button"
       :aria-label="t('common.navigation.nextAriaLabel')"
       :disabled="pagination.selectedPage >= pagination.totalPages || disabled"
-      variant="tertiary"
-      class="gap-3"
+      class="flex items-center justify-center w-10 h-10 rounded-lg text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
       data-testid="pagination-next"
       @click="nextPage"
     >
-      <span class="hidden sm:inline-flex">{{ t('common.actions.next') }}</span>
-      <template #suffix>
-        <SfIconChevronRight />
-      </template>
-    </UiButton>
+      <SfIconChevronRight class="!w-5 !h-5" />
+    </button>
   </nav>
 </template>
 

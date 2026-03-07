@@ -109,14 +109,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { Locale } from '#i18n';
 import type { ApiError } from '@plentymarkets/shop-api';
 import { SfLink, SfLoaderCircular, useDisclosure, SfIconClose, SfIconCheck } from '@storefront-ui/vue';
-import type { Locale } from '#i18n';
-
-defineI18nRoute({
-  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
-});
-
 const { resetPassword, loading } = useResetPassword();
 const route = useRoute();
 const { isOpen: isAuthenticationOpen, open: openAuthentication, close: closeAuthentication } = useDisclosure();
@@ -134,6 +129,9 @@ const contactId = Number(route.params.contactId);
 const passwordMinLength = runtimeConfig.public.passwordMinLength;
 const passwordMaxLength = runtimeConfig.public.passwordMaxLength;
 
+defineI18nRoute({
+  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
+});
 definePageMeta({ layout: false, middleware: ['guest-guard'] });
 
 const validateHasDigit = (value: string) => /\d/.test(value);

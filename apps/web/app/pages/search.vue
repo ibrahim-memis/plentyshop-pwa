@@ -8,28 +8,19 @@
         :total-products="productsCatalog.pagination.totals"
         :products="productsCatalog.products"
         :items-per-page="Number(productsPerPage)"
-      >
-        <template #sidebar>
-          <CategorySorting />
-          <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
-          <CategoryFilters v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
-        </template>
-      </CategoryPageContent>
+      />
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { facetGetters } from '@plentymarkets/shop-api';
-import { SfLoaderCircular } from '@storefront-ui/vue';
 import type { Locale } from '#i18n';
+import { SfLoaderCircular } from '@storefront-ui/vue';
+const { getRobots, setRobotForStaticPage } = useRobots();
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
-const { getRobots, setRobotForStaticPage } = useRobots();
-
 definePageMeta({
   layout: false,
   type: 'search',

@@ -1,5 +1,3 @@
-import type { Product } from '@plentymarkets/shop-api';
-
-export type QuickCheckoutProps = {
-  product: Product;
-};
+// QuickCheckout artik props almıyor - cart sidebar olarak calisiyor
+// Eski QuickCheckoutProps kaldırıldı
+export {};

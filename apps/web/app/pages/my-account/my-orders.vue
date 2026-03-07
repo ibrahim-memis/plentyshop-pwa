@@ -180,14 +180,10 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { type Order, orderGetters } from '@plentymarkets/shop-api';
 import { SfIconMoreHoriz, SfListItem, SfLoaderCircular } from '@storefront-ui/vue';
 import { paths } from '~/utils/paths';
-import type { Locale } from '#i18n';
-
-defineI18nRoute({
-  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
-});
 
 const NuxtLink = resolveComponent('NuxtLink');
 const { openOrderAgainModal, order: selectedOrder } = useOrderAgain();
@@ -200,6 +196,9 @@ const maxVisiblePages = ref(1);
 const setMaxVisiblePages = (isWide: boolean) => (maxVisiblePages.value = isWide ? 5 : 1);
 const isDesktop = computed(() => viewport.isGreaterOrEquals('lg'));
 
+defineI18nRoute({
+  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
+});
 definePageMeta({
   layout: 'account',
   pageType: 'static',

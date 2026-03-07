@@ -18,7 +18,7 @@ import {
 
 setupFetchMock();
 setupNuxtMocks();
-mockNuxtImport('useBlockTemplates', () => () => ({
+mockNuxtImport('useCategoryTemplate', () => () => ({
   data: ref<Block[]>(mockCategoryTemplateBlocks),
 }));
 

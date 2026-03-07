@@ -1,1 +1,1604 @@
-{}
+{
+  "header": {
+    "searchPlaceholder": "Anahtar kelime veya ürün numarası ile ara...",
+    "internationalShipping": "Uluslararası Kargo",
+    "fastShipping": "İş günlerinde 24 saat içinde kargo",
+    "loginRegister": "Giriş Yap | Kayıt Ol",
+    "phoneHours": "Telefon desteği: Salı - Cuma, 9:00 - 16:00",
+    "bonusProgram": "Bonus programı",
+    "campaigns": "Kampanyalar",
+    "welcome": "Hoş geldiniz",
+    "loginHint": "Giriş yap",
+    "merklist": "İstek listesi:",
+    "articles": "Ürünler",
+    "cart": "Sepet:",
+    "b2bTitle": "İşletmeniz için toplu sipariş mi arıyorsunuz?",
+    "b2bContact": "Bize ulaşın",
+    "pricePlan": "B2B Fiyatları Aktif",
+    "discountLabel": "İndirim"
+  },
+  "welcomePopup": {
+    "title": "HafenX'e hoş geldiniz!",
+    "subtitle": "Hesabınız başarıyla oluşturuldu",
+    "currentPlan": "Mevcut Fiyat Seviyesi: Standart Fiyatlar (B2C)",
+    "currentPlanDesc": "Şu anda standart perakende fiyatlarımızı görüntülüyorsunuz. Kayıtlı müşteri olarak tüm ürünlere erişiminiz var ve hemen sipariş verebilirsiniz.",
+    "b2bTitle": "Özel B2B Fiyatlandırma Mevcut",
+    "b2bDesc": "Kurumsal müşteri olarak toplu alım indirimlerinden, bireysel fiyatlandırmadan ve kişisel destekten yararlanabilirsiniz.",
+    "benefit1": "%30'a varan toplu alım indirimi",
+    "benefit2": "Özel fiyat listeleri",
+    "benefit3": "Kişisel müşteri temsilcisi",
+    "benefit4": "Esnek ödeme koşulları",
+    "contactTitle": "Şimdi B2B Fiyat Teklifi Alın",
+    "contactBtn": "Bize Ulaşın",
+    "continueBtn": "Alışverişe Devam Et"
+  },
+  "filterBar": {
+    "filterBy": "Filtrele",
+    "sortBy": "Sırala",
+    "articles": "Ürünler"
+  },
+  "languageSidebar": {
+    "title": "Dil ve Para Birimi",
+    "language": "Dil",
+    "currency": "Para Birimi"
+  },
+  "sidebar": {
+    "categories": "Kategoriler",
+    "pages": "Sayfalar",
+    "home": "Ana Sayfa",
+    "wishlist": "İstek Listesi",
+    "myAccount": "Hesabım",
+    "orders": "Siparişlerim",
+    "followUs": "Bizi Takip Edin"
+  },
+  "notifyMe": {
+    "notifyButtonTooltip": "Ürün tekrar stoka girdiğinde sizi bilgilendireceğiz.",
+    "notifyButton": "Beni bilgilendir",
+    "form": {
+      "subTitle": "E-posta adresinizi girin, bu ürün tekrar stoka girdiğinde sizi bilgilendireceğiz.",
+      "emailLabel": "E-posta adresi",
+      "emailPlaceholder": "E-posta adresiniz",
+      "turnstileFailed": "Turnstile doğrulaması başarısız oldu",
+      "successCheckEmail": "Gelen kutunuzu kontrol edin! Size bir onay e-postası gönderdik."
+    },
+    "aria": {
+      "openForm": "Bildirim abonelik formunu aç",
+      "closeForm": "Bildirim formunu kapat",
+      "formLabel": "Stoka giriş bildirim formu",
+      "privacyPolicyLink": "Gizlilik politikası (yeni sekmede açılır)",
+      "securityVerification": "Güvenlik doğrulaması",
+      "subscribeButton": "Stoka giriş bildirimlerine abone ol"
+    },
+    "notifyMeOptInMessage": "Bildiriminiz başarıyla onaylandı. Ürün tekrar stoka girdiğinde bir e-posta alacaksınız.",
+    "notifyMeOptInMessageError": "Bildiriminiz onaylanamadı. Lütfen tekrar deneyin veya destek ekibimizle iletişime geçin.",
+    "notifyMeUnsubscribeMessage": "Bildirim aboneliğiniz başarıyla iptal edildi.",
+    "notifyMeUnsubscribeMessageError": "Bildirim aboneliği iptal edilemedi. Lütfen tekrar deneyin veya destek ekibimizle iletişime geçin.",
+    "outOfStock": "Ürün şu anda stokta yok",
+    "readAndAccepted": "{privacyPolicy} belgesini okudum ve kabul ediyorum"
+  },
+  "account": {
+    "accountSettings": {
+      "billingDetails": {
+        "billingAddress": "Fatura adresi",
+        "newAddress": "Yeni Fatura Adresi"
+      },
+      "delete": "Sil",
+      "edit": "Düzenle",
+      "heading": "Hesap Ayarları",
+      "makeDefault": "Varsayılan yap",
+      "noAddresses": "Henüz kayıtlı adresiniz yok",
+      "personalData": {
+        "change": "Değiştir",
+        "changePassword": "Şifre değiştir",
+        "contactInformation": "İletişim bilgileri",
+        "currentPassword": "Mevcut şifre",
+        "edit": "Düzenle",
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "newPassword": "Yeni şifre",
+        "newPasswordAgain": "Yeni şifreyi tekrarlayın",
+        "passwordChange": "Şifre değişikliği",
+        "passwordHelp": "En az 8 karakter uzunluğunda olmalı ve en az bir harf ile bir rakam içermelidir",
+        "passwordsDoNotMatch": "Şifreler eşleşmiyor.",
+        "yourName": "Adınız",
+        "yourPassword": "Şifreniz"
+      },
+      "section": {
+        "billingDetails": "Fatura adresleri",
+        "personalData": "Kişisel bilgiler",
+        "shippingDetails": "Teslimat adresleri"
+      },
+      "shippingDetails": {
+        "newAddress": "Yeni teslimat adresi",
+        "shippingAddress": "Teslimat adresi"
+      }
+    },
+    "back": "Geri",
+    "heading": "Hesabım",
+    "logout": "Çıkış yap",
+    "navBottomHeadingAccount": "Hesap",
+    "navBottomHeadingLogin": "Giriş",
+    "ordersAndReturns": {
+      "actions": "İşlemler",
+      "amount": "Tutar",
+      "continue": "Alışverişe devam et",
+      "details": "Detaylar",
+      "heading": "Siparişler ve İadeler",
+      "listOfOrders": "Sipariş listesi",
+      "more": "Daha fazla göster",
+      "myOrders": "Siparişlerim",
+      "noOrders": "Henüz bizden alışveriş yapmadınız",
+      "noOrdersAltText": "Sipariş yok",
+      "noReturns": "Henüz iade talebiniz yok.",
+      "orderAgain": {
+        "addToCart": "Sepete ekle",
+        "buyAgain": "Tekrar satın al",
+        "cancel": "İptal",
+        "heading": "Tekrar satın al",
+        "headingChanges": "Ürünlerdeki değişiklikler",
+        "notAvailable": "Şu anda mevcut değil",
+        "orderPropertyNotAvailableOrChanged": "Ürün özellikleri değişti veya artık mevcut değil",
+        "priceDown": "Fiyat düştü",
+        "priceUp": "Fiyat arttı",
+        "stockLimitation": "yalnızca {stock} adet mevcut",
+        "subtext": "Bu siparişteki ürünleri tekrar satın alabilirsiniz.",
+        "subtextChanges": "Son siparişinizden bu yana değişiklikler oluştu"
+      },
+      "orderDate": "Sipariş Tarihi",
+      "orderDetails": {
+        "bankDetails": {
+          "accountOwner": "Hesap Sahibi",
+          "bank": "Banka",
+          "bic": "BIC/SWIFT",
+          "heading": "Banka bilgileri",
+          "iban": "IBAN"
+        },
+        "billingAddress": "Fatura adresi",
+        "delivery": "Teslimat",
+        "estimatedTax": "Tahmini KDV",
+        "heading": "Sipariş detayları",
+        "itemsSubtotal": "Ürünler Ara Toplamı",
+        "orderDate": "Sipariş tarihi",
+        "orderId": "Sipariş No",
+        "paymentAmount": "Toplam",
+        "paymentMethod": "Ödeme yöntemi",
+        "price": "Fiyat",
+        "priceFrom": "başlayan",
+        "product": "Ürün",
+        "quantity": "Adet",
+        "shippingAddress": "Teslimat adresi",
+        "showDetails": "Ürün detaylarını göster",
+        "status": "Durum",
+        "subtotal": "Ara toplam",
+        "tableCaption": "Sipariş detayları",
+        "total": "Toplam"
+      },
+      "orderId": "Sipariş No",
+      "orderNumber": "Sipariş Numarası",
+      "paymentSummary": {
+        "heading": "Ödeme Özeti",
+        "paymentStatus": "Ödeme durumu"
+      },
+      "returnDate": "İade Tarihi",
+      "returnId": "İade No",
+      "returnsAltText": "İade yok",
+      "returnsDescription": "Henüz iade talebiniz yok",
+      "returnsHeading": "İadeler",
+      "section": {
+        "myOrders": "Siparişlerim",
+        "returns": "İadeler"
+      },
+      "shippingDate": "Kargo tarihi",
+      "shippingSummary": {
+        "heading": "Kargo özeti",
+        "shippingMethod": "Kargo yöntemi",
+        "shipTo": "Teslimat adresi"
+      },
+      "status": "Durum"
+    },
+    "wishlist": {
+      "heading": "İstek Listesi",
+      "section": {
+        "myWishlist": "İstek listem"
+      },
+      "notifications": {
+        "add": "Ürün istek listenize eklendi.",
+        "delete": "Ürün istek listenizden çıkarıldı."
+      }
+    }
+  },
+  "address": {
+    "billingRequired": "Lütfen bir fatura adresi seçin.",
+    "edit": "Adresi düzenle",
+    "manage": "Adreslerinizi yönetin",
+    "newBillingAddress": "Yeni fatura adresi",
+    "newShippingAddress": "Yeni teslimat adresi",
+    "pickSavedAddress": "Kayıtlı adresler",
+    "pickSavedSubtitle": "Kayıtlı adreslerinizden birini seçin veya yeni bir adres oluşturun",
+    "savedBillingAddresses": "Kayıtlı fatura adresleri",
+    "savedShippingAddresses": "Kayıtlı teslimat adresleri",
+    "shippingAddress": "Teslimat adresi",
+    "shippingRequired": "Lütfen bir teslimat adresi seçin.",
+    "unsavedWarning": "Girdiğiniz adres henüz kaydedilmedi. Ödeme işlemine devam etmek için Adresi kaydet butonuna tıklayın.",
+    "sameAsShippingAddress": "Teslimat adresiyle aynı"
+  },
+  "authentication": {
+    "login": {
+      "createAccount": "Henüz hesabınız yok mu?",
+      "createAccountLater": "Endişelenmeyin. Siparişinizden sonra da hesap oluşturabilirsiniz",
+      "createAccountLinkLabel": "Şimdi kayıt olun!",
+      "forgotPasswordLabel": "Şifrenizi mi unuttunuz?",
+      "heading": "Hesabınıza giriş yapın",
+      "headingSuccess": "Şifre sıfırlama başarılı",
+      "loginAndContinue": "Giriş yap ve devam et",
+      "openLoginForm": "Giriş formunu aç",
+      "rememberMeLabel": "Beni hatırla",
+      "submitLabel": "Giriş yap",
+      "success": "Başarıyla giriş yaptınız"
+    },
+    "resetPassword": {
+      "anotherEmail": "Başka bir e-posta adresi denemem gerekiyor",
+      "backToLogin": "Girişe dön",
+      "continue": "Devam et",
+      "email": "E-posta",
+      "emailSent": "E-postanızı kontrol edin: Şifrenizi nasıl sıfırlayacağınıza dair talimatları gönderdik",
+      "heading": "Şifrenizi mi unuttunuz?",
+      "info": "Kayıt olurken kullandığınız e-posta adresini girin. Hesabınız için yeni bir şifre belirlemenize olanak sağlayacak bir şifre sıfırlama bağlantısı göndereceğiz.",
+      "resetPassword": "Şifreyi Sıfırla",
+      "subHeading": "Endişelenmeyin. Şifrenizi nasıl sıfırlayacağınıza dair talimatları e-posta adresinize göndereceğiz",
+      "thankYou": "Teşekkürler, {0} adresine kayıtlı bir hesap varsa şifre sıfırlama bağlantısını gelen kutunuzda bulabilirsiniz.",
+      "title": "Şifre sıfırlama başarılı"
+    },
+    "setNewPassword": {
+      "button": "Yeni şifreyi kaydet",
+      "description": "Hesabınıza giriş yapmak için kullanmak istediğiniz yeni şifreyi oluşturun.",
+      "heading": "Şifreyi sıfırla",
+      "help": "{min} ile {max} karakter arasında, harf, rakam ve sembol karışımı içermelidir.",
+      "password": "Yeni şifre",
+      "passwordsNotMatching": "Şifreler eşleşmiyor",
+      "rememberPassword": "Şifrenizi hatırlıyor musunuz?",
+      "repeatPassword": "Yeni şifreyi tekrarlayın",
+      "resetSucceded": "Şifreniz başarıyla sıfırlandı. Artık yeni şifrenizle giriş yapabilirsiniz."
+    },
+    "signup": {
+      "alreadyHaveAccount": "Zaten bir hesabınız var mı?",
+      "benefits": {
+        "orderHistory": "Tüm sipariş geçmişiniz tek bir yerde",
+        "orderTracking": "Siparişlerinizi takip edin",
+        "saveAddresses": "Birden fazla adres kaydedin",
+        "wishlist": "Her yerden ürünleri daha sonrası için kaydedin"
+      },
+      "emailAlreadyExists": "Bu e-posta adresi zaten kayıtlı.",
+      "heading": "Hesap oluşturun",
+      "logInLinkLabel": "Giriş yapın",
+      "passwordValidation": {
+        "characters": "Şifre {min} ile {max} karakter arasında olmalıdır.",
+        "letters": "Şifre en az bir harf içermelidir.",
+        "numbers": "Şifre en az bir rakam içermelidir.",
+        "invalidPassword": "En az 8 karakter uzunluğunda olmalı ve en az bir harf ile bir rakam içermelidir."
+      },
+      "subheading": "Harika avantajlardan yararlanmak için şimdi kayıt olun",
+      "submitLabel": "Kayıt ol!",
+      "success": "Hesabınız başarıyla oluşturuldu"
+    }
+  },
+  "availabilities": {
+    "availabilityBackOrder": "Ön sipariş",
+    "availabilityDiscontinued": "Üretimi durduruldu",
+    "availabilityInStock": "Stokta var",
+    "availabilityInStoreOnly": "Yalnızca mağazada",
+    "availabilityLimitedAvailability": "Sınırlı stok",
+    "availabilityNotSet": "Stok durumu seçin",
+    "availabilityOnlineOnly": "Yalnızca çevrimiçi",
+    "availabilityOutOfStock": "Stokta yok",
+    "availabilityPreOrder": "Ön sipariş",
+    "availabilityPreSale": "Ön satış",
+    "availabilitySoldOut": "Tükendi"
+  },
+  "billing": {
+    "addButton": "Fatura adresi ekle",
+    "description": "Bir fatura adresi ekleyin. Faturanız yukarıda belirtilen e-posta adresine gönderilecektir.",
+    "heading": "Fatura Adresi",
+    "methodChanged": "Seçilen ödeme yöntemi artık mevcut değil."
+  },
+  "cart": {
+    "empty": "Sepetiniz boş",
+    "emptyImageAlt": "Boş sepet görseli",
+    "emptyNotification": "Sepetinizde ürün bulunmuyor",
+    "emptyWishlist": "İstek listeniz boş",
+    "itemAdded": "Ürün sepete eklendi",
+    "itemCount": "(Ürünler: {count})",
+    "itemRemoved": "Ürün sepetten çıkarıldı",
+    "myCart": "Sepetim",
+    "numberInCart": "Sepette {count} ürün",
+    "numberInWishlist": "İstek listesinde {count} ürün"
+  },
+  "category": {
+    "sorting": {
+      "default": {
+        "recommended_sorting": "Önerilen"
+      },
+      "item": {
+        "feedbackDecimal_asc": "Ürün değerlendirmeleri ⬆",
+        "feedbackDecimal_desc": "Ürün değerlendirmeleri ⬇",
+        "manufacturer": {
+          "externalName_asc": "Üretici A-Z",
+          "externalName_desc": "Üretici Z-A"
+        },
+        "score": "İlgililik"
+      },
+      "sorting": {
+        "price": {
+          "avg_asc": "Fiyat ⬆",
+          "avg_desc": "Fiyat ⬇"
+        }
+      },
+      "texts": {
+        "name1_asc": "İsim A-Z",
+        "name1_desc": "İsim Z-A"
+      },
+      "variation": {
+        "availability": {
+          "averageDays_asc": "Stok durumu ⬆",
+          "averageDays_desc": "Stok durumu ⬇"
+        },
+        "createdAt_asc": "En eski ürünler",
+        "createdAt_desc": "En yeni ürünler",
+        "number_asc": "Varyant numarası ⬆",
+        "number_desc": "Varyant numarası ⬇",
+        "position_asc": "Çok satanlar ⬆",
+        "position_desc": "Çok satanlar ⬇",
+        "updatedAt_asc": "Son güncelleme",
+        "updatedAt_desc": "İlk güncelleme"
+      }
+    }
+  },
+  "checkout": {
+    "backToCheckout": "Ödemeye Dön",
+    "continueAsGuest": "Misafir olarak devam et",
+    "exportDeliveryNotice": "Siparişi vererek, siparişimin {shopCountry} ülkesinden {deliveryCountry} ülkesine gönderildiğini kabul ediyorum. Yerel KDV, gümrük işlem masrafları ve gümrük vergileri sipariş toplam tutarına dahil değildir ve üçüncü taraflara ödenmelidir. Masraflar bana aittir.",
+    "fields": {
+      "customerReference": "Referansınız",
+      "customerReferencePlaceholder": "Referansınızı buraya girin.",
+      "customerWish": "Notlar ve istekler",
+      "customerWishMessage": "Bize mesajınızı buraya girin."
+    },
+    "guestCheckout": "Misafir olarak ödeme",
+    "loginFastCheckout": "Daha hızlı ödeme için giriş yapın",
+    "payment": {
+      "birthdateError": "Geçerli bir doğum tarihi girin.",
+      "birthdateLabel": "Doğum Tarihi",
+      "comingSoon": "Çok yakında",
+      "countrySearch": "Ülke ara",
+      "creditCard": "Kredi Kartı",
+      "heading": "Ödeme yöntemi",
+      "noMethodsAvailable": "Mevcut ödeme yöntemi bulunmamaktadır. Lütfen mağaza yöneticisiyle iletişime geçin.",
+      "payUponInvoice": "Fatura ile ödeme",
+      "phoneError": "Geçerli bir telefon numarası girin.",
+      "phoneLabel": "Telefon numarası"
+    },
+    "googlePay": {
+      "paymentInProgress": "Ödeme işleniyor..."
+    }
+  },
+  "customAssets": {
+    "assetDeletedSuccessfully": "Varlık başarıyla silindi",
+    "failedToDeleteAsset": "Varlık silinemedi",
+    "duplicateAssetError": "Bu tür ve isimle bir varlık zaten mevcut. Lütfen benzersiz bir kombinasyon kullanın."
+  },
+  "common": {
+    "actions": {
+      "add": "Ekle",
+      "addProductToWishlist": "{label} ürününü istek listesine ekle",
+      "addToCart": "Sepete ekle",
+      "addToWishlist": "İstek listesine ekle",
+      "apply": "Uygula",
+      "back": "Geri",
+      "browseProducts": "Ürünlere Göz At",
+      "buy": "Satın al",
+      "cancelOrder": "Siparişi iptal et",
+      "clear": "Temizle",
+      "clearAll": "Tümünü temizle",
+      "cancel": "İptal",
+      "continueShopping": "Alışverişe devam et",
+      "edit": "Düzenle",
+      "goToCheckout": "Ödemeye geç",
+      "goToHomepage": "Ana Sayfaya Git",
+      "next": "Sonraki",
+      "placeOrder": "Sipariş ver ve öde",
+      "previous": "Önceki",
+      "readLess": "Daha az oku",
+      "readMore": "Devamını oku",
+      "reloadPage": "Sayfayı yenile",
+      "removeFromWishlist": "İstek listesinden çıkar",
+      "removeItemFromBasket": "Ürünü sepetten çıkar",
+      "removeProductFromWishlist": "{label} ürününü istek listesinden çıkar",
+      "resetSearch": "Aramayı Sıfırla",
+      "save": "Kaydet",
+      "saveAddress": "Adresi kaydet",
+      "scrollTop": "Yukarı kaydır",
+      "search": "Ara",
+      "showLess": "Daha az göster",
+      "showMore": "Daha fazla göster",
+      "showOptions": "Seçenekleri göster",
+      "showProducts": "Ürünleri göster",
+      "viewCart": "Sepeti Görüntüle"
+    },
+    "labels": {
+      "address": "Adresler",
+      "asterisk": "*",
+      "basePrice": "Birim fiyat",
+      "cart": "Sepet",
+      "category": "Kategori",
+      "checkout": "Ödeme",
+      "content": "İçerik",
+      "delivery": "Kargo",
+      "email": "E-posta",
+      "estimatedTax": "KDV",
+      "excludedTax": "artı KDV",
+      "filters": "Filtreler",
+      "grossPrice": "Brüt",
+      "home": "Ana Sayfa",
+      "includedTax": "KDV dahil",
+      "itemsSubtotal": "Ürünler ara toplamı",
+      "listSettings": "Liste ayarları",
+      "max": "Maks",
+      "min": "Min",
+      "mostPopular": "En popüler",
+      "netPrice": "Net",
+      "or": "veya",
+      "orderNumber": "Sipariş No",
+      "orderSummary": "Sipariş Özeti",
+      "pagination": "Sayfalı Gezinme",
+      "perPage": "Sayfa başına",
+      "phone": "Telefon",
+      "products": "Ürünler",
+      "quantitySelector": "Adet seçici",
+      "returnNumber": "İade No",
+      "sale": "İndirim",
+      "sortBy": "Sırala",
+      "technicalData": "Teknik veriler",
+      "tomorrow": "Yarın",
+      "total": "Toplam",
+      "wishlist": "İstek Listesi"
+    },
+    "messages": {
+      "offline": "Çevrimdışı olduğunuz görünüyor, internet bağlantınızı kontrol edin"
+    },
+    "reloadPWA": {
+      "ariaLabel": "Mağazanın yeni bir sürümü mevcut. Sayfayı yenilemek için basın.",
+      "newVersionAvailable": "Mağazanın yeni bir sürümü mevcut.",
+      "refresh": "Yenile"
+    },
+    "navigation": {
+      "breadcrumbsDropdown": "Daha fazla breadcrumb göster",
+      "closeAddressForm": "Adres düzenlemeyi bitir",
+      "closeAuthentication": "Kimlik doğrulamayı kapat",
+      "closeDialog": "İletişim Kutusunu Kapat",
+      "closeDrawer": "Çekmeceyi Kapat",
+      "closeListSettings": "Liste ayarlarını kapat",
+      "closeMenu": "Menüyü Kapat",
+      "openMenu": "Menüyü Aç",
+      "showSubcategories": "Alt kategorileri göster",
+      "closeNeutralAlert": "Nötr uyarıyı kapat",
+      "closePickSavedAddress": "Adres seçiciyi kapat",
+      "currentPage": "Mevcut sayfa: {page}",
+      "goToPage": "Sayfa {page}'e git",
+      "languageSelector": "Dil seçimini aç",
+      "nextAriaLabel": "Sonraki sayfaya git",
+      "openConfigurationDrawer": "Yapılandırma çekmecesini aç",
+      "openSearchModal": "Ürün aramasını aç",
+      "previousAriaLabel": "Önceki sayfaya git",
+      "socialLabel": "{label} sayfasına git"
+    }
+  },
+  "contact": {
+    "label": "İletişim",
+    "breadcrumbHome": "Ana Sayfa",
+    "clearAll": "Tümünü temizle",
+    "contact": "İletişim",
+    "contactSend": "Mesaj Gönder",
+    "contactShopMessage": "Ürünlerimiz, B2B koşullarımız hakkında sorularınız mı var veya özel bir teklif mi istiyorsunuz? Ekibimiz size yardımcı olmaktan memnuniyet duyar.",
+    "form": {
+      "title": "Bize mesaj gönderin",
+      "subtitle": "Formu doldurun, 24 saat içinde size dönüş yapacağız.",
+      "asterixHint": "işaretli alanlar zorunludur",
+      "emailLabel": "E-posta",
+      "message": "Mesaj",
+      "message-placeholder": "Talebinizi açıklayın...",
+      "nameLabel": "İlgili Kişi",
+      "companyLabel": "Şirket",
+      "taxIdLabel": "Vergi Kimlik No",
+      "taxIdPlaceholder": "ör. DE123456789",
+      "subjectLabel": "Konu"
+    },
+    "misConfigured": "İletişim formumuz eksik bir yapılandırma nedeniyle geçici olarak devre dışı bırakılmıştır. Lütfen daha sonra tekrar deneyin veya alternatif iletişim yöntemlerimizi kullanarak bize ulaşın.",
+    "privacyPolicy": "{privacyPolicy} belgesini okuduğumu onaylıyorum.",
+    "success": "Mesaj başarıyla gönderildi",
+    "info": {
+      "heading": "İletişim Bilgileri",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "hours": "Çalışma Saatleri",
+      "hoursValue": "Salı - Cuma, 9:00 - 16:00",
+      "address": "Adres",
+      "addressValue": "HafenX GmbH, Almanya",
+      "responseTime": "Yanıt Süresi",
+      "happyClients": "Mutlu Müşteriler",
+      "b2bTitle": "B2B Fiyat Teklifi Alın",
+      "b2bDesc": "Kurumsal müşteri olarak bireysel toplu alım fiyatlandırması, kişisel danışmanlık ve esnek ödeme koşullarından yararlanabilirsiniz."
+    }
+  },
+  "CookieBar": {
+    "about": {
+      "description": "Web sitemizde çerezler ve benzer teknolojiler kullanıyor ve ziyaretçilerimizin kişisel verilerini (ör. IP adresi) işliyoruz. Bu işlemler; içerikleri kişiselleştirmek, üçüncü taraf medya sağlayıcılarını entegre etmek veya web sitemize erişimi analiz etmek amacıyla gerçekleştirilmektedir. Veri işleme yalnızca çerezler ayarlandığında gerçekleşir. Bu verileri ayarlarda belirttiğimiz üçüncü taraflarla paylaşıyoruz. Veri işleme onay ile veya meşru bir menfaat temelinde gerçekleştirilebilir. Onay verilebilir veya reddedilebilir. Onay vermeme ve daha sonra onayı değiştirme veya geri çekme hakkınız bulunmaktadır. Kişisel verilerin kullanımına ilişkin {legal} ve ek bilgiler için {policy} sayfamızı inceleyin.",
+      "label": "Gizliliğinize önem veriyoruz"
+    },
+    "Accept All": "Tümünü Kabul Et",
+    "Accept Selection": "Seçimi Kabul Et",
+    "Back": "Geri",
+    "Cookie Settings": "Çerez Ayarları",
+    "group": {
+      "externalMedia": "Harici Medya",
+      "functional": "İşlevsel",
+      "marketing": "Pazarlama (önerilen)",
+      "necessary": "Gerekli"
+    },
+    "essentials": {
+      "cookies": {
+        "cloudflareTurnstile": {
+          "name": "Cloudflare Turnstile",
+          "provider": "Cloudflare",
+          "status": "Cloudflare'ın Turnstile hizmeti için gereklidir."
+        },
+        "consentCookie": {
+          "name": "consent-cookie",
+          "provider": "PlentyONE GmbH",
+          "status": "Onay seçimini saklar."
+        },
+        "payPal": {
+          "name": "paypal",
+          "provider": "PayPal (Europe) S.à r.l. et Cie, S.C.A.",
+          "status": "PayPal ödemeleri için gereklidir."
+        },
+        "plentyId": {
+          "name": "plentyID",
+          "provider": "PlentyONE GmbH",
+          "status": "Mevcut oturum hakkında bilgi saklar, örneğin kullanıcının giriş yapıp yapmadığı."
+        }
+      },
+      "description": "Temel çerezler, web sitesinin düzgün çalışması için gerekli olan temel işlevleri etkinleştirir.",
+      "label": "Temel"
+    },
+    "externalMedia": {
+      "description": "Video platformları ve sosyal medya platformlarından gelen içerikler varsayılan olarak engellenir. Harici medya çerezlerini kabul ederseniz, bu içeriklere erişim için ek onay gerekmez.",
+      "label": "Harici medya"
+    },
+    "functional": {
+      "description": "Bu çerezler, tercih edilen ayarları ve kullanıcı tarafından seçilen belirli seçenekleri saklamak için kullanılır.",
+      "label": "İşlevsel"
+    },
+    "Further Settings": "Diğer Ayarlar",
+    "keys": {
+      "Lifespan": "Ömür",
+      "PrivacyPolicy": "Gizlilik Politikası",
+      "Provider": "Sağlayıcı",
+      "script": "Script",
+      "Status": "Durum"
+    },
+    "marketing": {
+      "description": "Pazarlama çerezleri, kullanıcıları web siteleri arasında takip ederek kişiselleştirilmiş reklamlar görüntülemek amacıyla üçüncü taraflar ve yayıncılar tarafından kullanılır.",
+      "label": "Pazarlama"
+    },
+    "More information": "Daha fazla bilgi",
+    "Privacy Settings": "Gizlilik Ayarları",
+    "legalDisclosure": "Yasal bildirim",
+    "privacyPolicy": "Gizlilik politikası",
+    "Reject All": "Tümünü Reddet",
+    "Show less": "Daha az göster"
+  },
+  "coupon": {
+    "apply": "Uygula",
+    "couponApplied": "Kupon başarıyla eklendi",
+    "couponInvalid": "Kupon zaten kullanılmış veya geçersiz.",
+    "couponRemoved": "Kupon başarıyla kaldırıldı.",
+    "enterCode": "Kodu girin",
+    "name": "Kupon",
+    "pleaseProvideCoupon": "Lütfen geçerli bir kupon kodu girin.",
+    "remove": "Kaldır",
+    "title": "Kupon kodunuz var mı?"
+  },
+  "documents": {
+    "correctionDocuments": "Düzeltme Belgeleri",
+    "Credit Note": "Alacak Dekontu",
+    "Delivery Note": "İrsaliye",
+    "downloadFailed": "Belge indirilemedi. Lütfen daha sonra tekrar deneyin.",
+    "Dunning Letter": "İhtar Mektubu",
+    "Invoice": "Fatura",
+    "Invoice External": "Harici fatura",
+    "Offer": "Teklif",
+    "Order Confirmation": "Sipariş Onayı",
+    "Pickup Delivery": "Teslim Alma",
+    "Pro Forma Invoice": "Proforma Fatura",
+    "Receipt": "Makbuz",
+    "Return Note": "İade Notu",
+    "Reversal Document": "İptal Belgesi",
+    "Success Confirmation": "Başarı Onayı"
+  },
+  "editMode": {
+    "clearJson": "Şablonu temizle",
+    "edit": "Düzenle",
+    "editJsonPlaceholder": "JSON şablonunu düzenle...",
+    "formatJson": "Şablonu biçimlendir",
+    "minifyJson": "Şablonu küçült",
+    "publish": "Yayınla",
+    "save": "Kaydet",
+    "stopEdit": "İptal"
+  },
+  "error": {
+    "accessKeyMailFailed": "E-posta gönderilemedi, lütfen mağaza yöneticisiyle iletişime geçin.",
+    "accessKeyMailSent": "E-posta gönderildi!",
+    "consentReCaptchaCookieNotSet": "reCAPTCHA betiği kabul edilmedi. reCAPTCHA gerçekleştirilemez. Formlar gönderilemez.",
+    "couponAlreadyUsedOrInvalidCouponCode": "Kupon zaten kullanılmış veya geçersiz.",
+    "couponCampaignExpired": "Maalesef kuponun süresi dolmuş.",
+    "couponCampaignNoWebstoreActivated": "Kupon kullanılamadı. İstemci etkinleştirilmemiş.",
+    "couponCampaignNoWebstoreIdGiven": "Kupon kullanılamadı. İstemci kimliği aktarılmamış.",
+    "couponCampaignWrongWebstoreId": "Kupon kullanılamadı. Yanlış istemci.",
+    "couponExpired": "Maalesef kuponun süresi dolmuş.",
+    "couponMinOrderValueNotReached": "Gerekli ürün değerine ulaşılmadığı için kupon kodu kaldırıldı. Gerekli ürün değerine ulaşıldığında lütfen kodu tekrar girin.",
+    "couponNoCustomerGroupActivated": "Kupon kullanılamadı. Müşteri sınıfı etkinleştirilmemiş.",
+    "couponNoCustomerTypeActivated": "Kupon kullanılamadı. Müşteri türü etkinleştirilmemiş.",
+    "couponNoCustomerTypeProvided": "Kupon kullanılamadı. Müşteri türü aktarılmamış.",
+    "couponNoMatchingItemInBasket": "Sepetteki hiçbir ürün bu kupon için etkinleştirilmediğinden kupon kodu kaldırıldı.",
+    "couponNoOpenAmount": "Kupon tamamen kullanılmış.",
+    "couponnotUsableForSpecialOffer": "Kupon kullanılamadı. Kuponlar özel teklifler için kullanılamaz.",
+    "couponOnlyForExistingCustomers": "Kupon yalnızca mevcut müşteriler tarafından kullanılabilir.",
+    "couponOnlyForNewCustomers": "Kupon yalnızca yeni müşteriler tarafından kullanılabilir.",
+    "couponOnlySingleUsage": "Kupon abonelik ürünleri için kullanılamaz.",
+    "couponOnlySubscription": "Kupon yalnızca abonelik ürünleri için kullanılabilir.",
+    "couponPromotionRequired": "Bu ürünün varyantını yalnızca bir promosyon kuponu kullanarak satın alabilirsiniz.",
+    "couponRemoveFailure": "Kupon kaldırılamadı.",
+    "couponWrongCustomerGroup": "Kupon yalnızca doğru müşteri sınıfına sahip müşteriler tarafından kullanılabilir.",
+    "couponWrongCustomerType": "Kupon yalnızca doğru müşteri türüne sahip müşteriler tarafından kullanılabilir.",
+    "csrfTokenMismatch": "Güvenlik nedeniyle oturumunuz sonlandırıldı. Giriş sayfasına yönlendirileceksiniz.",
+    "errorActionIsNotExecuted": "Bu işlem gerçekleştirilemedi.",
+    "errorBasketItemMaximumQuantityReachedForItem": "Siparişiniz bu ürünün maksimum sipariş miktarını aşıyor.",
+    "errorBasketItemMaximumQuantityReachedForVariation": "Siparişiniz bu varyantın maksimum sipariş miktarını aşıyor.",
+    "errorBasketItemMinimumQuantityNotReachedForVariation": "Siparişiniz bu varyantın minimum sipariş miktarını karşılamıyor.",
+    "errorBasketItemNotEnoughStockForVariation": "Seçilen miktar mevcut stoğu aştığı için sepete eklenemedi. Şu anda :stock adet stokta bulunmaktadır.",
+    "errorBasketItemVariationNotFound": "Bu varyant mevcut değil.",
+    "errorCreateOrderRetryTimeNotReached": "Sipariş verilirken bir hata oluştu. Lütfen 30 saniye sonra tekrar deneyin.",
+    "errorGiftCardReturnQuantity": "İade oluşturulamadı. Siparişte bulunan tüm hediye kartlarını iade etmeniz gerekmektedir.",
+    "errorOccured": "Bir hata oluştu!",
+    "errorPlain": "Hata",
+    "errorVatNumberValidation": "KDV numaranız geçersiz. Lütfen boşlukları ve özel karakterleri kaldırın.",
+    "errorVatService": "KDV numaranız doğrulanamadı. Lütfen mağaza yöneticisiyle iletişime geçin.",
+    "errorVatServiceFallback": "KDV numaranız doğrulanamadı. Sipariş tekrar incelenecektir.",
+    "newsletterOptInMessage": "E-posta adresiniz onaylandı.",
+    "newsletterOptOutSuccessMessage": "Bülten aboneliğiniz başarıyla iptal edildi.",
+    "notificationRemoveCouponMinimumOrderValueIsNotReached": "Kullanılan kupon kaldırıldı. Minimum sipariş tutarına ulaşılmadı.",
+    "notificationsBasketItemsRemoved": "Ürünler şu anda mevcut olmadığı için sepetinizden kaldırıldı.",
+    "notificationsBasketItemsRemovedForContactClass": "Ürünler bu müşteri hesabı için mevcut olmadığından sepetinizden kaldırıldı.",
+    "notificationsBasketItemsRemovedForCurrency": "Ürünler seçilen para biriminde mevcut olmadığından sepetinizden kaldırıldı.",
+    "notificationsBasketItemsRemovedForLanguage": "Ürünler seçilen dilde mevcut olmadığından sepetinizden kaldırıldı.",
+    "notificationsBasketItemsRemovedForShippingCountry": "Ürünler seçilen teslimat ülkesi için mevcut olmadığından sepetinizden kaldırıldı.",
+    "notificationsCalculateShippingFailed": "Kargo ücreti hesaplanırken hata oluştu. Lütfen sağlayıcıyla iletişime geçin.",
+    "notificationsCheckPassword": "Şifreler eşleşmiyor.",
+    "notificationsInvalidResetPasswordUrl": "Girilen URL geçersiz veya süresi dolmuş.",
+    "notificationsItemBundleSplitted": "Ürün seti bölündü.",
+    "notificationsItemNotAdded": "Ürün eklenemedi.",
+    "notificationsItemOutOfStock": "Yetersiz stok",
+    "notificationsNoEmailEntered": "Lütfen geçerli bir e-posta adresi girin.",
+    "notificationsNotEnoughStockItem": "Seçilen ürün miktarı için yeterli stok mevcut değil.",
+    "notificationsWarningOverselling": "Seçilen miktar mevcut stoğu aşıyor. Şu anda :stock adet stokta; :oversellingAmount adet daha sonra temin edilecektir.",
+    "pageNotFound": "Sayfa bulunamadı",
+    "pageNotFoundSubtitle": "Üzgünüz! Aradığınızı bulmak için arama veya kategorileri kullanın.",
+    "pageNotFoundTitle": "Bu sayfayı bulamadık.",
+    "somethingWentWrongImageAlt": "Bir sorun oluştuğunu anlatan görsel",
+    "checkout": {
+      "missingAddress": "Ödeme işlemine devam etmek için lütfen adresinizi girin.",
+      "missingBillingAddress": "Ödeme işlemine devam etmek için lütfen bir fatura adresi girin."
+    },
+    "contact": {
+      "messageRequired": "Mesaj zorunludur.",
+      "nameRequired": "İsim zorunludur.",
+      "subjectRequired": "Konu zorunludur.",
+      "termsRequired": "Kullanım koşullarını kabul etmelisiniz.",
+      "turnstileRequired": "Lütfen insan olduğunuzu doğrulamak için kutuyu işaretleyin."
+    },
+    "decimalNumber": "Ondalıklı bir sayı girin.",
+    "editor": {
+      "add": {
+        "disabledNotCompatibleWithLayouts": "Bu blok bir düzen içine yerleştirilemez.",
+        "disabledOneInstancePerPage": "Bu blok türünden bir sayfada yalnızca 1 tane bulunabilir.",
+        "disabledTooDeeplyNested": "Düzenler en fazla iki seviyeyi destekler. Bunun yerine bir içerik bloğu seçin."
+      },
+      "categories": {
+        "deleteError": "{pageName} sayfası (kategori ID: {id}) silinemedi. {errorMessage}",
+        "deleteSuccess": "{pageName} sayfası (kategori ID: {id}) silindi.",
+        "error": "Kategoriler kaydedilirken hata oluştu.",
+        "success": "Kategoriler başarıyla kaydedildi."
+      },
+      "save": {
+        "error": "Değişiklikler kaydedilemedi. Oturumunuz sona ermiş olabilir. Yeni bir oturum başlatmak için editörü tekrar açın.",
+        "settings": "Ayar değişikliklerinin geçerli olması için mağazanızı güncelleyin.",
+        "success": "Değişiklikleriniz kaydedildi."
+      }
+    },
+    "email": {
+      "required": "E-posta zorunludur.",
+      "valid": "Bu alan geçerli bir e-posta adresi olmalıdır."
+    },
+    "maxCharacters": "En fazla {max} karakter girin.",
+    "missingOrWrongProperties": "Aşağıdaki alanlar zorunludur veya yanlış doldurulmuştur:",
+    "newsletter": {
+      "firstNameRequired": "Ad zorunludur.",
+      "lastNameRequired": "Soyad zorunludur.",
+      "termsRequired": "Kullanım koşullarını kabul etmelisiniz.",
+      "turnstileRequired": "Lütfen insan olduğunuzu doğrulamak için kutuyu işaretleyin."
+    },
+    "orderId": {
+      "required": "Sipariş numarası zorunludur."
+    },
+    "password": {
+      "match": "Şifreler eşleşmiyor.",
+      "maxLength": "Şifre en fazla {max} karakter olmalıdır.",
+      "minLength": "Şifre en az {min} karakter uzunluğunda olmalıdır.",
+      "required": "Şifre zorunludur.",
+      "valid": "Şifre en az bir harf ve bir rakam içermelidir."
+    },
+    "paymentCancelled": "Ödeme iptal edildi. Lütfen tekrar deneyin.",
+    "paymentFailed": "Ödeme başarısız oldu. Lütfen tekrar deneyin.",
+    "pleaseFillOutAllFields": "Lütfen tüm alanları doldurun.",
+    "requiredField": "Bu alan zorunludur.",
+    "turnstileRequired": "Lütfen insan olduğunuzu doğrulamak için kutuyu işaretleyin.",
+    "wholeNumber": "Tam sayı girin."
+  },
+  "footer": {
+    "legal": {
+      "label": "Yasal"
+    },
+    "services": {
+      "label": "Hizmetler"
+    },
+    "contact": {
+      "label": "İletişim"
+    },
+    "register": {
+      "label": "Kayıt Ol"
+    },
+    "newsletter": {
+      "title": "Bültenimize abone olun",
+      "subtitle": "En son teklifleri ve haberleri doğrudan gelen kutunuza alın.",
+      "placeholder": "E-posta adresiniz",
+      "subscribe": "Abone Ol"
+    }
+  },
+  "categoryData": {
+    "items": "Ürünler"
+  },
+  "subcategoryBar": {
+    "items": "ürün"
+  },
+  "categoryBanners": {
+    "title": "Ürün kategorileri",
+    "subtitle": "Temel B2B ürün alanlarımıza hızlı erişim.",
+    "viewAll": "Tüm Kategorileri Görüntüle"
+  },
+  "categoryShowcase": {
+    "title": "Kategoriye Göre Alışveriş",
+    "subtitle": "Özenle seçilmiş ürün kategorilerimize göz atın",
+    "viewAll": "Tümünü göster",
+    "explore": "Keşfet"
+  },
+  "brandsShowcase": {
+    "title": "Markalarımız",
+    "subtitle": "Kaliteye güvenin – ortaklarımızı ve üreticilerimizi keşfedin.",
+    "noBrands": "Mevcut marka bulunmuyor."
+  },
+  "heroSlider": {
+    "discover": "Keşfet",
+    "shopNow": "Hemen alışveriş yap",
+    "learnMore": "Daha fazla bilgi",
+    "discoverProducts": "Ürünleri keşfet",
+    "browseCatalogs": "Kataloglara göz at",
+    "newCollection": "Yeni Koleksiyon",
+    "topSeller": "Çok satan",
+    "exclusive": "Özel",
+    "new": "YENİ",
+    "fromPrice": "Başlayan fiyat",
+    "sloganDefault": "Minimal görünüm, maksimum alan.",
+    "discoverCategory": "Kategoriyi keşfet"
+  },
+  "customFooter": {
+    "description": "Ev tekstili, cam eşya, ev gereçleri ve parfümeri kategorilerimizde birinci sınıf ürünlerden oluşan geniş bir seçki keşfedin. Şık ve konforlu bir ev için ihtiyacınız olan her şeyi bulun.",
+    "lagerAddress": "HafenX UG Wankelstr. 5 71272 Renningen Deutschland",
+    "bueroAddress": "Konrad-Zuse-Straße 10 71034 Böblingen",
+    "categoriesTitle": "Kategoriler",
+    "brandsTitle": "Markalar",
+    "followUs": "Bizi takip edin",
+    "followUsSubtitle": "Hiçbir haberi ve promosyonu kaçırmayın.",
+    "ourCompany": "Şirketimiz",
+    "newsletterText": "Bültenimize abone olun ve en son haberleri ve güncellemeleri alın.",
+    "newsletterPlaceholder": "E-posta adresiniz"
+  },
+  "form": {
+    "addCompany": "+ Şirket bilgisi ekle",
+    "asterixHint": "* işaretli alanlar zorunludur",
+    "cityLabel": "Şehir",
+    "companyLabel": "Şirket",
+    "countryLabel": "Ülke",
+    "emailLabel": "E-posta",
+    "firstNameLabel": "Ad",
+    "lastNameLabel": "Soyad",
+    "optional": "isteğe bağlı",
+    "passwordLabel": "Şifre",
+    "passwordVisibility": "Şifre görünürlüğü",
+    "phoneLabel": "Telefon",
+    "postalCodeLabel": "Posta Kodu",
+    "privacyPolicyLabel": "Lütfen {privacyPolicy} belgesini kabul edin.",
+    "removeCompany": "- Şirket bilgisini kaldır",
+    "repeatPasswordLabel": "Şifreyi Tekrarlayın",
+    "required": "*",
+    "selectPlaceholder": "-- Seçin --",
+    "stateLabel": "Eyalet",
+    "streetNameLabel": "Sokak",
+    "streetNumberLabel": "Numara",
+    "useAsBillingLabel": "Fatura adresi olarak kullan",
+    "useAsShippingLabel": "Teslimat adresi olarak kullan",
+    "vatIdLabel": "Vergi Kimlik No"
+  },
+  "gallery": {
+    "count": "{current} / {total}",
+    "image": "Slayt {index}",
+    "next": "Sonraki",
+    "prev": "Önceki",
+    "thumb": "Slayt {index}'e git"
+  },
+  "homepage": {
+    "background": "Şık tasarımlı ve modern özelliklere sahip yeni Wireless Pro kulaklıklar",
+    "banner": {
+      "ariaLabelNextSlide": "Sonraki slayt",
+      "ariaLabelPreviousSlide": "Önceki slayt",
+      "ariaLabelSlideControls": "Slayt kontrolleri",
+      "ariaLabelSlidePosition": "Slayt {current} / {total}",
+      "ariaRoleDescriptionCarousel": "Döngü",
+      "ariaRoleDescriptionSlide": "Slayt",
+      "moto1": "Müziği hissedin",
+      "moto2": "Yeni Wireless Pro",
+      "moto3": "Uzamsal ses. Ayarlanabilir kulaklıklar. Cihaz üstü kontroller. Gün boyu pil ömrü.",
+      "orderNow": "Şimdi sipariş ver",
+      "showMore": "Daha fazla göster"
+    },
+    "displayDetails": {
+      "detail1": {
+        "alt": "Tarzınızı Yansıtın - Şık bir görünüm için güneş gözlüğü koleksiyonu",
+        "buttonText": "Şimdi keşfet",
+        "description": "Güneş gözlüğü koleksiyonumuzla tarzınızı yansıtın",
+        "subtitle": "İlham alın",
+        "title": "Tarzınızı Yansıtın"
+      },
+      "detail2": {
+        "alt": "Hazırla ve Çık - Sırt çantası koleksiyonumuzla doğayı keşfedin",
+        "buttonText": "Şimdi keşfet",
+        "description": "Sırt çantalarımızla doğayı keşfedin",
+        "subtitle": "Aktif olun",
+        "title": "Hazırla ve Çık"
+      },
+      "detail3": {
+        "alt": "Taze ve Cesur - Kıyafetinize renk katın",
+        "buttonText": "Şimdi keşfet",
+        "description": "Kıyafetinize renk katın",
+        "subtitle": "Yeni koleksiyon",
+        "title": "Taze ve Cesur"
+      }
+    },
+    "emptyBlock": {
+      "headline": "İlk bloğu buraya ekleyin."
+    },
+    "headPhones": "Uzamsal ses ve gün boyu pil ömrüne sahip yeni Wireless Pro kulaklıklar",
+    "kid": "Çocuk",
+    "kidHomepageCategory": "Ana Sayfada Çocuk Kategorisi",
+    "men": "Erkek",
+    "menHomepageCategory": "Ana Sayfada Erkek Kategorisi",
+    "title": "Ana Sayfa",
+    "women": "Kadın",
+    "womenHomepageCategory": "Ana Sayfada Kadın Kategorisi"
+  },
+  "lang": {
+    "bg": "Bulgarca",
+    "cn": "Çince",
+    "cs": "Çekçe",
+    "cz": "Çekçe",
+    "da": "Danca",
+    "de": "Almanca",
+    "dk": "Danca",
+    "ee": "Estonca",
+    "en": "İngilizce",
+    "es": "İspanyolca",
+    "et": "Estonca",
+    "fi": "Fince",
+    "fr": "Fransızca",
+    "ga": "İrlandaca",
+    "hr": "Hırvatça",
+    "hu": "Macarca",
+    "ie": "İrlandaca",
+    "it": "İtalyanca",
+    "lt": "Litvanca",
+    "lv": "Letonca",
+    "nl": "Felemenkçe",
+    "nn": "Norveççe",
+    "pl": "Lehçe",
+    "pt": "Portekizce",
+    "ro": "Rumence",
+    "ru": "Rusça",
+    "se": "İsveççe",
+    "sk": "Slovakça",
+    "sv": "İsveççe",
+    "tr": "Türkçe",
+    "vi": "Vietnamca",
+    "vn": "Vietnamca",
+    "zh": "Çince"
+  },
+  "legal": {
+    "cancellationRights": "İptal hakkı",
+    "details": "Yasal bilgiler - detaylar için tıklayın",
+    "privacyPolicy": "Gizlilik Politikası",
+    "privacyPolicyRequired": "Lütfen gizlilik politikası onay kutusunu işaretleyin.",
+    "termsAndConditions": "Kullanım Koşulları",
+    "termsInfo": "{terms}, {cancellationRights} ve {privacyPolicy} geçerlidir. *",
+    "termsRequired": "Kullanım koşullarını kabul etmelisiniz.",
+    "cancellationForm": "İptal formu",
+    "declarationOfAccessibility": "Erişilebilirlik bildirimi",
+    "legalDisclosure": "Yasal bildirim"
+  },
+  "manufacturer": {
+    "contactUrl": "İletişim formu",
+    "euResponsibleTabName": "AB Sorumlu Kişi",
+    "fax": "Faks",
+    "header": "Üretici bilgileri",
+    "homepage": "Web sitesi",
+    "logoAlt": "Üretici logosu",
+    "manufacturerTabName": "Üretici",
+    "noInformation": "Üretici hakkında bilgi bulunamadı",
+    "noResponsibleInformation": "Sorumlu Kişi hakkında bilgi bulunamadı",
+    "responsibleContactUrl": "AB Sorumlu Kişi iletişim formu",
+    "responsibleHeader": "AB'deki Sorumlu Kişi",
+    "responsibleSubtitle": "AB içinde bulunan, ürünün tüm gerekli düzenlemelere uygunluğunu sağlayan ekonomik operatör.",
+    "subtitle": "Üretici bilgileri, ürünün üreticisine ait adres ve ek detayları içerir."
+  },
+  "newsletter": {
+    "email": "E-posta",
+    "firstName": "Ad",
+    "heading": "Bültenimize Abone Olun",
+    "info": "Yaklaşan indirimlerden ve etkinliklerden haberdar olun. Hediyeler ve özel teklifler kazanın!",
+    "lastName": "Soyad",
+    "policy": "{privacyPolicy} belgesini okuduğumu onaylıyorum. Onayımı istediğim zaman geri çekebilirim.",
+    "subscribe": "Bültene Abone Ol",
+    "success": "Kaydınız için teşekkür ederiz! Lütfen e-posta gelen kutunuzu kontrol edin ve bülten aboneliğinizi tamamlamak için mesajımızdaki onay bağlantısına tıklayın.",
+    "confirmation": {
+      "newsletterOptInMessage": "E-posta adresiniz onaylandı.",
+      "newsletterOptInMessageError": "E-posta adresiniz onaylanırken bir hata oluştu."
+    }
+  },
+  "offers": {
+    "acceptOffer": "Teklifi kabul et",
+    "cancel": "İptal",
+    "declineDialogSubline": "Teklifi neden reddettiğinizi paylaşarak bize yardımcı olun.",
+    "declineOffer": "Teklifi reddet",
+    "inputPlaceholder": "Lütfen reddetme nedeninizi paylaşın...",
+    "missingEmail": "E-posta adresi belirtilmedi.",
+    "offer": "Teklif",
+    "offerValidUntil": "Teklif geçerlilik tarihi: {date}"
+  },
+  "order": {
+    "errorMessage": "Bir sorun oluştu. Daha sonra tekrar deneyin.",
+    "errorProvider": "Ödeme sağlayıcısından bilinmeyen yanıt: {paymentType}",
+    "failedHeader": "Çok üzgünüz.",
+    "failedMessage": "Siparişiniz tamamlanamadı.",
+    "searchResults": "\"{phrase}\" için sonuçlar",
+    "successHeader": "Siparişiniz için teşekkür ederiz!",
+    "successImageAlt": "Sipariş başarılı görseli",
+    "successMessage": "Siparişiniz başarıyla tamamlandı.",
+    "successReturnHeader": "İadeniz için teşekkür ederiz!"
+  },
+  "orderConfirmation": {
+    "confirmationSendTo": "Tüm detayları içeren bir onay {email} adresine gönderildi",
+    "createAccountForBenefits": "Tüm avantajlardan yararlanmak için hesap oluşturun!",
+    "sameAsShippingAddress": "Teslimat adresiyle aynı",
+    "saveOrderToAccount": "Bu siparişi hesabınıza kaydedin",
+    "shipping": "Kargo",
+    "signUp": "Kayıt olun!",
+    "subTotal": "Ara toplam",
+    "total": "Toplam",
+    "trackingOrder": "Siparişinizi takip edin",
+    "vat": "KDV",
+    "softLogin": {
+      "check": "Kontrol et",
+      "fullName": "Soyad veya şirket adı",
+      "titleFullName": "Sipariş detaylarını görüntülemek için lütfen siparişe kayıtlı soyadı veya şirket adını girin.",
+      "titleLogin": "Siparişinize erişmek için hesabınıza giriş yapın",
+      "titlePostcode": "Sipariş detaylarını görüntülemek için lütfen siparişe kayıtlı adresin posta kodunu girin."
+    }
+  },
+  "orderConfirmationPaymentStatus": {
+    "fullyPaid": "Ödendi",
+    "overpaid": "Fazla ödendi",
+    "partlyPaid": "Kısmen ödendi",
+    "prepaid": "Ön ödemeli",
+    "unknown": "Ödeme durumu alınırken hata oluştu",
+    "unpaid": "Ödenmedi"
+  },
+  "orderProperties": {
+    "additionalCostsPerItem": "Ek maliyetler (ürün başına fiyat)",
+    "hasRequiredFields": "Bu alan zorunludur.",
+    "noSelection": "Seçim yok",
+    "select": "Seçin",
+    "upload": {
+      "acceptedFormats": "Kabul edilen formatlar",
+      "dragAndDropFileHereOrUpload": "Dosyayı buraya sürükleyip bırakın veya {uploadFile}",
+      "maximumFileSize": "Maksimum dosya boyutu",
+      "orderPropertyTypeFile": "Tür: Dosya",
+      "unSupportedFileType": "Yüklenen dosya desteklenmiyor",
+      "uploaded": "yüklendi",
+      "uploadError": "Dosya yüklenemedi. İzin verilen maksimum dosya boyutunu ve dosya biçimini kontrol edin.",
+      "uploadFile": "Dosya Yükle",
+      "uploading": "yükleniyor"
+    },
+    "vat": {
+      "excl": "hariç",
+      "incl": "dahil",
+      "plus": "artı"
+    }
+  },
+  "paypalPayment": {
+    "errorMessageCreditCard": "Girilen veriler geçersiz. Kart numarası, CVV, Son kullanma tarihi alanlarını kontrol edin.",
+    "expressNotAvailable": "PayPal bu teslimat ülkesi için mevcut değil. Lütfen adresinizi değiştirin veya siparişinizi başka bir ödeme sağlayıcısıyla tamamlamak için ödeme sayfasına geçin.",
+    "invalidOrder": "Sipariş işlenemiyor. Lütfen tekrar deneyin.",
+    "puiBankDataAvailable": "Tutarı belirtilen banka bilgilerine transfer edin. Banka bilgilerini faturanızda da bulabilirsiniz.",
+    "puiBankDataNotAvailable": "Transfer için banka bilgileri alınıyor ve kısa süre içinde hazır olacaktır. Veriler daha sonra burada veya faturanızda bulunabilir.",
+    "puiDesignedUse": "Ödeme nedeni",
+    "unbrandedCancel": "İptal",
+    "unbrandedCardNumber": "Kart numarası",
+    "unbrandedCvv": "CVV",
+    "unbrandedExpirationDate": "Son kullanma tarihi",
+    "unbrandedNameOnCard": "Kart üzerindeki isim",
+    "unbrandedPay": "Öde"
+  },
+  "PreferredDelivery": {
+    "general": {
+      "additionalCharge": "Ek ücret",
+      "apply": "Uygula",
+      "assistantName": "DHL Tercihli Teslimat",
+      "invalidPostalCodeMessage": "Lütfen posta kodunu kontrol edin. Posta kodu geçerli değil. 5 haneli bir değer beklenmektedir.",
+      "preferredDropOffLocation": "Tercih ettiğiniz bırakma noktasını girin",
+      "preferredLocationAlertMessage": "Tercih edilen konumu girin.",
+      "preferredNeigbourMaxCharViolation": "Maksimum karakter sayısı (100) aşıldı.",
+      "preferredNeighbourAddress": "Tercih ettiğiniz komşunuzun tam adresini girin",
+      "preferredNeighbourAddressMessage": "Tercihli komşu: Sokak, ev numarası, posta kodu ve şehir girin.",
+      "preferredNeighbourFullName": "Tercih ettiğiniz komşunuzun tam adını girin",
+      "preferredNeighbourNameAlertMessage": "Tercihli komşu: Soyad ve ad girin.",
+      "submitWunschpaketServices": "Tercihli hizmet ayarları gönderildi.",
+      "wunschnachbarExampleAddress": "Sokak, ev numarası, posta kodu, şehir",
+      "wunschnachbarExampleName": "Soyad, ad",
+      "wunschnachbarTitle": "Tercihli komşu: İstenen komşuya teslimat",
+      "wunschnachbarTooltip": "Paketinizi teslim edeceğimiz yakın çevrenizde bir kişi belirleyin. Bu kişi aynı binada, karşıda veya yan komşuda oturmalıdır.",
+      "wunschortExample": "ör. garaj, teras",
+      "wunschortTitle": "Tercihli konum: İstenen konuma teslimat",
+      "wunschortTooltip": "Mülkünüzde üçüncü şahıslar tarafından açıkça görülmeyen, hava koşullarına dayanıklı bir konum belirleyin. Evde olmadığınızda paketinizi oraya bırakacağız.",
+      "wunschpaketAdditionalCharge": "Bu hizmeti kullanırken {additionalCharge} {currency} tutarında ek ücret uygulanır.*",
+      "wunschpaketIntroduction": "DHL tercihli hizmetlerini kullanın ve paketlerinizi ne zaman ve nerede almak istediğinize karar verin.",
+      "wunschpaketOptions": "Tercih ettiğiniz teslimat seçeneğini seçin:",
+      "wunschpaketTitle": "DHL tercihli hizmetleri",
+      "wunschtagNone": "Yok",
+      "wunschtagTitle": "Tercihli gün: İstenen günde teslimat",
+      "wunschtagTooltip": "Paketlerinizin teslimatı için görüntülenen günlerden birini tercihli gün olarak seçebilirsiniz. Teslimat süreçleri nedeniyle şu anda başka günleri seçmek mümkün değildir."
+    },
+    "packstation": {
+      "cityLabel": "Şehrinizi girin",
+      "cityPlaceholder": "Şehir",
+      "containerTextInfo": "Bir adres girin ve teslim alma noktası için bir filtre seçin. Ardından, bu teslim alma noktasını seçmek için arama sonuçlarından birine tıklayın.",
+      "days": {
+        "Friday": "Cuma",
+        "Monday": "Pazartesi",
+        "Saturday": "Cumartesi",
+        "Sunday": "Pazar",
+        "Thursday": "Perşembe",
+        "Tuesday": "Salı",
+        "Wednesday": "Çarşamba"
+      },
+      "dropDownValues": {
+        "packstation": "Packstation",
+        "postfilial": "Postane şubesi"
+      },
+      "nameInfo": "İsim fatura adresinden alınmaktadır. Posta numarası ve paket istasyonu/postane adresi teslimat adresi olarak kullanılacaktır.",
+      "noResult2": "Lütfen en az posta kodunu veya şehri girin.",
+      "packstationAddedSuccessMessage": "Packstation/postane teslimat adresi olarak alındı.",
+      "postNumberLabel": "Posta numaranızı girin",
+      "postNumberPlaceholder": "Posta numarası",
+      "postnumberRequired": "Posta numarası zorunludur. Lütfen DHL posta numaranızı girin.",
+      "search": "Ara",
+      "setPackstation": "Uygula",
+      "streetLabel": "Sokağınızı girin",
+      "streetPlaceholder": "Sokak",
+      "title": "DHL Packstation / Postane Şubesi",
+      "zipcodeInvalid": "Geçerli bir posta kodu girin.",
+      "zipcodeLabel": "Posta kodunuzu girin",
+      "zipcodePlaceholder": "Posta kodu"
+    }
+  },
+  "previewModeBar": {
+    "exitEditor": "Editörden çık ve canlı mağazayı ziyaret et",
+    "exitWithoutSaving": "Kaydetmeden çık",
+    "label": "Editör kontrolleri",
+    "saveAndExit": "Değişiklikleri kaydet ve çık",
+    "title": "Editörden çıkıp canlı mağazayı ziyaret etmek istiyor musunuz?",
+    "unsavedChangesWarning": "Kaydedilmemiş değişiklikleriniz var."
+  },
+  "product": {
+    "allFromCategory": "Tüm {name}",
+    "allProducts": "Tüm ürünler",
+    "allProductsLink": "Ürünlere göz at",
+    "averageRating": "Ortalama puan",
+    "basedOnRatings": "{count} değerlendirmeye dayalı",
+    "bundleSavings": "Bu sette %{percent} tasarruf ediyorsunuz",
+    "createReview": "Değerlendirme yaz",
+    "customerReviews": "Müşteri değerlendirmeleri",
+    "decreaseQuantity": "Değeri azalt",
+    "details": "Ürün detayları",
+    "doubleTapZoom": "Yakınlaştırmak için çift dokunun",
+    "estimatedDelivery": "Tahmini teslimat süresi",
+    "imageOf": "{name} görseli",
+    "increaseQuantity": "Değeri artır",
+    "legalDetails": "Ürün yasal bilgileri",
+    "lowestPrice": "Son 30 günün en düşük fiyatı: {price}",
+    "minimumQuantity": "Minimum sipariş adedi: {count}",
+    "moreFromCategory": "Bu kategoriden daha fazla ürün",
+    "noReviews": "Bu ürün için henüz değerlendirme yapılmamış",
+    "noReviewsShort": "Değerlendirme yok",
+    "notAvailable": "Bu ürün mevcut değil.",
+    "outOfStock": "Stokta yok",
+    "priceExclVAT": "KDV hariç",
+    "priceInclVAT": "KDV dahil",
+    "allPricesExclVAT": "Tüm fiyatlar KDV hariçtir",
+    "netLabel": "Net",
+    "requestQuote": "Bize Ulaşın",
+    "requestQuoteDesc": "Toptan fiyatlandırma ve özel koşullar için B2B ekibimizle iletişime geçin.",
+    "reviewsCount": "{count} değerlendirme",
+    "showAllReviews": "Tüm değerlendirmeleri göster",
+    "loginToSeePrice": "Fiyatları görmek için lütfen giriş yapın",
+    "loginToPurchase": "Giriş Yap",
+    "loginRequiredDesc": "Fiyatları görüntülemek ve sipariş vermek için giriş yapın.",
+    "viewProduct": "Ürünü Görüntüle",
+    "stockInfo": {
+      "level": "Stok Seviyesi",
+      "delivery": "Teslimat",
+      "status": "Sipariş Durumu",
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük",
+      "veryLow": "Çok Düşük",
+      "outOfStock": "Stokta Yok",
+      "orderable": "Sipariş Verilebilir",
+      "notOrderable": "Sipariş Verilemez",
+      "sameDay": "Aynı Gün",
+      "day": "Gün",
+      "days": "Gün"
+    },
+    "showAll": "Tümünü göster",
+    "graduatedPrices": {
+      "discount": "İNDİRİM",
+      "price": "FİYAT",
+      "quantity": "ADET",
+      "title": "Çok al, az öde"
+    },
+    "attributes": {
+      "notValidVariation": "Lütfen geçerli bir varyant seçin.",
+      "productNameMissing": "Ürün adı eksik",
+      "seeAvailableOptions": "Mevcut seçenekleri göster"
+    }
+  },
+  "quickCheckout": {
+    "cartContains": "Sepetinizde {count} ürün var | Sepetinizde {count} ürün var",
+    "cartPreview": "Sepet Önizleme",
+    "checkYourCart": "Sepet",
+    "close": "Sepet önizlemesini kapat",
+    "heading": "Sepete eklendi",
+    "quantity": "Adet",
+    "subTotal": "Ürünler ara toplamı",
+    "cartValue": "Sepet tutarı",
+    "shippingCosts": "Kargo ücreti",
+    "totalAmount": "Toplam tutar",
+    "freeShipping": "Ücretsiz",
+    "couponPlaceholder": "Kupon kodunu girin",
+    "redeemCoupon": "Kullan",
+    "emptyCart": "Sepetiniz boş",
+    "continueShopping": "Alışverişe devam et"
+  },
+  "returns": {
+    "areYouSure": "Bu ürünleri iade etmek istediğinizden emin misiniz?",
+    "cancel": "İptal",
+    "commentOptional": "Yorum (isteğe bağlı)",
+    "confirmReturn": "İadeyi Onayla",
+    "detailsHeading": "İade Özeti",
+    "initiateReturn": "İade Başlat",
+    "orderDate": "Sipariş tarihi",
+    "quantity": "Adet",
+    "return": "İade",
+    "returnForOrder": "Sipariş için iade",
+    "returnItems": "Ürünleri İade Et",
+    "returnNumber": "İade Numarası",
+    "returnReason": "İade nedeni",
+    "selectAll": "Tümünü Seç",
+    "selectQuantities": "Lütfen iade miktarlarını seçin",
+    "selectReason": "Lütfen iade nedenini seçin",
+    "selectReturnReason": "İade Nedenini Seçin",
+    "successConfirmationMessage": "İade talebinizi aldık. Süreç hakkında sizi bilgilendirmeye devam edeceğiz.",
+    "tellUsMore": "Bu ürünleri neden iade etmek istediğiniz hakkında daha fazla bilgi verin..."
+  },
+  "review": {
+    "anonymous": "Anonim",
+    "answer": "Yanıt",
+    "answerAreYouSure": "Yanıtı silmek istediğinizden emin misiniz?",
+    "areYouSure": "Değerlendirmeyi silmek istediğinizden emin misiniz?",
+    "cancel": "İptal",
+    "createAnswerFormTitle": "Yanıt yazın",
+    "createReviewFormTitle": "Değerlendirme yazın",
+    "createSuccess": "Değerlendirme gönderildi",
+    "deleteAnswer": "Yanıtı sil?",
+    "deleteReview": "Değerlendirmeyi sil?",
+    "deleteReviewConfirmation": "Sil",
+    "editReplyFormTitle": "Yanıtı düzenle",
+    "editReviewFormTitle": "Değerlendirmeyi düzenle",
+    "hideAnswers": "Yanıtları gizle",
+    "notification": {
+      "answerSuccess": "Yanıtınız gönderildi.",
+      "success": "Değerlendirmeniz gönderildi."
+    },
+    "reviewAuthor": "Adınız (isteğe bağlı)",
+    "reviewText": "Ürün değerlendirmesi (isteğe bağlı)",
+    "saveAnswer": "Yanıtı gönder",
+    "showAnswers": "Yanıtları göster",
+    "submitReview": "Değerlendirmeyi gönder",
+    "title": "Başlık",
+    "tooltipVisibilityOff": "Değerlendirmeniz şu anda inceleniyor",
+    "tooltipVisibilityOn": "Değerlendirmeniz görünür",
+    "validation": {
+      "ratingRequired": "Puanınızı ekleyin. ",
+      "textareaMaxLength": "İzin verilen maksimum uzunluk 500 karakterdir.",
+      "textareaRequired": "Mesajınızı ekleyin.",
+      "titleRequired": "Başlığınızı ekleyin."
+    },
+    "verifiedPurchase": "Doğrulanmış satın alma",
+    "yourAnswer": "Yanıtınız",
+    "yourRating": "Puanınız:"
+  },
+  "search": {
+    "clearFilters": "Tüm filtreleri temizle",
+    "emptyStateImageAlt": "Ürün bulunamadığını anlatan görsel",
+    "emptyStateText": "Bu kategoride artık ürün bulunmamaktadır.",
+    "emptyStateText2": "Aradığınızı bulamadınız mı?",
+    "numberOfProducts": "{total} üründen {count} ürün",
+    "searchResults": "\"{phrase}\" için arama sonuçları"
+  },
+  "sessionLifetime": {
+    "oneDay": "Bir gün, tarayıcı kapatılsa bile",
+    "oneHour": "Bir saat, tarayıcı kapatılsa bile",
+    "oneHundredDays": "Yüz gün, tarayıcı kapatılsa bile",
+    "untilBrowserClosed": "Tarayıcı kapatılana kadar"
+  },
+  "shipping": {
+    "addButton": "Teslimat adresi ekle",
+    "description": "Kargo detaylarını görüntülemek için bir teslimat adresi ekleyin.",
+    "excludedLabel": "hariç {shipping}",
+    "heading": "Teslimat adresi",
+    "methodChanged": "Seçilen kargo yöntemi artık mevcut değil.",
+    "noShippingMessage": "Kargo bilgisi mevcut değil",
+    "noShippingMethodsNoAddress": "Mevcut kargo yöntemlerini görmek için teslimat adresinizi girin.",
+    "method": {
+      "description": "Teslimat adresi belirtilene kadar mevcut değil.",
+      "free": "Ücretsiz",
+      "heading": "Kargo yöntemi",
+      "maxDeliveryDays": "{days} gün içinde teslimat",
+      "noMethodsAvailable": "Mevcut kargo yöntemi bulunmamaktadır. Lütfen mağaza yöneticisiyle iletişime geçin.",
+      "showDataPrivacyAgreementHint": "E-posta adresimin ve telefon numaramın {parcelServiceInformation} firmasına iletilmesini kabul ediyorum; böylece teslimat tarihi belirlemek veya gönderi durumu hakkında bilgi vermek amacıyla benimle e-posta veya telefon yoluyla iletişime geçebilirler. Bu onayı istediğim zaman geri çekebilirim."
+    }
+  },
+  "sortingAndPagination": {
+    "recommendedSorting": {
+      "description": "\"Önerilen\" seçeneğinin nasıl oluşturulacağına karar verebilirsiniz. Üç sıralama seçeneği belirleyin. İlk sıralama seçeneği en yüksek önceliğe, ikinci seçenek ikinci en yüksek önceliğe sahiptir vb.",
+      "firstSortingOptionLabel": "Birinci sıralama seçeneği",
+      "options": {
+        "sortDataRandom": "Rastgele",
+        "sortingPriorityCategoryAvailabilityAsc": "Stok durumu ⬆",
+        "sortingPriorityCategoryAvailabilityDesc": "Stok durumu ⬇",
+        "sortingPriorityCategoryItemIdAsc": "Ürün ID ⬆",
+        "sortingPriorityCategoryItemIdDesc": "Ürün ID ⬇",
+        "sortingPriorityCategoryManufacturerAsc": "Üretici A-Z",
+        "sortingPriorityCategoryManufacturerDesc": "Üretici Z-A",
+        "sortingPriorityCategoryManufacturerPositionAsc": "Üretici pozisyonu ⬆",
+        "sortingPriorityCategoryManufacturerPositionDesc": "Üretici pozisyonu ⬇",
+        "sortingPriorityCategoryNameAsc": "Ürün adı A-Z",
+        "sortingPriorityCategoryNameDesc": "Ürün adı Z-A",
+        "sortingPriorityCategoryNotSelected": "Seçilmedi",
+        "sortingPriorityCategoryPriceAsc": "Fiyat ⬆",
+        "sortingPriorityCategoryPriceDesc": "Fiyat ⬇",
+        "sortingPriorityCategoryStockAsc": "Stok ⬆",
+        "sortingPriorityCategoryStockDesc": "Stok ⬇",
+        "sortingPriorityCategoryVariationCreatedAtAsc": "En eski varyant",
+        "sortingPriorityCategoryVariationCreatedAtDesc": "En yeni varyant",
+        "sortingPriorityCategoryVariationIdAsc": "Varyant ID ⬆",
+        "sortingPriorityCategoryVariationIdDesc": "Varyant ID ⬇",
+        "sortingPriorityCategoryVariationNumberAsc": "Varyant numarası ⬆",
+        "sortingPriorityCategoryVariationNumberDesc": "Varyant numarası ⬇",
+        "sortingPriorityCategoryVariationPositionAsc": "Varyant pozisyonu ⬆",
+        "sortingPriorityCategoryVariationPositionDesc": "Varyant pozisyonu ⬇",
+        "sortingPriorityCategoryVariationUpdatedAtAsc": "Son güncelleme",
+        "sortingPriorityCategoryVariationUpdatedAtDesc": "İlk güncelleme"
+      },
+      "secondSortingOptionLabel": "İkinci sıralama seçeneği",
+      "thirdSortingOptionLabel": "Üçüncü sıralama seçeneği",
+      "title": "Önerilen sıralama"
+    }
+  },
+  "storefrontError": {
+    "address": {
+      "createFailed": "Adres kaydedilemedi.",
+      "deleteFailed": "Adres silinemedi.",
+      "validationFailed": "Adres geçersiz.",
+      "vatInvalid": "KDV numarası geçersiz.",
+      "vatServerBusy": "KDV numaranız doğrulanamadı. Lütfen mağaza yöneticisiyle iletişime geçin.",
+      "vatServerFallback": "KDV numaranız doğrulanamadı. Sipariş tekrar incelenecektir."
+    },
+    "blocks": {
+      "base64NotAllowed": "Görsel hatalı yüklendi. Lütfen tekrar deneyin."
+    },
+    "cart": {
+      "addToBasket": {
+        "itemSetComponentMismatch": "Ürün seti bileşenlerinde uyumsuzluk var ve sepete eklenemiyor.",
+        "maxItemQuantityReached": "Bu ürün için maksimum miktar aşıldı ve sepete eklenemiyor.",
+        "maxVariationQuantityReached": "Bu varyant için maksimum miktar aşıldı ve sepete eklenemiyor.",
+        "minVariationQuantityNotReached": "Bu varyant için minimum miktar karşılanmadı ve sepete eklenemiyor.",
+        "notEnoughStockForVariation": "Bu varyant için yeterli stok mevcut değil.",
+        "unknownError": "Ürün eklenirken bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+        "variationNotFound": "Seçilen varyant bulunamadı ve sepete eklenemiyor."
+      },
+      "failedToRemoveItem": "Ürün kaldırılamadı.",
+      "reachedMaximumQuantity": "Siparişiniz bu ürünün maksimum sipariş miktarını aşıyor."
+    },
+    "contact": {
+      "emailAlreadyExists": "Bu e-posta adresi zaten kayıtlı.",
+      "missingContactOrUnexpectedFormat": "Eksik iletişim bilgisi veya beklenmeyen format.",
+      "passwordInvalid": "Şifre gerekli güvenlik standartlarını karşılamıyor.",
+      "unauthorizedPasswordReset": "Şifre sıfırlanamıyor. Bağlantının süresi dolmuş veya zaten kullanılmış olabilir.",
+      "unexpectedAddressFormat": "Beklenmeyen adres formatı."
+    },
+    "contactMail": {
+      "emailInvalid": "E-posta adresi geçerli değil.",
+      "failed": "Mesaj gönderilemedi.",
+      "messageInvalid": "Mesaj geçerli değil.",
+      "nameInvalid": "İsim geçerli değil.",
+      "orderIdInvalid": "Sipariş numarası geçerli değil.",
+      "subjectInvalid": "Konu geçerli değil."
+    },
+    "coupon": {
+      "applyFailed": "Kupon kullanılamadı."
+    },
+    "feedback": {
+      "notAllowedWithoutPurchase": "Değerlendirme yapmadan önce bu ürünü satın almış olmanız gerekmektedir."
+    },
+    "login": {
+      "loginFailed": "Geçersiz giriş bilgileri",
+      "userIsBlocked": "Kullanıcı engellenmiş"
+    },
+    "newsletter": {
+      "createFailed": "Bültene abone olunamadı."
+    },
+    "offer": {
+      "alreadyTaken": "Bu teklif zaten kullanılmış ve tekrar kullanılamaz.",
+      "expired": "Bu teklifin süresi dolmuş",
+      "itemOutOfStock": "Teklifteki en az bir ürün artık stokta yok.",
+      "openUnauthorized": "Bu teklifi açma yetkiniz yok."
+    },
+    "order": {
+      "additionalAuthenticationRequired": "Bu sipariş için ek kimlik doğrulaması gereklidir.",
+      "additionalAuthenticationRequiredLogin": "Bu sipariş için tekrar giriş yapmanız gerekmektedir.",
+      "additionalAuthenticationRequiredPostcode": "Bu sipariş için kullanılan posta kodunun onaylanması gerekmektedir.",
+      "additionalAuthRequiredName": "Bu siparişe erişmek için soyadın onaylanması gerekmektedir.",
+      "assignPaymentFailed": "Ödeme siparişe atanamadı.",
+      "createFailed": "Sipariş oluşturulamadı.",
+      "loadOrdersFailed": "Siparişler yüklenemedi.",
+      "migrateUnauthorized": "Sipariş hesabınıza eklenemedi.",
+      "notFound": "Sipariş bulunamadı.",
+      "softLoginFailed": "Girilen bilgiler geçersiz."
+    },
+    "security": {
+      "invalidCsrfToken": "Güvenliğiniz için bu işlem engellendi. Lütfen sayfayı yenilemeyi deneyin.",
+      "tooManyRequests": "Kısa sürede çok fazla işlem yapıldı. Lütfen daha sonra tekrar deneyin."
+    },
+    "turnstile": {
+      "invalid": "Doğrulama başarısız oldu. Lütfen birkaç dakika sonra tekrar deneyin.",
+      "misConfigured": "Doğrulama hizmeti şu anda kullanılamıyor. Lütfen site yöneticisiyle iletişime geçin."
+    },
+    "notifyMe": {
+      "alreadySubscribed": "Bu ürün için zaten bildirim aboneliğiniz var"
+    },
+    "unknownError": "Bilinmeyen bir hata oluştu."
+  },
+  "featuresBar": {
+    "volumeDiscount": {
+      "title": "Toplu Alım İndirimleri",
+      "desc": "Toplu siparişler için kademeli fiyatlandırma."
+    },
+    "invoice": {
+      "title": "Fatura ile Ödeme",
+      "desc": "Kurumsal müşteriler için kolay ödeme."
+    },
+    "accountManager": {
+      "title": "Kişisel Müşteri Temsilcisi",
+      "desc": "Tüm talepleriniz için kişisel iletişim noktanız."
+    },
+    "expressShipping": {
+      "title": "Hızlı Kargo",
+      "desc": "Hızlı ve güvenilir teslimat seçeneği."
+    }
+  },
+  "volumeDiscount": {
+    "title": "Toplu Alım İndirimleri",
+    "subtitle": "Çok alın, çok tasarruf edin",
+    "quantity": "Adet",
+    "discount": "İndirim",
+    "savings": "Tasarrufunuz",
+    "pieces": "adet",
+    "save": "Tasarruf",
+    "info": "İndirimler ödeme sırasında otomatik olarak uygulanır."
+  },
+  "membershipBanner": {
+    "title": "ÜYE OLUN VE %10 İNDİRİM KAZANIN!",
+    "subtitle": "Ücretsiz kaydolun ve özel tekliflerden yararlanın.",
+    "cta": "ÜCRETSİZ KAYIT OLUN"
+  },
+  "deliveryInfo": {
+    "availability": "Stok durumu",
+    "deliveryTime": "Teslimat süresi",
+    "days": "gün",
+    "minOrderQty": "Min. sipariş adedi",
+    "weight": "Kargo ağırlığı",
+    "dimensions": "Boyutlar (U×G×Y)",
+    "shipping": "Kargo",
+    "freeShipping": "Ücretsiz kargo"
+  },
+  "aboutUs": {
+    "label": "Hakkımızda",
+    "breadcrumbHome": "Ana Sayfa",
+    "title": "Güvenilir B2B Ortağınız",
+    "description": "10 yılı aşkın deneyimimizle dünya genelindeki işletmelere yüksek kaliteli ürünler ve olağanüstü hizmet sunuyoruz. Özel ekibimiz her müşteri için hızlı teslimat, rekabetçi fiyatlandırma ve kişiselleştirilmiş destek sağlar.",
+    "heroTitle": "Kalite ve Güvenilirlik Bir Arada",
+    "heroDesc": "HafenX, yüksek kaliteli B2B ürünler için deneyimli ortağınızdır. Kaliteyi rekabetçi fiyatlandırmayla birleştiriyoruz ve sorunsuz bir tedarik zinciri sağlıyoruz — böylece siz asıl işinize odaklanabilirsiniz.",
+    "cta": "Bize Ulaşın",
+    "statYears": "Yıllık Deneyim",
+    "statProducts": "Mevcut Ürün",
+    "statCustomers": "Mutlu Müşteri",
+    "statSatisfaction": "Memnuniyet Oranı",
+    "valuesTitle": "Değerlerimiz",
+    "valuesDesc": "Kalite, hız ve ortaklık — yaptığımız her şeyi tanımlayan değerler.",
+    "value1Title": "Kalite ve Güvenilirlik",
+    "value1Desc": "Her ürün depomuzdan çıkmadan önce titizlikle kontrol edilir. Yalnızca güvenilir üreticilerle çalışıyoruz.",
+    "value2Title": "Hızlı Kargo",
+    "value2Desc": "Siparişler iş günlerinde 24 saat içinde gönderilir. Lojistik ortaklarımız güvenilir ve zamanında teslimat sağlar.",
+    "value3Title": "Kişisel Destek",
+    "value3Desc": "Her müşteriye özel bir müşteri temsilcisi atanır. Bireysel danışmanlık sunuyor ve ihtiyaçlarınıza en uygun çözümü buluyoruz.",
+    "whyTitle": "Neden HafenX?",
+    "whyDesc": "Bir tedarikçiden fazlasıyız — sürdürülebilir büyüme için stratejik ortağınızız.",
+    "reason1Title": "Özel B2B Fiyatlandırma",
+    "reason1Desc": "Kurumsal müşteriler için toplu alım indirimleri, özel fiyat listeleri ve esnek ödeme koşulları.",
+    "reason2Title": "Geniş Ürün Yelpazesi",
+    "reason2Desc": "5.000'den fazla ürün hemen hazır — standart ürünlerden özel çözümlere kadar.",
+    "reason3Title": "Uluslararası Teslimat",
+    "reason3Desc": "Şeffaf takip ve izleme ile Avrupa genelinde güvenilir kargo.",
+    "reason4Title": "Teknik Destek",
+    "reason4Desc": "Uzman ekibimiz teknik sorular ve ürün danışmanlığı için hizmetinizdedir.",
+    "ctaCardTitle": "Sorularınız mı Var?",
+    "ctaCardDesc": "B2B ekibimiz size kişisel olarak danışmanlık yapmaktan ve özel bir teklif hazırlamaktan memnuniyet duyar.",
+    "ctaPhone": "Telefon",
+    "ctaEmail": "E-posta"
+  },
+  "campaigns": {
+    "badge": "Bonus Programı",
+    "heroTitle": "Bonus Programımıza Hoş Geldiniz!",
+    "heroDesc": "Her satın alımda ve müşteri hesabı oluşturarak puan toplayın. Puanlarınızı cazip kuponlarla değiştirin. Burada indirimler, ücretsiz kargo ve daha fazlası için güncel kupon kampanyalarını bulabilirsiniz.",
+    "heroCtaText": "Puan toplarken iyi eğlenceler!",
+    "howTitle": "Nasıl çalışır:",
+    "howDesc": "Her satın alımda otomatik olarak puan toplarsınız. Müşteri hesabı oluşturduğunuzda ek puanlar kazanırsınız. Yeterli puan topladığınızda, istediğiniz kupon kampanyasına yatırım yapabilirsiniz.",
+    "step1Title": "Alışveriş Yap",
+    "step1Desc": "Her satın alımda puan toplayın",
+    "step2Title": "Puan Kazan",
+    "step2Desc": "Otomatik olarak bonus puanları alın",
+    "step3Title": "Kullan",
+    "step3Desc": "Kuponlar ve indirimler kazanın",
+    "statDeals": "50+ Teklif",
+    "statDealsLabel": "Aktif Kampanyalar",
+    "statLimited": "Sınırlı Süre",
+    "statLimitedLabel": "Acele Edin",
+    "productsTitle": "Kampanya Ürünleri",
+    "productsCount": "ürün mevcut",
+    "noProducts": "Şu anda kampanya ürünü bulunmamaktadır",
+    "cardBadge": "Kampanya",
+    "viewProduct": "Ürünü Görüntüle",
+    "d": "g",
+    "endsIn": "Bitiş süresi"
+  },
+  "testimonials": {
+    "title": "Müşterilerimiz Ne Diyor",
+    "subtitle": "Sektör genelinde işletmeler tarafından güvenilen marka",
+    "badge": "Referanslar",
+    "statClients": "B2B Müşterileri",
+    "statRating": "Ort. Puan",
+    "statSatisfaction": "Memnuniyet",
+    "ctaTitle": "Sorularınız mı var? Size yardımcı olmaktan memnuniyet duyarız.",
+    "ctaSubtitle": "Telefon desteği: Salı - Cuma, 9:00 - 16:00",
+    "review1Name": "Michael Schmidt",
+    "review1Initials": "MS",
+    "review1Role": "Satın Alma Müdürü",
+    "review1Text": "Mükemmel ürün kalitesi ve hızlı teslimat süreleri. Müşteri hizmetleri ekibi her zaman duyarlı ve yardımsever. B2B tedarik için kesinlikle tavsiye ederim.",
+    "review2Name": "Anna Weber",
+    "review2Initials": "AW",
+    "review2Role": "Restoran Sahibi",
+    "review2Text": "3 yıldan uzun süredir bu mağazadan sipariş veriyoruz. Ürün yelpazesi olağanüstü ve fiyatlar çok rekabetçi. İşletmemiz için güvenilir bir ortak.",
+    "review3Name": "Thomas Müller",
+    "review3Initials": "TM",
+    "review3Role": "Otel Müdürü",
+    "review3Text": "Baştan sona profesyonel hizmet. Toplu sipariş süreci sorunsuz ve teslimat her zaman zamanında. Birinci sınıf ürünlerin harika bir seçkisi."
+  },
+  "featuredProducts": {
+    "title": "Güncel Teklifler",
+    "subtitle": "En son özel fırsatlarımızı keşfedin",
+    "viewAll": "Tüm Teklifleri Görüntüle"
+  },
+  "b2bContact": {
+    "badge": "İletişime Geçin",
+    "title": "İşletmenizi Birlikte Büyütelim",
+    "description": "Özel bir teklif almak, ortaklık görüşmek veya B2B çözümlerimiz hakkında sorularınız olsun — ekibimiz size yardımcı olmaya hazır. Formu doldurun, 24 saat içinde size dönüş yapacağız.",
+    "emailLabel": "E-posta ile yazın",
+    "phoneLabel": "Bizi arayın",
+    "hoursLabel": "Çalışma Saatleri",
+    "hoursValue": "Pazartesi - Cuma: 09:00 - 18:00 CET",
+    "firstName": "Ad",
+    "firstNamePlaceholder": "Ahmet",
+    "lastName": "Soyad",
+    "lastNamePlaceholder": "Yılmaz",
+    "company": "Şirket",
+    "companyPlaceholder": "Şirket adınız",
+    "email": "E-posta",
+    "emailPlaceholder": "ahmet{'@'}sirket.com",
+    "phone": "Telefon",
+    "phonePlaceholder": "+49 7159 4591920",
+    "subject": "Konu",
+    "subjectPlaceholder": "Bir konu seçin...",
+    "subjectQuote": "Teklif İsteyin",
+    "subjectPartnership": "Ortaklık Talebi",
+    "subjectBulkOrder": "Toplu Sipariş",
+    "subjectSupport": "Müşteri Desteği",
+    "subjectOther": "Diğer",
+    "message": "Mesaj",
+    "messagePlaceholder": "İhtiyaçlarınızı bize anlatın...",
+    "privacyText": "Kişisel verilerimin gizlilik politikası kapsamında işlenmesini kabul ediyorum.",
+    "submit": "Mesaj Gönder",
+    "formTitle": "Bize mesaj gönderin",
+    "responseTime": "Yanıt Süresi",
+    "happyClients": "Mutlu Müşteriler",
+    "successTitle": "Mesaj Gönderildi!",
+    "successDescription": "Bize ulaştığınız için teşekkür ederiz. Ekibimiz mesajınızı inceleyecek ve 24 saat içinde size dönüş yapacaktır."
+  },
+  "register": {
+    "b2b": {
+      "seePrices": "Fiyatları görüntüle",
+      "placeOrders": "Sipariş ver",
+      "volumeDiscounts": "Toplu alım indirimleri",
+      "fastShipping": "Hızlı kargo",
+      "infoTitle": "B2B toptan fiyatlandırma mevcut",
+      "infoDesc": "Kayıt olduktan sonra tüm fiyatları görüntüleyebilirsiniz. Özel toptan koşullar ve toplu alım indirimleri için B2B ekibimizle iletişime geçin.",
+      "contactLink": "İletişime geçin"
+    }
+  }
+}

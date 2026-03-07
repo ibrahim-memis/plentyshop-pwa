@@ -1,6 +1,7 @@
 import type { RouteParams } from 'vue-router';
 import type { Breadcrumb, CategoryTreeItem, Product, ProductParams } from '@plentymarkets/shop-api';
 import { productGetters, categoryTreeGetters } from '@plentymarkets/shop-api';
+import { stripLocalePrefix } from '~/utils/pathHelper';
 
 export const validateProductParams = (params: RouteParams): boolean => {
   const itemId = params.itemId as string;
@@ -59,6 +60,10 @@ export const generateBreadcrumbs = (categoryTree: CategoryTreeItem[], product: P
   const categoryId = productGetters.getCategoryIds(product)?.[0] ?? 0;
   const breadcrumbs = categoryTreeGetters.generateBreadcrumbFromCategory(categoryTree, Number(categoryId));
   const productName = productGetters.getName(product);
+
+  for (const crumb of breadcrumbs) {
+    if (crumb.link) crumb.link = stripLocalePrefix(crumb.link);
+  }
 
   breadcrumbs.unshift({ name: home, link: '/' });
   breadcrumbs.push({ name: productName, link: `#` });

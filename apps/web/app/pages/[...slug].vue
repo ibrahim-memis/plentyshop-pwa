@@ -7,7 +7,7 @@
   >
     <SfLoaderCircular v-if="loading" class="fixed top-[50%] right-0 left-0 m-auto z-[99999]" size="2xl" />
 
-    <EditableBlocks
+    <EditablePage
       :identifier="identifier"
       :type="'category'"
       data-testid="category-page-content"
@@ -17,15 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { categoryGetters, categoryTreeGetters } from '@plentymarkets/shop-api';
 import type { Locale } from '#i18n';
+import { categoryGetters, categoryTreeGetters } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
-
-defineI18nRoute({
-  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
-});
-
-const { locale } = useI18n();
+import { stripLocalePrefix } from '~/utils/pathHelper';
+const { locale, t } = useI18n();
 const route = useRoute();
 const router = useRouter();
 const { setCategoriesPageMeta } = useUrlPageMeta();
@@ -39,6 +35,9 @@ const identifier = computed(() =>
   productsCatalog.value.category?.type === 'content' ? productsCatalog.value.category?.id : 0,
 );
 
+defineI18nRoute({
+  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
+});
 definePageMeta({
   layout: false,
   middleware: ['category-guard'],
@@ -49,13 +48,17 @@ definePageMeta({
 
 const breadcrumbs = computed(() => {
   if (productsCatalog.value.category) {
-    const breadcrumb = categoryTreeGetters.generateBreadcrumbFromCategory(
+    const crumbs = categoryTreeGetters.generateBreadcrumbFromCategory(
       categoryTree.value,
       categoryGetters.getId(productsCatalog.value.category),
     );
-    breadcrumb.unshift({ name: t('common.labels.home'), link: '/' });
-
-    return breadcrumb;
+    for (const crumb of crumbs) {
+      if (crumb.link) crumb.link = stripLocalePrefix(crumb.link);
+    }
+    return [
+      { name: t('common.labels.home'), link: '/' },
+      ...crumbs,
+    ];
   }
 
   return [];
@@ -87,8 +90,10 @@ setPageMeta(categoryName.value, icon);
 watch(
   () => locale.value,
   (changedLocale: string) => {
+    const langUrl = productsCatalog.value.languageUrls?.[changedLocale];
+    if (!langUrl) return;
     router.push({
-      path: buildCategoryLanguagePath(`${productsCatalog.value.languageUrls[changedLocale]}`),
+      path: buildCategoryLanguagePath(langUrl),
       query: route.query,
     });
   },
@@ -123,9 +128,16 @@ watch(
   },
 );
 
-watchEffect(() => {
-  route.meta.identifier = productsCatalog.value.category?.type === 'content' ? productsCatalog.value.category?.id : 0;
-});
+watch(
+  () => productsCatalog.value.category,
+  (category) => {
+    const newId = category?.type === 'content' ? category?.id : 0;
+    if (route.meta.identifier !== newId) {
+      route.meta.identifier = newId;
+    }
+  },
+  { immediate: true },
+);
 
 useHead({
   title: headTitle,

@@ -1,0 +1,154 @@
+[
+  {
+    "name": "HeroSlider",
+    "type": "content",
+    "meta": {
+      "uuid": "heroslider-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "maxSlides": 5,
+      "autoplay": true,
+      "autoplayInterval": 6000,
+      "excludeNames": [
+        "Geschirr & Tischaccessoires",
+        "Gläser & Trinkgeschirr",
+        "Heimtextilien",
+        "Kollektionen"
+      ],
+      "staticSlides": [
+        {
+          "imageUrl": "/images/hero-slider-1.png",
+          "name": "Premium Tableware",
+          "subtitle": "Exclusive Collection",
+          "description": "Discover our finest selection of elegant glassware and dining accessories.",
+          "link": "/"
+        }
+      ]
+    }
+  },
+  {
+    "name": "CategoryBanners",
+    "type": "content",
+    "meta": {
+      "uuid": "catbanners-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "maxBanners": 6,
+      "includeNames": [
+        "schalen",
+        "heimtextil",
+        "gläser",
+        "tischaccessoire",
+        "bar-zubeh",
+        "neuheit",
+        "bestseller",
+        "kollektion"
+      ]
+    }
+  },
+  {
+    "name": "BrandsShowcase",
+    "type": "content",
+    "meta": {
+      "uuid": "brandsshowcase-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "maxBrands": 8
+    }
+  },
+  {
+    "name": "FeaturedProducts",
+    "type": "content",
+    "meta": {
+      "uuid": "featuredproducts-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "maxProducts": 4,
+      "sort": "item.createdAt_desc"
+    }
+  },
+  {
+    "name": "CategoryShowcase",
+    "type": "content",
+    "meta": {
+      "uuid": "catshowcase-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "autoDetect": true,
+      "maxCategories": 2,
+      "maxItemsPerCategory": 4,
+      "excludeNames": [
+        "Geschirr & Tischaccessoires",
+        "Gläser & Trinkgeschirr",
+        "Kollektionen",
+        "Marken",
+        "Bar-Zubehör",
+        "Bestsellers",
+        "Neuheiten"
+      ],
+      "layout": {
+        "paddingTop": 20,
+        "paddingBottom": 40
+      }
+    }
+  },
+  {
+    "name": "AboutUs",
+    "type": "content",
+    "meta": {
+      "uuid": "aboutus-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "enabled": true
+    }
+  },
+  {
+    "name": "Testimonials",
+    "type": "content",
+    "meta": {
+      "uuid": "testimonials-en-001",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "enabled": true
+    }
+  },
+  {
+    "name": "Footer",
+    "type": "content",
+    "meta": {
+      "uuid": "4f7e2b1a-9c8d-4e6f-b3a2-1d0c5b4a3e2f",
+      "isGlobalTemplate": true
+    },
+    "content": {
+      "column1": {
+        "title": "Legal"
+      },
+      "column2": {
+        "title": "Services",
+        "showContactLink": true
+      },
+      "column3": {
+        "title": "",
+        "htmlDescription": ""
+      },
+      "column4": {
+        "title": "",
+        "htmlDescription": ""
+      },
+      "footnoteAlign": "right",
+      "colors": {
+        "background": "#384d37",
+        "text": "#ffffff",
+        "footnoteBackground": "#2c3e2b",
+        "footnoteText": "rgba(255,255,255,0.4)"
+      }
+    }
+  }
+]

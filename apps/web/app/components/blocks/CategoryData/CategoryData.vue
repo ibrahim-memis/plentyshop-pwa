@@ -49,7 +49,7 @@
         <div
           v-if="shouldShowTextBlock"
           :class="[
-            'absolute max-w-screen-3xl mx-auto inset-0 p-4 flex flex-col md:basis-2/4',
+            'absolute max-w-[1536px] mx-auto inset-0 p-4 flex flex-col md:basis-2/4',
             { 'md:p-10': props.content.text.bgColor },
           ]"
           :style="{

@@ -4,6 +4,7 @@ import { nuxtI18nOptions } from './app/configuration/i18n.config';
 import { appConfiguration } from './app/configuration/app.config';
 import cookieConfig from './app/configuration/cookie.config';
 import { paths } from './app/utils/paths';
+import { resolve } from 'pathe';
 import settingsConfig from './app/configuration/settings.config';
 import featureFlagsConfig from './app/configuration/feature-flags.config';
 import { FailOnLargeChunksPlugin } from './app/configuration/vite.config';
@@ -12,11 +13,17 @@ export default defineNuxtConfig({
   srcDir: 'app/',
   telemetry: false,
   devtools: { enabled: true },
+  devServer: {
+    port: Number(process.env.PORT) || 3000,
+  },
   css: ['~/assets/richtext.css'],
   typescript: {
     typeCheck: true,
   },
-  app: appConfiguration,
+  app: {
+    ...appConfiguration,
+    buildAssetsDir: '/_nuxt-plenty/',
+  },
   experimental: {
     asyncContext: true,
   },
@@ -97,6 +104,13 @@ export default defineNuxtConfig({
               '@tiptap/extension-text-align',
             ],
             vuetify: ['vuetify', '@mdi/js'],
+            cmmain: ['codemirror'],
+            cmplugins: [
+              'js-beautify',
+              '@codemirror/lang-css',
+              '@codemirror/lang-javascript',
+              '@codemirror/theme-one-dark',
+            ],
           },
         },
       },
@@ -123,10 +137,14 @@ export default defineNuxtConfig({
   },
   pages: true,
   runtimeConfig: {
+    plentyAdminUser: process.env.PLENTY_ADMIN_USER || '',
+    plentyAdminPassword: process.env.PLENTY_ADMIN_PASSWORD || '',
+    plentyApiEndpoint: process.env.API_ENDPOINT || '',
     public: {
       domain: validateApiUrl(process.env.API_URL) ?? process.env.API_ENDPOINT,
+      documentBaseUrl: process.env.DOCUMENT_BASE_URL || '', // Görsel/doküman base URL (boşsa domain kullanılır)
       apiEndpoint: process.env.API_ENDPOINT,
-      activeLanguages: process.env.LANGUAGELIST || 'en,de',
+      activeLanguages: process.env.LANGUAGELIST || 'de',
       disabledEditorSettings: process.env?.ENABLE_ALL_EDITOR_SETTINGS === '1' ? [] : ['shop-search'],
       cookieGroups: cookieConfig,
       turnstileSiteKey: process.env?.CLOUDFLARETURNSTILEAPISITEKEY ?? '',
@@ -169,7 +187,6 @@ export default defineNuxtConfig({
     apiUrl: validateApiUrl(process.env.API_URL) ?? 'http://localhost:8181',
     apiEndpoint: process.env.API_ENDPOINT,
     configId: Number(process.env.CONFIG_ID) || 1,
-    middlewareSSRUrl: 'http://localhost:8181',
   },
   shopModuleMollie: {
     checkoutUrl: paths.checkout,
@@ -178,7 +195,7 @@ export default defineNuxtConfig({
   },
   fonts: {
     defaults: {
-      weights: [300, 400, 500, 700],
+      weights: [300, 400, 500, 600, 700],
       preload: true,
     },
     assets: {
@@ -321,5 +338,16 @@ export default defineNuxtConfig({
       ],
     },
     registerWebManifestInRouteRules: true,
+  },
+  hooks: {
+    'pages:extend'(pages) {
+      if (process.env.E2E_TEST) {
+        pages.push({
+          name: 'e2e',
+          path: '/smoke-e2e',
+          file: resolve(__dirname, 'e2e/smoke-e2e.vue'),
+        });
+      }
+    },
   },
 });

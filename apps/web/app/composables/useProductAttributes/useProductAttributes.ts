@@ -8,16 +8,6 @@ import type {
 } from './types';
 import type { Product, VariationMapProductVariation } from '@plentymarkets/shop-api';
 
-/**
- * @description Composable for handling product attributes.
- * @returns UseProductAttributesReturn
- * @example
- * ``` ts
- * const {
- *  setAttribute, updateValue, attributes, getCombination, itemId, variationId, attributesValues, combinations
- * } = useProductAttributes();
- * ```
- */
 export const useProductAttributes = (): UseProductAttributesReturn => {
   const state = useState<UseProductAttributesState>(`useProductAttributes`, () => ({
     attributes: [],
@@ -27,34 +17,16 @@ export const useProductAttributes = (): UseProductAttributesReturn => {
     variationId: 0,
   }));
 
-  /**
-   * @description Function for redirecting to the product variation.
-   * @example
-   * ``` ts
-   * changeVariationId(1072);
-   * ```
-   */
   const changeVariationId = (variationId: number): void => {
     if (state.value.variationId === variationId) return;
 
     const route = useRoute();
-
-    if (!useCallisto().isEnabled) {
-      const path = updateProductURLPathForVariation(route.path, state.value.itemId, variationId);
-      navigateTo(path);
-    }
+    const path = updateProductURLPathForVariation(route.path, state.value.itemId, variationId);
 
     state.value.variationId = variationId;
+    navigateTo(path);
   };
 
-  /**
-   * @description Function for getting a valid combination from selected attributes.
-   * @returns VariationMapProductVariation | null
-   * @example
-   * ``` ts
-   * getCombination();
-   * ```
-   */
   const getCombination: GetCombination = (): VariationMapProductVariation | null => {
     return (
       state.value.combinations.find((combination) => {
@@ -68,9 +40,6 @@ export const useProductAttributes = (): UseProductAttributesReturn => {
     );
   };
 
-  /**
-   * @description Helper function to check if a combination matches the given attribute values.
-   */
   const combinationMatchesAttributes = (
     combination: VariationMapProductVariation,
     attributeValues: Record<number, number>,
@@ -82,9 +51,6 @@ export const useProductAttributes = (): UseProductAttributesReturn => {
     });
   };
 
-  /**
-   * @description Helper function to check if a value is available in any combination.
-   */
   const isValueAvailableInCombinations = (attributeValues: Record<number, number>): boolean => {
     return (
       state.value.combinations?.some((combination) => combinationMatchesAttributes(combination, attributeValues)) ??
@@ -93,86 +59,120 @@ export const useProductAttributes = (): UseProductAttributesReturn => {
   };
 
   /**
-   * @description Function disabling attributes based on possible combinations.
-   * @example
-   * ``` ts
-   * disableAttributes();
-   * ```
+   * Compute disabled states for all attribute values WITHOUT mutating state.
+   * Returns a new attributes array with updated `disabled` flags.
    */
-  const disableAttributes = () => {
-    state.value.attributes.forEach((attribute) => {
-      attribute.values.forEach((value) => {
-        const attributeValues = { ...state.value.attributeValues, [attribute.attributeId]: value.attributeValueId };
-        value.disabled = !isValueAvailableInCombinations(attributeValues);
-      });
-    });
-
-    const combination = getCombination();
-
-    if (combination) {
-      const id = Number(combination.variationId);
-      changeVariationId(id);
-    }
+  const computeDisabledAttributes = (
+    attributes: UseProductAttributesState['attributes'],
+    combinations: UseProductAttributesState['combinations'],
+    attributeValues: Record<number, number>,
+  ) => {
+    return attributes.map((attribute) => ({
+      ...attribute,
+      values: attribute.values.map((value) => {
+        const testValues = { ...attributeValues, [attribute.attributeId]: value.attributeValueId };
+        const available = combinations?.some((combination) =>
+          combinationMatchesAttributes(combination, testValues),
+        ) ?? false;
+        return { ...value, disabled: !available };
+      }),
+    }));
   };
 
   /**
-   * @description Function for set up the product attributes and preselect them if needed.
-   * @example
-   * ``` ts
-   * setAttribute(product, true);
-   * ```
+   * Find matching combination for given attribute values.
    */
+  const findCombination = (
+    combinations: UseProductAttributesState['combinations'],
+    attributeValues: Record<number, number>,
+  ): VariationMapProductVariation | null => {
+    return (
+      combinations.find((combination) => {
+        if (combination?.attributes?.length === Object.values(attributeValues).length) {
+          return combination.attributes?.every(
+            (attr) => attributeValues[attr.attributeId] === attr.attributeValueId,
+          );
+        }
+        return false;
+      }) ?? null
+    );
+  };
+
+  let isSettingAttributes = false;
+
   const setAttribute: SetAttribute = (product: Product, preSelectAttributes = false) => {
-    state.value.itemId = product.item.id;
-    state.value.variationId = product.variation.id;
-    state.value.attributes = product.variationAttributeMap?.attributes || [];
-    state.value.combinations = product.variationAttributeMap?.variations || [];
-    state.value.attributeValues = {};
+    if (isSettingAttributes) return;
+    if (!product?.item || !product?.variation) return;
+    isSettingAttributes = true;
 
-    if (preSelectAttributes) {
-      product.attributes?.forEach((attribute) => {
-        state.value.attributeValues[attribute.attributeId] = attribute.value.id;
-      });
+    try {
+      const clonedAttributes = JSON.parse(
+        JSON.stringify(product.variationAttributeMap?.attributes || []),
+      );
+      const clonedCombinations = JSON.parse(
+        JSON.stringify(product.variationAttributeMap?.variations || []),
+      );
+
+      const newAttributeValues: Record<number, number> = {};
+      if (preSelectAttributes) {
+        product.attributes?.forEach((attribute) => {
+          newAttributeValues[attribute.attributeId] = attribute.value.id;
+        });
+      }
+
+      const withDisabled = computeDisabledAttributes(clonedAttributes, clonedCombinations, newAttributeValues);
+
+      state.value.itemId = product.item.id;
+      state.value.variationId = product.variation.id;
+      state.value.combinations = clonedCombinations;
+      state.value.attributeValues = newAttributeValues;
+      state.value.attributes = withDisabled;
+    } finally {
+      isSettingAttributes = false;
     }
-
-    disableAttributes();
   };
 
-  /**
-   * @description Function for updating the value of an attribute.
-   * @example
-   * ``` ts
-   * updateValue(1, 3);
-   * ```
-   */
+  const applyDisabledAndNavigate = () => {
+    const newAttrs = computeDisabledAttributes(
+      state.value.attributes,
+      state.value.combinations,
+      state.value.attributeValues,
+    );
+    state.value.attributes = newAttrs;
+
+    const combination = findCombination(state.value.combinations, state.value.attributeValues);
+    if (combination) {
+      changeVariationId(Number(combination.variationId));
+    }
+  };
+
   const updateValue: UpdateValue = (attributeId: number, valueId: number | undefined) => {
     const item = state.value.attributes.find((attribute) => attribute.attributeId === attributeId);
-    const value = item?.values.find((value) => value.attributeValueId === valueId) || undefined;
+    const value = item?.values.find((v) => v.attributeValueId === valueId) || undefined;
 
     if (!value || !valueId) {
-      const { [attributeId]: _, ...rest } = state.value.attributeValues;
-      state.value.attributeValues = rest;
-      disableAttributes();
+      delete state.value.attributeValues.attributeId;
+      applyDisabledAndNavigate();
       return;
     }
 
     if (value.disabled) {
+      delete state.value.attributeValues.attributeId;
       const oldValues = { ...state.value.attributeValues };
       state.value.attributeValues = { [attributeId]: valueId };
-      disableAttributes();
+      applyDisabledAndNavigate();
 
-      Object.entries(oldValues).forEach(([oldAttributeId, oldValueId]) => {
-        if (Number(oldAttributeId) === attributeId) return;
+      Object.entries(oldValues).forEach(([oldKey, oldValueId]) => {
+        const oldAttr = state.value.attributes
+          .find((a) => a.attributeId === Number(oldKey))
+          ?.values.find((v) => v.attributeValueId === oldValueId);
 
-        const oldValue = state.value.attributes
-          .find((attribute) => attribute.attributeId === Number(oldAttributeId))
-          ?.values.find((value) => value.attributeValueId === oldValueId);
-
-        if (oldValue && !oldValue.disabled) {
-          state.value.attributeValues[Number(oldAttributeId)] = oldValueId;
-          disableAttributes();
+        if (oldAttr && !oldAttr.disabled) {
+          state.value.attributeValues[oldKey] = oldValueId;
         }
       });
+
+      applyDisabledAndNavigate();
       return;
     }
 
@@ -180,17 +180,9 @@ export const useProductAttributes = (): UseProductAttributesReturn => {
       state.value.attributeValues[attributeId] = valueId;
     }
 
-    disableAttributes();
+    applyDisabledAndNavigate();
   };
 
-  /**
-   * @description Function for getting the value of an attribute.
-   * @returns number | undefined
-   * @example
-   * ``` ts
-   * getValue(1);
-   * ```
-   */
   const getValue: GetValue = (attributeId: number): number | undefined => {
     return state.value.attributeValues[attributeId] || undefined;
   };

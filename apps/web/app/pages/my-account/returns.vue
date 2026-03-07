@@ -109,14 +109,12 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { type Order, orderGetters } from '@plentymarkets/shop-api';
 import { useDisclosure, SfLoaderCircular } from '@storefront-ui/vue';
-import type { Locale } from '#i18n';
-
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({
   layout: 'account',
   pageType: 'static',

@@ -4,20 +4,21 @@
       <slot name="summary">
         <p>{{ summary }}</p>
       </slot>
-      <SfIconChevronLeft :class="['text-neutral-500', internalModelValue ? 'rotate-90' : '-rotate-90']" />
+      <!-- HomeDeluxe: +/- ikonu -->
+      <span class="text-neutral-500 text-xl font-light leading-none select-none w-6 h-6 flex items-center justify-center transition-transform duration-200">
+        {{ internalModelValue ? '−' : '+' }}
+      </span>
     </template>
-    <div :class="contentPaddingClass"><slot /></div>
+    <div class="py-3 px-0"><slot /></div>
   </SfAccordionItem>
 </template>
 
 <script setup lang="ts">
-import { SfAccordionItem, SfIconChevronLeft } from '@storefront-ui/vue';
+import { SfAccordionItem } from '@storefront-ui/vue';
 import { useVModel } from '@vueuse/core';
 import type { AccordionItemProps } from '~/components/ui/AccordionItem/types';
 
-const props = withDefaults(defineProps<AccordionItemProps>(), {
-  contentPaddingClass: 'py-2 px-4',
-});
+const props = defineProps<AccordionItemProps>();
 const { summary = '', summaryClass = '', summaryActiveClass = '' } = props;
 const emit = defineEmits(['update:modelValue']);
 

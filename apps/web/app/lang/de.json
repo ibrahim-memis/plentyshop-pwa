@@ -1,4 +1,56 @@
 {
+  "header": {
+    "searchPlaceholder": "Suchbegriff oder Artikelnummer...",
+    "internationalShipping": "Internationaler Versand",
+    "fastShipping": "Versand innerhalb 24h an Werktagen",
+    "loginRegister": "Anmelden | Registrieren",
+    "phoneHours": "Telefonische Beratung: Di - Fr, 10 - 15 Uhr",
+    "bonusProgram": "Bonusprogramm",
+    "campaigns": "Kampagnen",
+    "welcome": "Willkommen",
+    "loginHint": "Anmelden",
+    "merklist": "Merkliste:",
+    "articles": "Artikel",
+    "cart": "Warenkorb:",
+    "b2bTitle": "Größere Mengen für Gewerbekunden?",
+    "b2bContact": "Kontaktieren Sie uns",
+    "pricePlan": "B2B Preise aktiv",
+    "discountLabel": "Rabatt"
+  },
+  "welcomePopup": {
+    "title": "Willkommen bei HafenX!",
+    "subtitle": "Ihr Konto wurde erfolgreich erstellt",
+    "currentPlan": "Aktuelle Preisstufe: Standardpreise (B2C)",
+    "currentPlanDesc": "Sie sehen derzeit unsere Standard-Endkundenpreise. Als registrierter Kunde haben Sie bereits Zugang zu allen Produkten und können sofort bestellen.",
+    "b2bTitle": "Exklusive B2B-Konditionen verfügbar",
+    "b2bDesc": "Als Geschäftskunde profitieren Sie von Staffelpreisen, individuellen Rabatten und persönlicher Betreuung.",
+    "benefit1": "Bis zu 30% Mengenrabatt",
+    "benefit2": "Individuelle Preislisten",
+    "benefit3": "Persönlicher Ansprechpartner",
+    "benefit4": "Flexible Zahlungsziele",
+    "contactTitle": "Jetzt B2B-Konditionen anfragen",
+    "contactBtn": "Kontakt",
+    "continueBtn": "Weiter einkaufen"
+  },
+  "filterBar": {
+    "filterBy": "Filtern nach",
+    "sortBy": "Sortieren nach",
+    "articles": "Artikel"
+  },
+  "languageSidebar": {
+    "title": "Sprache & Währung",
+    "language": "Sprache",
+    "currency": "Währung"
+  },
+  "sidebar": {
+    "categories": "Kategorien",
+    "pages": "Seiten",
+    "home": "Startseite",
+    "wishlist": "Wunschliste",
+    "myAccount": "Mein Konto",
+    "orders": "Meine Bestellungen",
+    "followUs": "Folgen Sie uns"
+  },
   "notifyMe": {
     "notifyButtonTooltip": "Wir benachrichtigen Sie, sobald das Produkt wieder verfügbar ist",
     "notifyButton": "Benachrichtige mich",
@@ -442,17 +494,22 @@
   },
   "contact": {
     "label": "Kontakt",
+    "breadcrumbHome": "Startseite",
     "clearAll": "Alles löschen",
     "contact": "Kontakt",
-    "contactSend": "Anfrage senden",
-    "contactShopMessage": "Sie haben eine Frage oder ein Anliegen? Dann nehmen Sie mit uns Kontakt auf. Füllen Sie einfach das Formular aus und wir werden Ihre Anfrage schnellstmöglich bearbeiten.",
+    "contactSend": "Nachricht senden",
+    "contactShopMessage": "Haben Sie Fragen zu unseren Produkten, B2B-Konditionen oder benötigen ein individuelles Angebot? Unser Team ist gerne für Sie da.",
     "form": {
+      "title": "Schreiben Sie uns",
+      "subtitle": "Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden.",
       "asterixHint": "markierte Felder sind erforderlich",
       "emailLabel": "E-Mail",
       "message": "Nachricht",
-      "message-placeholder": "Ihre Nachricht",
-      "nameLabel": "Name",
-      "order-id": "Auftrags-ID",
+      "message-placeholder": "Beschreiben Sie Ihr Anliegen...",
+      "nameLabel": "Ansprechpartner",
+      "companyLabel": "Unternehmen",
+      "taxIdLabel": "USt-IdNr.",
+      "taxIdPlaceholder": "z.B. DE123456789",
       "subjectLabel": "Betreff"
     },
     "misConfigured": "Unser Kontaktformular ist aufgrund einer fehlenden Konfiguration vorübergehend deaktiviert. Bitte schauen Sie später noch einmal vorbei oder kontaktieren Sie uns über alternative Kontaktmöglichkeiten.",
@@ -460,7 +517,16 @@
     "success": "Nachricht erfolgreich gesendet",
     "info": {
       "heading": "Kontaktinformationen",
-      "email": "E-Mail"
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "hours": "Geschäftszeiten",
+      "hoursValue": "Di - Fr, 9:00 - 16:00 Uhr",
+      "address": "Adresse",
+      "addressValue": "HafenX GmbH, Deutschland",
+      "responseTime": "Antwortzeit",
+      "happyClients": "Zufriedene Kunden",
+      "b2bTitle": "B2B-Konditionen anfragen",
+      "b2bDesc": "Als Geschäftskunde profitieren Sie von individuellen Staffelpreisen, persönlicher Beratung und flexiblen Zahlungszielen."
     }
   },
   "CookieBar": {
@@ -700,7 +766,61 @@
     },
     "register": {
       "label": "Registrieren"
+    },
+    "newsletter": {
+      "title": "Newsletter abonnieren",
+      "subtitle": "Erhalten Sie die neuesten Angebote und Neuigkeiten direkt in Ihr Postfach.",
+      "placeholder": "Ihre E-Mail-Adresse",
+      "subscribe": "Abonnieren"
     }
+  },
+  "categoryData": {
+    "items": "Artikel"
+  },
+  "subcategoryBar": {
+    "items": "Produkte"
+  },
+  "categoryBanners": {
+    "title": "Produktkategorien",
+    "subtitle": "Schneller Zugang zu unseren wichtigsten B2B-Produktbereichen.",
+    "viewAll": "Alle Kategorien ansehen"
+  },
+  "categoryShowcase": {
+    "title": "Nach Kategorie einkaufen",
+    "subtitle": "Entdecken Sie unsere kuratierten Produktkategorien",
+    "viewAll": "Alle anzeigen",
+    "explore": "Entdecken"
+  },
+  "brandsShowcase": {
+    "title": "Unsere Marken",
+    "subtitle": "Vertrauen Sie auf Qualität – entdecken Sie unsere Partner und Hersteller.",
+    "noBrands": "Keine Marken verfügbar."
+  },
+  "heroSlider": {
+    "discoverProducts": "Produkte entdecken",
+    "browseCatalogs": "Kataloge durchsuchen",
+    "discover": "Entdecken",
+    "shopNow": "Jetzt einkaufen",
+    "learnMore": "Mehr erfahren",
+    "newCollection": "Neue Kollektion",
+    "topSeller": "Bestseller",
+    "exclusive": "Exklusiv",
+    "new": "NEU",
+    "fromPrice": "Ab",
+    "sloganDefault": "Minimaler Look, maximaler Platz.",
+    "discoverCategory": "Kategorie entdecken"
+  },
+  "customFooter": {
+    "description": "Entdecken Sie eine vielfältige Auswahl an erstklassigen Produkten in unseren Kategorien Heimtextilien, Glaswaren, Haushalt und Düfte. Bei uns finden Sie alles, was Sie für ein stilvolles und komfortables Zuhause benötigen.",
+    "lagerAddress": "HafenX UG Wankelstr. 5 71272 Renningen Deutschland",
+    "bueroAddress": "Konrad-Zuse-Straße 10 71034 Böblingen",
+    "categoriesTitle": "Kategorien",
+    "brandsTitle": "Marken",
+    "followUs": "Folgen Sie uns",
+    "followUsSubtitle": "Verpassen Sie keine Neuheiten und Aktionen.",
+    "ourCompany": "Unsere Firma",
+    "newsletterText": "Abonnieren Sie unseren Newsletter und erhalten Sie aktuelle Neuigkeiten und Updates.",
+    "newsletterPlaceholder": "Deine E-Mail"
   },
   "form": {
     "addCompany": "+ Firmendaten hinzufügen",
@@ -1040,8 +1160,32 @@
     "outOfStock": "Nicht auf Lager",
     "priceExclVAT": "zzgl. ges. MwSt",
     "priceInclVAT": "inkl. ges. MwSt",
+    "allPricesExclVAT": "Alle Preise zzgl. MwSt.",
+    "netLabel": "Netto",
+    "requestQuote": "Kontakt aufnehmen",
+    "requestQuoteDesc": "Für Großhandelspreise und individuelle Konditionen kontaktieren Sie unser B2B-Team.",
     "reviewsCount": "{Anzahl} Bewertungen",
     "showAllReviews": "Alle Bewertungen anzeigen",
+    "loginToSeePrice": "Für Preise bitte einloggen",
+    "loginToPurchase": "Einloggen & Bestellen",
+    "loginRequiredDesc": "Melden Sie sich an, um Preise zu sehen und Bestellungen aufzugeben.",
+    "viewProduct": "Produkt ansehen",
+    "stockInfo": {
+      "level": "Bestandslevel",
+      "delivery": "Lieferzeit",
+      "status": "Bestellstatus",
+      "high": "Hoch",
+      "medium": "Mittel",
+      "low": "Niedrig",
+      "veryLow": "Sehr niedrig",
+      "outOfStock": "Ausverkauft",
+      "orderable": "Bestellbar",
+      "notOrderable": "Nicht bestellbar",
+      "sameDay": "Sofort",
+      "day": "Tag",
+      "days": "Tage",
+      "pieces": "Stk."
+    },
     "showAll": "alle Filter",
     "graduatedPrices": {
       "discount": "RABATT",
@@ -1057,11 +1201,20 @@
   },
   "quickCheckout": {
     "cartContains": "Ihr Warenkorb enthält {count} Artikel",
-    "checkYourCart": "Warenkorb prüfen",
-    "close": "Warenkorb-Bestätigung schließen",
+    "cartPreview": "Warenkorbvorschau",
+    "checkYourCart": "Warenkorb",
+    "close": "Warenkorbvorschau schließen",
     "heading": "Zum Warenkorb hinzugefügt",
     "quantity": "Anzahl",
-    "subTotal": "Zwischensumme"
+    "subTotal": "Zwischensumme",
+    "cartValue": "Warenwert",
+    "shippingCosts": "Versandkosten",
+    "totalAmount": "Gesamtsumme",
+    "freeShipping": "Kostenlos",
+    "couponPlaceholder": "Gutschein-Code eingeben",
+    "redeemCoupon": "Einlösen",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "continueShopping": "Weiter einkaufen"
   },
   "returns": {
     "areYouSure": "Sind Sie sicher, dass Sie diese Artikel zurückgeben möchten?",
@@ -1199,7 +1352,7 @@
       "vatServerFallback": "Die Umsatzsteuer-Identifikationsnummer konnte nicht bestätigt werden. Der Auftrag wird erneut geprüft."
     },
     "blocks": {
-      "base64NotAllowed": "The image was not uploaded correctly. Try uploading it again."
+      "base64NotAllowed": "Das Bild wurde nicht korrekt hochgeladen. Bitte versuchen Sie es erneut."
     },
     "cart": {
       "addToBasket": {
@@ -1231,9 +1384,6 @@
     },
     "coupon": {
       "applyFailed": "Der Coupon konnte nicht eingelöst werden."
-    },
-    "editor": {
-      "invalidEditorHash": "Die Editor-Sitzung ist ungültig."
     },
     "feedback": {
       "notAllowedWithoutPurchase": "Sie müssen diesen Artikel kaufen, bevor Sie eine Bewertung abgeben können."
@@ -1276,89 +1426,180 @@
     },
     "unknownError": "Es ist ein unbekannter Fehler aufgetreten."
   },
-  "defaultTemplate": {
-    "category": {
-      "categoryData": {
-        "name": "Kategoriename"
-      }
+  "featuresBar": {
+    "volumeDiscount": {
+      "title": "Staffelpreise",
+      "desc": "Mengenrabatte für Großbestellungen."
     },
-    "product": {
-      "itemText": {
-        "title": "Artikeldetails"
-      },
-      "technicalData": {
-        "title": "Technische Daten"
-      },
-      "customerReview": {
-        "title": "Kundenbewertungen"
-      },
-      "productLegalInformation": {
-        "title": "Rechtliche Artikeldetails",
-        "linkText": "EU-Verantwortliche Person - klicken Sie für Details"
-      }
+    "invoice": {
+      "title": "Kauf auf Rechnung",
+      "desc": "Bequeme Zahlung für Geschäftskunden."
     },
-    "homepage": {
-      "carousel": {
-        "banner1": {
-          "pretitle": "Kristallklare Klänge Genießen",
-          "title": "Ihr Sound auf höchstem Niveau",
-          "description": "Unsere hochmodernen Kopfhörer: Entwickelt für das ultimative Hörerlebnis genügen sie auch den höchsten Ansprüchen. Entdecken Sie die perfekte Mischung aus Stil, Komfort und Klangqualität, die Ihren Musikgenuss auf ein völlig neues Niveau hebt.",
-          "buttonLabel": "Capybara entdecken"
-        },
-        "banner2": {
-          "pretitle": "Die Zukunft der Luftbildfotografie",
-          "title": "Drone Omega",
-          "description": "Omega ist eine leichte Drohne, die für atemberaubende Luftaufnahmen entwickelt wurde. Mit einer hochauflösenden Kamera auf einem 3-Achsen-Gimbal und einer Flugzeit von bis zu 45 Minuten sorgt sie für stabile, flüssige Videos. GPS-unterstützter Schwebeflug, Hindernisvermeidung und einfache Transportfähigkeit machen die Drone zum perfekten Begleiter für Ihre Aufnahmen.",
-          "buttonLabel": "Omega entdecken"
-        }
-      },
-      "textcard": {
-        "welcome": {
-          "pretitle": "Willkommen in Ihrem neuen Lieblingsshop",
-          "title": "Entdecke Technik & Style",
-          "subtitle": "Innovative Technik trifft auf moderne Mode",
-          "paragraph1": "Willkommen in unserem Shop, wo Technikbegeisterte und Fashion-Liebhaber gleichermaßen fündig werden! Von hochwertigen Kopfhörern und leistungsstarken Drohnen bis hin zu stilvoller Kleidung finden Sie bei uns alles, was Ihren Alltag smarter und Ihren Look einzigartig macht.",
-          "paragraph2": "Unser Ziel ist es, Ihnen eine erstklassige Auswahl an Produkten zu bieten, die Qualität, Innovation und Design vereinen. Ob Sie nach einem neuen Lautsprecher für den perfekten Sound suchen oder nach einem lässigen Hoodie, der Ihrem Stil entspricht – wir haben, was Sie brauchen.",
-          "buttonLabel": "Jetzt zuschlagen"
-        }
-      },
-      "multigrid": {
-        "textcard": {
-          "title": "Entdecken Sie Technik und Stil",
-          "subtitle": "Innovative Technologie trifft moderne Fashion",
-          "paragraph": "Unsere Kopfhörer-Kollektion setzt neue Maßstäbe in Sachen Audio-Präzision. Mit tiefem Bass, klaren Höhen und einem eindrucksvollen Klangbild bieten diese Kopfhörer ein einzigartiges Hörerlebnis für jedes Musikgenre. Mit einer Kombination aus modernem Design, höchstem Komfort und neuester Technologie sind sie die perfekte Wahl für alle, die keine Kompromisse bei der Klangqualität eingehen möchten.",
-          "feature1": "Premium-Sound in Studioqualität",
-          "feature2": "Bequeme Passform für längeres Hören",
-          "feature3": "Lange Akkulaufzeit",
-          "feature4": "Nahtlose kabellose Verbindung",
-          "buttonLabel": "Zu unseren Kopfhörern"
-        },
-        "image": {
-          "alt": "Kopfhörer"
-        }
-      },
-      "productRecommended": {
-        "fashion": {
-          "pretitle": "Mehr als nur Technik",
-          "title": "Entdecken Sie unsere Modekollektion",
-          "subtitle": "Sportive Mode und Accessories für alle.",
-          "linkText": "Zu unserer kompletten Kollektion.",
-          "linkUrl": "https://plentyshop.plentymarkets.com/kleidung"
-        }
-      },
-      "newsletter": {
-        "title": "Abonnieren Sie unseren Newsletter",
-        "description": "Informieren Sie sich über bevorstehende Aktionen und Veranstaltungen. Erhalten Sie Geschenke und Sonderangebote!",
-        "buttonLabel": "Newsletter abonnieren"
-      }
+    "accountManager": {
+      "title": "Persönlicher Ansprechpartner",
+      "desc": "Ihr direkter Kontakt für alle Anliegen."
     },
-    "footer": {
-      "column1": {
-        "title": "Rechtliches"
-      },
-      "column2": {
-        "title": "Services"
-      }
+    "expressShipping": {
+      "title": "Expressversand",
+      "desc": "Schnelle und zuverlässige Lieferung verfügbar."
+    }
+  },
+  "volumeDiscount": {
+    "title": "Mengenrabatte",
+    "subtitle": "Mehr kaufen, mehr sparen",
+    "quantity": "Menge",
+    "discount": "Rabatt",
+    "savings": "Sie sparen",
+    "pieces": "Stück",
+    "save": "Sparen",
+    "info": "Rabatte werden automatisch an der Kasse angewendet."
+  },
+  "membershipBanner": {
+    "title": "MITGLIED WERDEN & 10% RABATT ERHALTEN!",
+    "subtitle": "Melden Sie sich kostenlos an und profitieren Sie von exklusiven Angeboten.",
+    "cta": "SICH KOSTENLOS ANMELDEN"
+  },
+  "deliveryInfo": {
+    "availability": "Verfügbarkeit",
+    "deliveryTime": "Lieferzeit",
+    "days": "Tage",
+    "minOrderQty": "Min. Bestellmenge",
+    "weight": "Versandgewicht",
+    "dimensions": "Abmessungen (L×B×H)",
+    "shipping": "Versand",
+    "freeShipping": "Kostenloser Versand"
+  },
+  "aboutUs": {
+    "label": "Über uns",
+    "breadcrumbHome": "Startseite",
+    "title": "Ihr vertrauenswürdiger B2B-Partner",
+    "description": "Mit über 10 Jahren Erfahrung bieten wir hochwertige Produkte und exzellenten Service für Unternehmen weltweit. Unser engagiertes Team sorgt für schnelle Lieferung, wettbewerbsfähige Preise und persönliche Betreuung.",
+    "heroTitle": "Qualität trifft auf Zuverlässigkeit",
+    "heroDesc": "HafenX ist Ihr erfahrener Partner für hochwertige Produkte im B2B-Bereich. Wir verbinden Qualität mit wettbewerbsfähigen Preisen und sorgen für eine reibungslose Lieferkette — damit Sie sich auf Ihr Kerngeschäft konzentrieren können.",
+    "cta": "Kontaktieren Sie uns",
+    "statYears": "Jahre Erfahrung",
+    "statProducts": "Verfügbare Produkte",
+    "statCustomers": "Zufriedene Kunden",
+    "statSatisfaction": "Zufriedenheitsrate",
+    "valuesTitle": "Unsere Werte",
+    "valuesDesc": "Wir stehen für Qualität, Geschwindigkeit und Partnerschaft — Werte, die unser tägliches Handeln bestimmen.",
+    "value1Title": "Qualität & Zuverlässigkeit",
+    "value1Desc": "Jedes Produkt wird sorgfältig geprüft, bevor es unser Lager verlässt. Wir arbeiten ausschließlich mit vertrauenswürdigen Herstellern zusammen.",
+    "value2Title": "Schneller Versand",
+    "value2Desc": "Bestellungen werden innerhalb von 24 Stunden an Werktagen versandt. Dank unserer Logistikpartner erreicht Ihre Ware Sie zuverlässig und pünktlich.",
+    "value3Title": "Persönliche Betreuung",
+    "value3Desc": "Jeder Kunde erhält einen persönlichen Ansprechpartner. Wir beraten Sie individuell und finden die beste Lösung für Ihre Anforderungen.",
+    "whyTitle": "Warum HafenX?",
+    "whyDesc": "Wir sind mehr als ein Lieferant — wir sind Ihr strategischer Partner für nachhaltiges Wachstum.",
+    "reason1Title": "Individuelle B2B-Konditionen",
+    "reason1Desc": "Staffelpreise, maßgeschneiderte Preislisten und flexible Zahlungsziele für Geschäftskunden.",
+    "reason2Title": "Breites Sortiment",
+    "reason2Desc": "Über 5.000 Produkte sofort verfügbar — von Standardartikeln bis zu Speziallösungen.",
+    "reason3Title": "Internationale Lieferung",
+    "reason3Desc": "Zuverlässiger Versand innerhalb Europas mit transparenter Sendungsverfolgung.",
+    "reason4Title": "Technischer Support",
+    "reason4Desc": "Unser Fachteam steht Ihnen bei technischen Fragen und Produktberatung zur Seite.",
+    "ctaCardTitle": "Haben Sie Fragen?",
+    "ctaCardDesc": "Unser B2B-Team berät Sie gerne persönlich und erstellt Ihnen ein individuelles Angebot.",
+    "ctaPhone": "Telefon",
+    "ctaEmail": "E-Mail"
+  },
+  "campaigns": {
+    "badge": "Bonusprogramm",
+    "heroTitle": "Willkommen zu unserem Bonusprogramm!",
+    "heroDesc": "Sammeln Sie Punkte bei jedem Einkauf und für die Registrierung eines Kundenkontos. Tauschen Sie Ihre Punkte gegen attraktive Gutscheine ein. Hier finden Sie aktuelle Gutscheinaktionen für Rabatte, kostenlosen Versand und mehr.",
+    "heroCtaText": "Viel Spaß beim Punkte sammeln!",
+    "howTitle": "So funktioniert es:",
+    "howDesc": "Für jeden Einkauf sammeln Sie automatisch Punkte. Zusätzliche Punkte erhalten Sie, wenn Sie ein Kundenkonto erstellen. Sobald Sie genügend Punkte gesammelt haben, können Sie diese in die Gutscheinaktion Ihrer Wahl investieren.",
+    "step1Title": "Einkaufen",
+    "step1Desc": "Punkte bei jedem Kauf sammeln",
+    "step2Title": "Punkte sammeln",
+    "step2Desc": "Automatisch Bonuspunkte erhalten",
+    "step3Title": "Einlösen",
+    "step3Desc": "Gutscheine & Rabatte sichern",
+    "statDeals": "50+ Angebote",
+    "statDealsLabel": "Aktive Kampagnen",
+    "statLimited": "Zeitlich begrenzt",
+    "statLimitedLabel": "Schnell zugreifen",
+    "productsTitle": "Kampagnen-Produkte",
+    "productsCount": "Produkte verfügbar",
+    "noProducts": "Aktuell keine Kampagnen-Produkte verfügbar",
+    "cardBadge": "Kampagne",
+    "viewProduct": "Produkt ansehen",
+    "d": "T",
+    "endsIn": "Endet in"
+  },
+  "testimonials": {
+    "title": "Was unsere Kunden sagen",
+    "subtitle": "Vertraut von Unternehmen aus der gesamten Branche",
+    "badge": "Kundenstimmen",
+    "statClients": "B2B-Kunden",
+    "statRating": "Bewertung",
+    "statSatisfaction": "Zufriedenheit",
+    "ctaTitle": "Haben Sie Fragen? Wir beraten Sie gerne.",
+    "ctaSubtitle": "Telefonisch erreichbar: Di - Fr, 10 - 15 Uhr",
+    "review1Name": "Michael Schmidt",
+    "review1Initials": "MS",
+    "review1Role": "Einkaufsleiter",
+    "review1Text": "Hervorragende Produktqualität und schnelle Lieferzeiten. Das Kundenservice-Team ist immer ansprechbar und hilfsbereit. Sehr empfehlenswert für B2B-Einkauf.",
+    "review2Name": "Anna Weber",
+    "review2Initials": "AW",
+    "review2Role": "Restaurantbesitzerin",
+    "review2Text": "Wir bestellen seit über 3 Jahren in diesem Shop. Das Produktsortiment ist hervorragend und die Preise sind sehr wettbewerbsfähig. Ein zuverlässiger Partner.",
+    "review3Name": "Thomas Müller",
+    "review3Initials": "TM",
+    "review3Role": "Hoteldirektor",
+    "review3Text": "Professioneller Service von Anfang bis Ende. Der Bestellprozess für Großbestellungen ist nahtlos und die Lieferung ist immer pünktlich. Tolle Auswahl an Premium-Produkten."
+  },
+  "featuredProducts": {
+    "title": "Aktuelle Angebote",
+    "subtitle": "Entdecken Sie unsere aktuellen Sonderangebote",
+    "viewAll": "Alle Angebote ansehen"
+  },
+  "b2bContact": {
+    "badge": "Kontakt aufnehmen",
+    "title": "Lassen Sie uns Ihr Geschäft gemeinsam ausbauen",
+    "description": "Ob Sie ein individuelles Angebot benötigen, eine Partnerschaft besprechen möchten oder Fragen zu unseren B2B-Lösungen haben — unser Team ist für Sie da. Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden.",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "hoursLabel": "Geschäftszeiten",
+    "hoursValue": "Mo - Fr: 9:00 - 18:00 Uhr",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Max",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Mustermann",
+    "company": "Unternehmen",
+    "companyPlaceholder": "Ihr Firmenname",
+    "email": "E-Mail",
+    "emailPlaceholder": "max{'@'}firma.de",
+    "phone": "Telefon",
+    "phonePlaceholder": "+49 7159 4591920",
+    "subject": "Betreff",
+    "subjectPlaceholder": "Betreff auswählen...",
+    "subjectQuote": "Angebot anfragen",
+    "subjectPartnership": "Partnerschaftsanfrage",
+    "subjectBulkOrder": "Großbestellung",
+    "subjectSupport": "Kundenservice",
+    "subjectOther": "Sonstiges",
+    "message": "Nachricht",
+    "messagePlaceholder": "Erzählen Sie uns von Ihren Anforderungen...",
+    "privacyText": "Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzrichtlinie zu.",
+    "submit": "Nachricht senden",
+    "formTitle": "Schreiben Sie uns",
+    "responseTime": "Antwortzeit",
+    "happyClients": "Zufriedene Kunden",
+    "successTitle": "Nachricht gesendet!",
+    "successDescription": "Vielen Dank für Ihre Nachricht. Unser Team wird sich innerhalb von 24 Stunden bei Ihnen melden."
+  },
+  "register": {
+    "b2b": {
+      "seePrices": "Preise einsehen",
+      "placeOrders": "Direkt bestellen",
+      "volumeDiscounts": "Mengenrabatte",
+      "fastShipping": "Express-Versand",
+      "infoTitle": "B2B-Großhandelspreise verfügbar",
+      "infoDesc": "Nach der Registrierung können Sie alle Preise einsehen. Für individuelle Großhandelskonditionen und Mengenrabatte kontaktieren Sie unser B2B-Team.",
+      "contactLink": "Kontakt aufnehmen"
     }
   }
 }

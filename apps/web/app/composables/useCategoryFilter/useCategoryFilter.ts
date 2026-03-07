@@ -271,7 +271,10 @@ export const useCategoryFilter = (to?: RouteLocationNormalizedGeneric): UseCateg
         });
       });
 
-      updateQuery({ facets: updatedFacets.join(',') });
+      const newFacets = updatedFacets.join(',');
+      if (newFacets !== facetsFromUrl.facets) {
+        updateQuery({ facets: newFacets });
+      }
     }
   };
 

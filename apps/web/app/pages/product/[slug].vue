@@ -1,20 +1,15 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
-    <EditableBlocks :identifier="'0'" :type="'product'" prevent-blocks-request />
+    <EditablePage :identifier="'0'" :type="'product'" prevent-blocks-request />
     <UiReviewModal />
     <ProductLegalDetailsDrawer v-if="open" :product="product" />
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@plentymarkets/shop-api';
-import type { WatchStopHandle } from 'vue';
-import { productGetters, categoryTreeGetters } from '@plentymarkets/shop-api';
 import type { Locale } from '#i18n';
-
-defineI18nRoute({
-  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
-});
+import type { Product } from '@plentymarkets/shop-api';
+import { productGetters, categoryTreeGetters } from '@plentymarkets/shop-api';
 
 const route = useRoute();
 const { setCurrentProduct } = useProducts();
@@ -31,12 +26,13 @@ const { open } = useProductLegalDetailsDrawer();
 const { setPageMeta } = usePageMeta();
 const { resetNotification } = useEditModeNotification(disableActions);
 const { isAuthorized } = useCustomer();
-const { variationId } = useProductAttributes();
-let variationWatchHandler: WatchStopHandle | undefined;
 
+defineI18nRoute({
+  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
+});
 definePageMeta({
   layout: false,
-  path: '/:slug*:sep(/a-|_):itemId',
+  path: '/:slug*_:itemId',
   validate: async (route) => {
     return validateProductParams(route.params);
   },
@@ -56,7 +52,6 @@ await fetchProduct(productParams).then(() => {
     product: product.value,
   });
 });
-
 if (Object.keys(product.value).length === 0) {
   if (import.meta.client) showError({ statusCode: 404, statusMessage: 'Product not found' });
 
@@ -80,13 +75,10 @@ async function fetchReviews() {
 }
 await fetchReviews();
 
-watch(
-  disableActions,
-  () => {
-    setCurrentProduct(productForEditor.value || ({} as Product));
-  },
-  { immediate: true },
-);
+watch(disableActions, (newVal, oldVal) => {
+  if (newVal === oldVal) return;
+  setCurrentProduct(productForEditor.value || ({} as Product));
+});
 
 /* TODO: This should only be temporary.
  *  It changes the url of the product page while on the page and switching the locale.
@@ -128,9 +120,7 @@ watch(
 watch(
   () => route.params,
   () => {
-    const productName = computed(() => productGetters.getName(product.value));
-    const icon = 'sell';
-    setPageMeta(productName.value, icon);
+    setPageMeta(productGetters.getName(product.value), 'sell');
   },
   { immediate: true },
 );
@@ -156,22 +146,7 @@ const observeRecommendedSection = () => {
 
 onBeforeRouteLeave(() => {
   resetNotification();
-  if (variationWatchHandler) {
-    variationWatchHandler();
-  }
 });
 
-onNuxtReady(() => {
-  observeRecommendedSection();
-
-  if (import.meta.client && useCallisto().isEnabled) {
-    variationWatchHandler = watch(variationId, async () => {
-      if (Number(productParams.variationId) !== variationId.value && variationId.value > 0) {
-        productParams.variationId = variationId.value;
-        await fetchProduct(productParams);
-        setCurrentProduct(productForEditor.value || ({} as Product));
-      }
-    });
-  }
-});
+onNuxtReady(() => observeRecommendedSection());
 </script>

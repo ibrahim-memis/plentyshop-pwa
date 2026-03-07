@@ -2,7 +2,7 @@
   <header class="relative w-full h-full z-10 md:sticky md:shadow-md">
     <div
       :style="{ backgroundColor: headerBackgroundColor }"
-      class="flex justify-between items-center flex-wrap md:flex-nowrap px-4 md:px-10 py-3 md:py-5 w-full h-full border-0 border-neutral-200 md:h-20 md:z-10"
+      class="flex justify-between items-center flex-wrap md:flex-nowrap px-4 md:px-6 lg:px-8 py-3 md:py-5 w-full max-w-[1536px] mx-auto h-full border-0 border-neutral-200 md:h-20 md:z-10"
       data-testid="navbar-top"
     >
       <div class="pl-4 md:pl-0">

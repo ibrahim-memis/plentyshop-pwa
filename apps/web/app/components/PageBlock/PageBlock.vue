@@ -1,11 +1,11 @@
 <template>
-  <div v-if="block.meta" :key="block.meta.uuid" :data-uuid="block.meta.uuid" class="h-full">
+  <div v-if="block.meta" :key="block.meta.uuid" :data-uuid="block.meta.uuid">
     <UiBlockPlaceholder v-if="displayTopPlaceholder(block.meta.uuid)" />
     <div
       :id="`block-${index}`"
       :ref="getLazyLoadRef(props.block.name, props.block.meta.uuid)"
       :class="[
-        'relative block-wrapper h-full',
+        'relative block-wrapper',
         {
           'outline outline-4 outline-[#538AEA]': showOutline && !isDragging,
         },
@@ -48,7 +48,7 @@
         />
       </ClientOnly>
 
-      <component :is="getBlockComponent" v-if="getBlockComponent" v-bind="contentProps" :index="index">
+      <component :is="getBlockComponent" v-bind="contentProps" :index="index">
         <template v-if="block.type === 'structure'" #content="slotProps">
           <PageBlock
             :index="index"
@@ -140,15 +140,19 @@ const shouldShowBottomAddInGrid = computed(() =>
 const clientPreview = ref(false);
 const buttonLabel = 'Insert a new block at this position.';
 
+const _asyncCache = new Map<string, ReturnType<typeof defineAsyncComponent>>();
 const getBlockComponent = computed(() => {
   if (!props.block.name) return null;
+
+  const cached = _asyncCache.get(props.block.name);
+  if (cached) return cached;
 
   const loader = getBlockLoader(props.block.name);
   if (!loader) return null;
 
-  return defineAsyncComponent({
-    loader,
-  });
+  const comp = defineAsyncComponent({ loader });
+  _asyncCache.set(props.block.name, comp);
+  return comp;
 });
 
 const blockIsCurrentlyOpen = computed(() => blockUuid.value === props.block.meta.uuid);
@@ -248,10 +252,8 @@ const isEditDisabled = computed(() => {
   return route.fullPath !== homePath;
 });
 
-const { isFooterBlock } = useBlockTemplates();
-
 const getBlockActions = (block: Block) => {
-  if (isFooterBlock(block)) {
+  if (block.name === 'Footer') {
     return {
       isEditable: !isEditDisabled.value,
       isMovable: false,

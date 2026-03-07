@@ -1,12 +1,12 @@
-import type { Product, ProductParams } from '@plentymarkets/shop-api';
+import type { Block, Product, ProductParams } from '@plentymarkets/shop-api';
 import { productGetters } from '@plentymarkets/shop-api';
 import { toRefs } from '@vueuse/shared';
 import type { UseProductReturn, UseProductState, FetchProduct } from '~/composables/useProduct/types';
 
 import { generateBreadcrumbs } from '~/utils/productHelper';
-import { getProductTemplate } from '~/utils/blockTemplates/product';
+import productTemplateData from '~/composables/useCategoryTemplate/productTemplateData.json';
 
-const useProductTemplateData = async (locale: string) => await getProductTemplate(locale);
+const useProductTemplateData = () => productTemplateData as Block[];
 
 /**
  * @description Composable managing product data
@@ -61,8 +61,7 @@ export const useProduct: UseProductReturn = (slug) => {
       data: blockData,
       setupBlocks,
       getBlocksServer,
-      isFooterBlock,
-    } = useBlockTemplates(
+    } = useCategoryTemplate(
       route?.meta?.identifier as string,
       route.meta.type as string,
       useNuxtApp().$i18n.locale.value,
@@ -74,9 +73,7 @@ export const useProduct: UseProductReturn = (slug) => {
       const fakeProduct = $i18n.locale.value === 'en' ? fakeProductEN : fakeProductDE;
 
       await getBlocksServer(route.meta.identifier as string, route.meta.type as string);
-
-      const hasContentBlocks = blockData.value?.some((block) => !isFooterBlock(block));
-      const blocks = hasContentBlocks ? blockData.value : await useProductTemplateData($i18n.locale.value);
+      const blocks = blockData.value?.length ? blockData.value : useProductTemplateData();
 
       state.value.data = {
         blocks: blocks,
@@ -91,19 +88,30 @@ export const useProduct: UseProductReturn = (slug) => {
       return state.value.data;
     }
 
-    const { data, error } = await useAsyncData(
-      `fetchProduct-${params.id}-${params.variationId}-${$i18n.locale.value}`,
-      () => useSdk().plentysystems.getProduct(params),
-    );
-    useHandleError(error.value ?? null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let productData: any = null;
 
-    const fetchedBlocks = data.value?.data.blocks;
-    setupBlocks(
-      fetchedBlocks && fetchedBlocks.length > 0 ? fetchedBlocks : await useProductTemplateData($i18n.locale.value),
-    );
+    if (import.meta.server) {
+      const { data, error } = await useAsyncData(
+        `fetchProduct-${params.id}-${params.variationId}-${$i18n.locale.value}`,
+        () => useSdk().plentysystems.getProduct(params),
+      );
+      useHandleError(error.value ?? null);
+      productData = data.value?.data ?? null;
+    } else {
+      try {
+        const result = await useSdk().plentysystems.getProduct(params);
+        productData = result?.data ?? null;
+      } catch {
+        productData = null;
+      }
+    }
 
-    properties.setProperties(data.value?.data.properties ?? []);
-    state.value.data = data.value?.data ?? ({} as Product);
+    const fetchedBlocks = productData?.blocks;
+    setupBlocks(fetchedBlocks && fetchedBlocks.length > 0 ? fetchedBlocks : useProductTemplateData());
+
+    properties.setProperties(productData?.properties ?? []);
+    state.value.data = productData ?? ({} as Product);
     handlePreviewProduct(state, $i18n.locale.value, true);
     state.value.loading = false;
     return state.value.data;

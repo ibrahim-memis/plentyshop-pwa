@@ -294,16 +294,12 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { ErrorMessage } from 'vee-validate';
 import { paths } from '~/utils/paths';
 import { useRegisterForm } from '~/composables/useRegisterForm';
 import { SfLink, SfInput, SfLoaderCircular, SfCheckbox, SfIconCheck, SfIconClose, SfSelect } from '@storefront-ui/vue';
 import { AddressType } from '@plentymarkets/shop-api';
-import type { Locale } from '#i18n';
-
-defineI18nRoute({
-  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
-});
 
 const { default: shippingCountries, fetchAggregatedCountries } = useAggregatedCountries();
 const localePath = useLocalePath();
@@ -312,6 +308,9 @@ const { send: _send } = useNotification();
 const runtimeConfig = useRuntimeConfig();
 const passwordMinLength = runtimeConfig.public.passwordMinLength;
 const passwordMaxLength = runtimeConfig.public.passwordMaxLength;
+defineI18nRoute({
+  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
+});
 definePageMeta({ layout: false, middleware: ['guest-guard'] });
 usePageMeta().setPageMeta(t('authentication.signup.submitLabel'), 'page');
 const turnstileLoad = ref(false);

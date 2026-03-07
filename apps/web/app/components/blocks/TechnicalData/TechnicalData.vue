@@ -1,26 +1,28 @@
 <template>
   <div :style="inlineStyle" data-testid="technical-data-block">
     <div v-if="displayAsCollapsable">
-      <UiAccordionItem
-        v-if="text"
-        v-model="initiallyCollapsed"
-        summary-class="md:rounded-md w-full hover:bg-neutral-100 py-2 pl-4 pr-3 flex justify-between items-center select-none"
-        data-testid="technical-data"
-      >
-        <template #summary>
-          <h2 class="font-bold text-lg leading-6 md:text-2xl">
-            {{ content.text.title }}
-          </h2>
-        </template>
-        <div v-if="text" data-testid="technical-data-innertext" class="no-preflight" v-html="text" />
-      </UiAccordionItem>
-      <UiDivider v-if="initiallyCollapsed && text?.length" class="mb-2 mt-2" />
+      <div v-if="text" class="border-t border-neutral-200">
+        <UiAccordionItem
+          v-model="initiallyCollapsed"
+          summary-class="w-full py-5 px-0 flex justify-between items-center select-none group cursor-pointer"
+          data-testid="technical-data"
+        >
+          <template #summary>
+            <h2 class="font-semibold text-base md:text-lg text-neutral-900">
+              {{ content.text.title }}
+            </h2>
+          </template>
+          <div v-if="text" data-testid="technical-data-innertext" class="no-preflight text-sm text-neutral-600 leading-relaxed pb-5" v-html="text" />
+        </UiAccordionItem>
+      </div>
     </div>
     <div v-else>
-      <h2 class="font-bold text-lg leading-6 md:text-2xl">
-        {{ content.text.title }}
-      </h2>
-      <div v-if="text" class="no-preflight" v-html="text" />
+      <div class="border-t border-neutral-200">
+        <h2 class="font-semibold text-base md:text-lg text-neutral-900 py-5">
+          {{ content.text.title }}
+        </h2>
+        <div v-if="text" class="no-preflight text-sm text-neutral-600 leading-relaxed pb-5" v-html="text" />
+      </div>
     </div>
   </div>
 </template>
@@ -32,10 +34,18 @@ import type { TechnicalDataProps } from './types';
 const props = defineProps<TechnicalDataProps>();
 
 const content = computed(() => props.content);
-const initiallyCollapsed = computed(() => !props.content?.layout.initiallyCollapsed);
+const initiallyCollapsed = ref(!(props.content?.layout?.initiallyCollapsed ?? false));
 const displayAsCollapsable = computed(() => props.content?.layout.displayAsCollapsable);
+
+watch(
+  () => props.content?.layout?.initiallyCollapsed,
+  (val) => {
+    if (val === undefined) return;
+    initiallyCollapsed.value = !(val ?? false);
+  },
+);
 const { currentProduct } = useProducts();
-const text = computed(() => productGetters.getTechnicalData(currentProduct.value));
+const text = computed(() => currentProduct.value?.item ? productGetters.getTechnicalData(currentProduct.value) : '');
 const inlineStyle = computed(() => {
   const layout = props.content?.layout || {};
   return {

@@ -1,27 +1,35 @@
 <template>
   <div>
-    <label for="attribute-box" class="leading-5 text-sm text-zinc-900">
-      {{ productAttributeGetters.getAttributeName(attribute) }}
-    </label>
+    <!-- Label: bold isim + secili deger -->
+    <div class="flex items-baseline gap-1.5 mb-2">
+      <label for="attribute-box" class="text-xs font-semibold text-neutral-800">
+        {{ productAttributeGetters.getAttributeName(attribute) }}:
+      </label>
+      <span v-if="selectedValueName" class="text-xs text-neutral-500">
+        {{ selectedValueName }}
+      </span>
+    </div>
 
-    <div id="attribute-box" class="w-full flex gap-4 flex-wrap">
-      <div
+    <!-- Kutucuklar: kompakt, inline -->
+    <div id="attribute-box" class="flex flex-wrap gap-1.5">
+      <button
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
-        class="border h-12 border-zinc-300 rounded-md cursor-pointer hover:bg-[#3C3C4226]"
+        type="button"
+        class="h-8 px-3 text-xs text-center border rounded-md cursor-pointer transition-all duration-150"
         :class="{
-          'text-zinc-400 border-dashed': productAttributeGetters.isAttributeValueDisabled(item),
-          '!border-primary-500 bg-zinc-100': value === productAttributeGetters.getAttributeValueId(item),
+          'text-neutral-300 border-dashed border-neutral-200 cursor-not-allowed': productAttributeGetters.isAttributeValueDisabled(item),
+          'border-neutral-800 bg-white text-neutral-900 font-medium': value === productAttributeGetters.getAttributeValueId(item),
+          'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400': value !== productAttributeGetters.getAttributeValueId(item) && !productAttributeGetters.isAttributeValueDisabled(item),
           '!ring-negative-700 !border-negative-700 ring-1': Boolean(errors['selectedValue']),
         }"
+        :disabled="productAttributeGetters.isAttributeValueDisabled(item)"
         @click="doUpdateValue(productAttributeGetters.getAttributeValueId(item))"
       >
         <SfTooltip :label="getLabel(item)" strategy="absolute" :show-arrow="true" placement="top">
-          <div class="font-medium h-12 flex items-center px-4">
-            {{ productAttributeGetters.getAttributeValueName(item) }}
-          </div>
+          {{ productAttributeGetters.getAttributeValueName(item) }}
         </SfTooltip>
-      </div>
+      </button>
     </div>
     <ErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
   </div>
@@ -40,6 +48,13 @@ const { updateValue, getValue } = useProductAttributes();
 const { registerValidator, registerInvalidFields } = useValidatorAggregator('attributes');
 const props = defineProps<AttributeSelectProps>();
 const value = computed(() => getValue(props.attribute.attributeId));
+
+const selectedValueName = computed(() => {
+  if (!value.value) return '';
+  const found = productAttributeGetters.getAttributeValues(props.attribute)
+    .find((item: VariationMapProductAttributeValue) => productAttributeGetters.getAttributeValueId(item) === value.value);
+  return found ? productAttributeGetters.getAttributeValueName(found) : '';
+});
 
 const getLabel = (item: VariationMapProductAttributeValue): string => {
   return productAttributeGetters.isAttributeValueDisabled(item) ? t('product.attributes.seeAvailableOptions') : '';

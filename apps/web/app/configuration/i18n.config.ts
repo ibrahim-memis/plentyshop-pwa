@@ -1,7 +1,6 @@
 import type { LocaleObject, NuxtI18nOptions } from '@nuxtjs/i18n';
 
 export const getLocales = (): LocaleObject[] => {
-  const locales: unknown[] = [];
   const allLocales = [
     { code: 'de', file: 'de.json' },
     { code: 'en', file: 'en.json' },
@@ -22,22 +21,15 @@ export const getLocales = (): LocaleObject[] => {
     { code: 'sk', file: 'sk.json' },
     { code: 'cn', file: 'cn.json' },
     { code: 'vn', file: 'vn.json' },
-    /*
-    { code: 'fi', file: 'fi.json' },
-    { code: 'ga', file: 'ga.json' },
-    { code: 'lt', file: 'lt.json' },
-    { code: 'lv', file: 'lv.json' },
-    { code: 'et', file: 'et.json' },
-    { code: 'hr', file: 'hr.json' },
-    { code: 'hu', file: 'hu.json' },
-     */
   ];
 
-  allLocales.forEach((locale) => {
-    locales.push(locale);
-  });
+  const activeLanguages = process.env.LANGUAGELIST?.split(',').map((lang) => lang.trim());
 
-  return locales as LocaleObject[];
+  if (activeLanguages?.length) {
+    return allLocales.filter((locale) => activeLanguages.includes(locale.code)) as LocaleObject[];
+  }
+
+  return allLocales as LocaleObject[];
 };
 
 const getDefaultLocale = () => {
@@ -45,7 +37,7 @@ const getDefaultLocale = () => {
   const localeKeys = locales.map((locale) => locale.code);
   const defaultLocale = process.env.DEFAULTLANGUAGE as LocaleObject['code'];
 
-  return localeKeys.includes(defaultLocale) ? defaultLocale : 'en';
+  return localeKeys.includes(defaultLocale) ? defaultLocale : 'de';
 };
 
 export const nuxtI18nOptions: NuxtI18nOptions = {

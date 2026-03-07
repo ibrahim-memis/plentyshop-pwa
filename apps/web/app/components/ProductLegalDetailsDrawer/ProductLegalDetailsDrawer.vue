@@ -93,7 +93,7 @@ const { open, openedBlockUuid } = useProductLegalDetailsDrawer();
 useTrapFocus(productLegalDrawerRef, { activeState: open });
 
 const route = useRoute();
-const { data } = useBlockTemplates(
+const { data } = useCategoryTemplate(
   route?.meta?.identifier as string,
   route.meta.type as string,
   useNuxtApp().$i18n.locale.value,

@@ -1,10 +1,18 @@
 <template>
-  <div class="text-sm py-1">
-    <span class="mr-2 text-secondary-500 font-bold text-2xl" data-testid="price">
-      <span>{{ format(price) }}</span>
-      <span>{{ t('common.labels.asterisk') }} </span>
+  <div class="py-1 flex items-baseline gap-3 flex-wrap">
+    <!-- Guncel fiyat: buyuk, bold -->
+    <span class="text-neutral-900 font-bold text-3xl md:text-4xl tracking-tight" data-testid="price">
+      {{ format(price) }}
     </span>
-    <span v-if="crossedPrice && differentPrices" class="text-base font-normal text-neutral-500 line-through">
+    <!-- B2B: Netto badge -->
+    <span
+      v-if="showNetBadge"
+      class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200"
+    >
+      {{ t('product.netLabel') }}
+    </span>
+    <!-- Eski fiyat: ayni satirda, kucuk, ustu cizili -->
+    <span v-if="crossedPrice && differentPrices" class="text-lg text-neutral-400 line-through">
       {{ format(crossedPrice) }}
     </span>
   </div>

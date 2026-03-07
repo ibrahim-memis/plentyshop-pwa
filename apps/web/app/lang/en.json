@@ -1,4 +1,56 @@
 {
+  "header": {
+    "searchPlaceholder": "Search by keyword or article number...",
+    "internationalShipping": "International Shipping",
+    "fastShipping": "Shipping within 24h on business days",
+    "loginRegister": "Login | Register",
+    "phoneHours": "Phone support: Tue - Fri, 9 AM - 4 PM",
+    "bonusProgram": "Bonus program",
+    "campaigns": "Campaigns",
+    "welcome": "Welcome",
+    "loginHint": "Sign in",
+    "merklist": "Wishlist:",
+    "articles": "Items",
+    "cart": "Cart:",
+    "b2bTitle": "Larger quantities for business?",
+    "b2bContact": "Contact us",
+    "pricePlan": "B2B Prices Active",
+    "discountLabel": "Discount"
+  },
+  "welcomePopup": {
+    "title": "Welcome to HafenX!",
+    "subtitle": "Your account has been successfully created",
+    "currentPlan": "Current Price Tier: Standard Prices (B2C)",
+    "currentPlanDesc": "You are currently viewing our standard retail prices. As a registered customer, you already have access to all products and can order immediately.",
+    "b2bTitle": "Exclusive B2B Pricing Available",
+    "b2bDesc": "As a business customer, you benefit from volume discounts, individual pricing, and personal support.",
+    "benefit1": "Up to 30% volume discount",
+    "benefit2": "Custom price lists",
+    "benefit3": "Dedicated account manager",
+    "benefit4": "Flexible payment terms",
+    "contactTitle": "Request B2B Pricing Now",
+    "contactBtn": "Contact Us",
+    "continueBtn": "Continue Shopping"
+  },
+  "filterBar": {
+    "filterBy": "Filter by",
+    "sortBy": "Sort by",
+    "articles": "Articles"
+  },
+  "languageSidebar": {
+    "title": "Language & Currency",
+    "language": "Language",
+    "currency": "Currency"
+  },
+  "sidebar": {
+    "categories": "Categories",
+    "pages": "Pages",
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "myAccount": "My Account",
+    "orders": "My Orders",
+    "followUs": "Follow Us"
+  },
   "notifyMe": {
     "notifyButtonTooltip": "We will notify you as soon as the product is available again.",
     "notifyButton": "Notify me",
@@ -442,17 +494,22 @@
   },
   "contact": {
     "label": "Contact",
+    "breadcrumbHome": "Home",
     "clearAll": "Clear all",
     "contact": "Contact",
-    "contactSend": "Send request",
-    "contactShopMessage": "You have a question or a request? Please do not hesitate to contact us. Simply fill out the form and we will respond to your request as soon as possible.",
+    "contactSend": "Send Message",
+    "contactShopMessage": "Have questions about our products, B2B terms, or need a custom quote? Our team is happy to assist you.",
     "form": {
+      "title": "Send us a message",
+      "subtitle": "Fill out the form and we'll get back to you within 24 hours.",
       "asterixHint": "marked fields are required",
       "emailLabel": "Email",
       "message": "Message",
-      "message-placeholder": "Your message",
-      "nameLabel": "Name",
-      "order-id": "Order ID",
+      "message-placeholder": "Describe your request...",
+      "nameLabel": "Contact Person",
+      "companyLabel": "Company",
+      "taxIdLabel": "VAT ID",
+      "taxIdPlaceholder": "e.g. DE123456789",
       "subjectLabel": "Subject"
     },
     "misConfigured": "Our contact form is temporarily disabled due to a missing configuration. Please check back later or reach out to us via alternative contact methods.",
@@ -460,7 +517,16 @@
     "success": "Message sent successfully",
     "info": {
       "heading": "Contact Information",
-      "email": "Email"
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Business Hours",
+      "hoursValue": "Tue - Fri, 10:00 AM - 3:00 PM",
+      "address": "Address",
+      "addressValue": "HafenX GmbH, Germany",
+      "responseTime": "Response Time",
+      "happyClients": "Happy Clients",
+      "b2bTitle": "Request B2B Pricing",
+      "b2bDesc": "As a business customer, you benefit from individual volume pricing, personal consulting, and flexible payment terms."
     }
   },
   "CookieBar": {
@@ -700,7 +766,61 @@
     },
     "register": {
       "label": "Register"
+    },
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "subtitle": "Get the latest offers and news directly to your inbox.",
+      "placeholder": "Your email address",
+      "subscribe": "Subscribe"
     }
+  },
+  "categoryData": {
+    "items": "Items"
+  },
+  "subcategoryBar": {
+    "items": "products"
+  },
+  "categoryBanners": {
+    "title": "Product categories",
+    "subtitle": "Quick access to our key B2B product areas.",
+    "viewAll": "View All Categories"
+  },
+  "categoryShowcase": {
+    "title": "Shop by Category",
+    "subtitle": "Browse our curated product categories",
+    "viewAll": "View all",
+    "explore": "Explore"
+  },
+  "brandsShowcase": {
+    "title": "Our Brands",
+    "subtitle": "Trust in quality – discover our partners and manufacturers.",
+    "noBrands": "No brands available."
+  },
+  "heroSlider": {
+    "discover": "Discover",
+    "shopNow": "Shop now",
+    "learnMore": "Learn more",
+    "discoverProducts": "Discover products",
+    "browseCatalogs": "Browse catalogs",
+    "newCollection": "New Collection",
+    "topSeller": "Bestseller",
+    "exclusive": "Exclusive",
+    "new": "NEW",
+    "fromPrice": "From",
+    "sloganDefault": "Minimal look, maximum space.",
+    "discoverCategory": "Discover category"
+  },
+  "customFooter": {
+    "description": "Discover a diverse selection of first-class products in our categories of home textiles, glassware, household and fragrances. Find everything you need for a stylish and comfortable home.",
+    "lagerAddress": "HafenX UG Wankelstr. 5 71272 Renningen Deutschland",
+    "bueroAddress": "Konrad-Zuse-Straße 10 71034 Böblingen",
+    "categoriesTitle": "Categories",
+    "brandsTitle": "Brands",
+    "followUs": "Follow us",
+    "followUsSubtitle": "Don't miss any news and promotions.",
+    "ourCompany": "Our Company",
+    "newsletterText": "Subscribe to our newsletter and receive the latest news and updates.",
+    "newsletterPlaceholder": "Your email"
   },
   "form": {
     "addCompany": "+ Add company data",
@@ -1040,8 +1160,31 @@
     "outOfStock": "Out of stock",
     "priceExclVAT": "Excl. VAT",
     "priceInclVAT": "Incl. VAT",
+    "allPricesExclVAT": "All prices excl. VAT",
+    "netLabel": "Net",
+    "requestQuote": "Contact Us",
+    "requestQuoteDesc": "For wholesale pricing and custom terms, get in touch with our B2B team.",
     "reviewsCount": "{count} reviews",
     "showAllReviews": "Show all reviews",
+    "loginToSeePrice": "Please log in to see prices",
+    "loginToPurchase": "Please log in to order",
+    "loginRequiredDesc": "Log in to view prices and place orders.",
+    "viewProduct": "View Product",
+    "stockInfo": {
+      "level": "Stock Level",
+      "delivery": "Delivery",
+      "status": "Order Status",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "veryLow": "Very Low",
+      "outOfStock": "Out of Stock",
+      "orderable": "Orderable",
+      "notOrderable": "Not Orderable",
+      "sameDay": "Same Day",
+      "day": "Day",
+      "days": "Days"
+    },
     "showAll": "Show all",
     "graduatedPrices": {
       "discount": "DISCOUNT",
@@ -1057,11 +1200,20 @@
   },
   "quickCheckout": {
     "cartContains": "Your cart contains {count} item | Your cart contains {count} items",
-    "checkYourCart": "Check your cart",
-    "close": "Close quick checkout",
+    "cartPreview": "Cart Preview",
+    "checkYourCart": "Cart",
+    "close": "Close cart preview",
     "heading": "Added to shopping cart",
     "quantity": "Quantity",
-    "subTotal": "Items subtotal"
+    "subTotal": "Items subtotal",
+    "cartValue": "Cart value",
+    "shippingCosts": "Shipping costs",
+    "totalAmount": "Total amount",
+    "freeShipping": "Free",
+    "couponPlaceholder": "Enter coupon code",
+    "redeemCoupon": "Redeem",
+    "emptyCart": "Your cart is empty",
+    "continueShopping": "Continue shopping"
   },
   "returns": {
     "areYouSure": "Are you sure you what to return these items?",
@@ -1199,7 +1351,7 @@
       "vatServerFallback": "Your VAT number could not be validated. The order will be reviewed again."
     },
     "blocks": {
-      "base64NotAllowed": "The image was not uploaded correctly. Try uploading it again."
+      "base64NotAllowed": "The image was incorrectly uploaded. Please try again."
     },
     "cart": {
       "addToBasket": {
@@ -1231,9 +1383,6 @@
     },
     "coupon": {
       "applyFailed": "The coupon could not be redeemed."
-    },
-    "editor": {
-      "invalidEditorHash": "The editor session is invalid."
     },
     "feedback": {
       "notAllowedWithoutPurchase": "You must purchase this item before leaving a review."
@@ -1276,89 +1425,180 @@
     },
     "unknownError": "An unknown error has occurred."
   },
-  "defaultTemplate": {
-    "category": {
-      "categoryData": {
-        "name": "Category name"
-      }
+  "featuresBar": {
+    "volumeDiscount": {
+      "title": "Volume Discounts",
+      "desc": "Tiered pricing for bulk orders."
     },
-    "product": {
-      "itemText": {
-        "title": "Item details"
-      },
-      "technicalData": {
-        "title": "Technical Data"
-      },
-      "customerReview": {
-        "title": "Customer Reviews"
-      },
-      "productLegalInformation": {
-        "title": "Item legal details",
-        "linkText": "EU Responsible Person - click for details"
-      }
+    "invoice": {
+      "title": "Purchase on Invoice",
+      "desc": "Convenient payment for business customers."
     },
-    "homepage": {
-      "carousel": {
-        "banner1": {
-          "pretitle": "Feel the music",
-          "title": "Your Sound, Elevated",
-          "description": "Immerse yourself in rich, crystal-clear audio with our cutting-edge headphones. Designed for the ultimate listening experience, whether you're a casual listener or an audiophile. Discover the perfect blend of style, comfort, and sound quality that elevates your music to new heights.",
-          "buttonLabel": "Discover Capybara"
-        },
-        "banner2": {
-          "pretitle": "The Future of Aerial Photography",
-          "title": "Drone Omega",
-          "description": "A lightweight drone designed for stunning aerial footage. With a high-resolution camera on a 3-axis gimbal and up to 45 minutes of flight time, it's perfect for capturing smooth, stable video. Featuring GPS-assisted hover, obstacle avoidance, and easy portability, the Drone brings innovation and simplicity to your aerial shots.",
-          "buttonLabel": "Discover Omega"
-        }
-      },
-      "textcard": {
-        "welcome": {
-          "pretitle": "Welcome to your new favorite shop",
-          "title": "Discover Tech & Style",
-          "subtitle": "Innovative technology meets modern fashion",
-          "paragraph1": "Welcome to our shop, where tech enthusiasts and fashion lovers alike will find exactly what they're looking for! From premium headphones and high-performance drones to stylish clothing, we offer everything to make your life smarter and your style unique.",
-          "paragraph2": "Our mission is to provide you with a carefully curated selection of products that combine quality, innovation, and design. Whether you're in search of a new speaker for perfect sound or a casual hoodie to complete your look – we've got you covered.",
-          "buttonLabel": "Get shopping"
-        }
-      },
-      "multigrid": {
-        "textcard": {
-          "title": "A New Listening Experience",
-          "subtitle": "Innovative technology meets modern fashion",
-          "paragraph": "Our headphone collection sets new standards in audio precision. With deep bass, crystal-clear highs, and an impressive soundstage, these headphones deliver a unique listening experience for every music genre. Combining modern design, maximum comfort, and cutting-edge technology, they are the perfect choice for anyone who refuses to compromise on sound quality.",
-          "feature1": "Premium, studio-quality sound",
-          "feature2": "Comfortable fit for extended listening",
-          "feature3": "Long-lasting battery life",
-          "feature4": "Seamless wireless connectivity",
-          "buttonLabel": "To our headphones"
-        },
-        "image": {
-          "alt": "Headphones"
-        }
-      },
-      "productRecommended": {
-        "fashion": {
-          "pretitle": "More than just technology",
-          "title": "Discover our fashion collection",
-          "subtitle": "Sporty fashion and accessories for everyone.",
-          "linkText": "To our full collection.",
-          "linkUrl": "https://plentyshop.plentymarkets.com/wear"
-        }
-      },
-      "newsletter": {
-        "title": "Newsletter",
-        "description": "Be aware of upcoming sales and events. Receive gifts and special offers!",
-        "buttonLabel": "Subscribe"
-      }
+    "accountManager": {
+      "title": "Dedicated Account Manager",
+      "desc": "Your personal contact for all inquiries."
     },
-    "footer": {
-      "column1": {
-        "title": "Legal"
-      },
-      "column2": {
-        "title": "Services"
-      }
+    "expressShipping": {
+      "title": "Express Shipping",
+      "desc": "Fast and reliable delivery available."
+    }
+  },
+  "volumeDiscount": {
+    "title": "Volume Discounts",
+    "subtitle": "Save more when you buy more",
+    "quantity": "Quantity",
+    "discount": "Discount",
+    "savings": "You Save",
+    "pieces": "pieces",
+    "save": "Save",
+    "info": "Discounts are automatically applied at checkout."
+  },
+  "membershipBanner": {
+    "title": "BECOME A MEMBER & GET 10% OFF!",
+    "subtitle": "Sign up for free and enjoy exclusive offers.",
+    "cta": "SIGN UP FOR FREE"
+  },
+  "deliveryInfo": {
+    "availability": "Availability",
+    "deliveryTime": "Delivery time",
+    "days": "days",
+    "minOrderQty": "Min. order quantity",
+    "weight": "Shipping weight",
+    "dimensions": "Dimensions (L×W×H)",
+    "shipping": "Shipping",
+    "freeShipping": "Free shipping"
+  },
+  "aboutUs": {
+    "label": "About Us",
+    "breadcrumbHome": "Home",
+    "title": "Your Trusted B2B Partner",
+    "description": "With over 10 years of experience, we provide high-quality products and exceptional service to businesses worldwide. Our dedicated team ensures fast delivery, competitive pricing, and personalized support for every client.",
+    "heroTitle": "Quality Meets Reliability",
+    "heroDesc": "HafenX is your experienced partner for high-quality B2B products. We combine quality with competitive pricing and ensure a seamless supply chain — so you can focus on your core business.",
+    "cta": "Contact Us",
+    "statYears": "Years of Experience",
+    "statProducts": "Products Available",
+    "statCustomers": "Happy Customers",
+    "statSatisfaction": "Satisfaction Rate",
+    "valuesTitle": "Our Values",
+    "valuesDesc": "We stand for quality, speed, and partnership — values that define everything we do.",
+    "value1Title": "Quality & Reliability",
+    "value1Desc": "Every product is carefully inspected before leaving our warehouse. We work exclusively with trusted manufacturers.",
+    "value2Title": "Fast Shipping",
+    "value2Desc": "Orders are dispatched within 24 hours on business days. Our logistics partners ensure reliable and timely delivery.",
+    "value3Title": "Personal Support",
+    "value3Desc": "Every customer gets a dedicated account manager. We provide individual consultation and find the best solution for your needs.",
+    "whyTitle": "Why HafenX?",
+    "whyDesc": "We are more than a supplier — we are your strategic partner for sustainable growth.",
+    "reason1Title": "Custom B2B Pricing",
+    "reason1Desc": "Volume discounts, tailored price lists, and flexible payment terms for business customers.",
+    "reason2Title": "Wide Product Range",
+    "reason2Desc": "Over 5,000 products available immediately — from standard items to specialized solutions.",
+    "reason3Title": "International Delivery",
+    "reason3Desc": "Reliable shipping across Europe with transparent tracking and tracing.",
+    "reason4Title": "Technical Support",
+    "reason4Desc": "Our expert team is available for technical questions and product consulting.",
+    "ctaCardTitle": "Have Questions?",
+    "ctaCardDesc": "Our B2B team is happy to consult with you personally and create a customized offer.",
+    "ctaPhone": "Phone",
+    "ctaEmail": "Email"
+  },
+  "campaigns": {
+    "badge": "Bonus Program",
+    "heroTitle": "Welcome to our Bonus Program!",
+    "heroDesc": "Collect points with every purchase and by registering a customer account. Redeem your points for attractive vouchers. Here you will find current voucher promotions for discounts, free shipping and more.",
+    "heroCtaText": "Have fun collecting points!",
+    "howTitle": "How it works:",
+    "howDesc": "You automatically collect points with every purchase. You receive additional points when you create a customer account. Once you have collected enough points, you can invest them in the voucher promotion of your choice.",
+    "step1Title": "Shop",
+    "step1Desc": "Collect points with every purchase",
+    "step2Title": "Earn Points",
+    "step2Desc": "Receive bonus points automatically",
+    "step3Title": "Redeem",
+    "step3Desc": "Secure vouchers & discounts",
+    "statDeals": "50+ Offers",
+    "statDealsLabel": "Active Campaigns",
+    "statLimited": "Limited Time",
+    "statLimitedLabel": "Act Fast",
+    "productsTitle": "Campaign Products",
+    "productsCount": "products available",
+    "noProducts": "No campaign products available at this time",
+    "cardBadge": "Campaign",
+    "viewProduct": "View Product",
+    "d": "d",
+    "endsIn": "Ends in"
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Trusted by businesses across the industry",
+    "badge": "Testimonials",
+    "statClients": "B2B Clients",
+    "statRating": "Avg. Rating",
+    "statSatisfaction": "Satisfaction",
+    "ctaTitle": "Have questions? We're happy to help.",
+    "ctaSubtitle": "Available by phone: Tue - Fri, 9 AM - 4 PM",
+    "review1Name": "Michael Schmidt",
+    "review1Initials": "MS",
+    "review1Role": "Purchasing Manager",
+    "review1Text": "Excellent product quality and fast delivery times. The customer service team is always responsive and helpful. Highly recommended for B2B procurement.",
+    "review2Name": "Anna Weber",
+    "review2Initials": "AW",
+    "review2Role": "Restaurant Owner",
+    "review2Text": "We have been ordering from this shop for over 3 years. The product range is outstanding and the prices are very competitive. A reliable partner for our business.",
+    "review3Name": "Thomas Müller",
+    "review3Initials": "TM",
+    "review3Role": "Hotel Director",
+    "review3Text": "Professional service from start to finish. The bulk ordering process is seamless and the delivery is always on time. Great selection of premium products."
+  },
+  "featuredProducts": {
+    "title": "Current Offers",
+    "subtitle": "Discover our latest special deals",
+    "viewAll": "View All Offers"
+  },
+  "b2bContact": {
+    "badge": "Get in Touch",
+    "title": "Let's Grow Your Business Together",
+    "description": "Whether you need a custom quote, want to discuss a partnership, or have questions about our B2B solutions — our team is here to help. Fill out the form and we'll get back to you within 24 hours.",
+    "emailLabel": "Email Us",
+    "phoneLabel": "Call Us",
+    "hoursLabel": "Business Hours",
+    "hoursValue": "Mon - Fri: 9:00 AM - 6:00 PM CET",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "John",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Doe",
+    "company": "Company",
+    "companyPlaceholder": "Your company name",
+    "email": "Email",
+    "emailPlaceholder": "john{'@'}company.com",
+    "phone": "Phone",
+    "phonePlaceholder": "+49 7159 4591920",
+    "subject": "Subject",
+    "subjectPlaceholder": "Select a subject...",
+    "subjectQuote": "Request a Quote",
+    "subjectPartnership": "Partnership Inquiry",
+    "subjectBulkOrder": "Bulk Order",
+    "subjectSupport": "Customer Support",
+    "subjectOther": "Other",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your needs...",
+    "privacyText": "I agree to the processing of my personal data in accordance with the privacy policy.",
+    "submit": "Send Message",
+    "formTitle": "Send us a message",
+    "responseTime": "Response Time",
+    "happyClients": "Happy Clients",
+    "successTitle": "Message Sent!",
+    "successDescription": "Thank you for reaching out. Our team will review your message and get back to you within 24 hours."
+  },
+  "register": {
+    "b2b": {
+      "seePrices": "View prices",
+      "placeOrders": "Place orders",
+      "volumeDiscounts": "Volume discounts",
+      "fastShipping": "Express shipping",
+      "infoTitle": "B2B wholesale pricing available",
+      "infoDesc": "After registration, you can view all prices. For custom wholesale terms and volume discounts, contact our B2B team.",
+      "contactLink": "Get in touch"
     }
   }
 }

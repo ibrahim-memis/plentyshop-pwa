@@ -1,11 +1,11 @@
 import type { FacetSearchCriteria, Product, Facet, Block } from '@plentymarkets/shop-api';
 import { defaults, type SetCurrentProduct } from '~/composables';
 import type { UseProductsState, FetchProducts, UseProductsReturn } from '~/composables/useProducts/types';
-import { getCategoryTemplate } from '~/utils/blockTemplates/category';
+import categoryTemplateData from '~/composables/useCategoryTemplate/categoryTemplateData.json';
 import { fakeFacetCallEN } from '~/utils/facets/fakeFacetCallEN';
 import { fakeFacetCallDE } from '~/utils/facets/fakeFacetCallDE';
 
-const useBlockTemplatesData = async (locale: string) => await getCategoryTemplate(locale);
+const useCategoryTemplateData = () => categoryTemplateData as Block[];
 
 /**
  * @description Composable for managing products.
@@ -35,21 +35,6 @@ export const useProducts: UseProductsReturn = (category = '') => {
     return `/${slug}` === paths.globalItemCategory;
   });
 
-  /**
-   * @description Function for fetching products.
-   * @param params { FacetSearchCriteria }
-   * @return FetchProducts
-   * @example
-   * ``` ts
-   * const { fetchProducts: fetchProducts1, data: productsCatalog1 } = useProducts('/living-room');
-   * const { fetchProducts: fetchProducts2, data: productsCatalog2 } = useProducts('49');
-   * const { fetchProducts: fetchProducts3, data: productsCatalog3 } = useProducts('19');
-   *
-   * fetchProducts1({ categoryUrlPath: '/living-room', page: 1 });
-   * fetchProducts2({ categoryId: '49', page: 1 });
-   * fetchProducts3({ categoryId: '19', page: 1 });
-   * ```
-   */
   const fetchProducts: FetchProducts = async (params: FacetSearchCriteria) => {
     const route = useRoute();
     const { $i18n } = useNuxtApp();
@@ -58,8 +43,7 @@ export const useProducts: UseProductsReturn = (category = '') => {
       data: blockData,
       setupBlocks,
       getBlocksServer,
-      isFooterBlock,
-    } = useBlockTemplates(route?.meta?.identifier as string, route.meta.type as string, $i18n.locale.value);
+    } = useCategoryTemplate(route?.meta?.identifier as string, route.meta.type as string, $i18n.locale.value);
 
     state.value.loading = true;
 
@@ -69,9 +53,7 @@ export const useProducts: UseProductsReturn = (category = '') => {
       const fakeFacet = $i18n.locale.value === 'en' ? fakeFacetCallEN : fakeFacetCallDE;
 
       await getBlocksServer(route.meta.identifier as string, route.meta.type as string);
-
-      const hasContentBlocks = blockData.value?.some((block) => !isFooterBlock(block));
-      const fakeBlocks = hasContentBlocks ? blockData.value : await useBlockTemplatesData($i18n.locale.value);
+      const fakeBlocks = blockData.value?.length ? blockData.value : useCategoryTemplateData();
 
       state.value.data = {
         category: fakeFacet['data'].category,
@@ -88,6 +70,7 @@ export const useProducts: UseProductsReturn = (category = '') => {
       } as Facet;
 
       setupBlocks(fakeBlocks);
+
       handlePreviewProducts(state, $i18n.locale.value);
 
       state.value.loading = false;
@@ -96,42 +79,42 @@ export const useProducts: UseProductsReturn = (category = '') => {
 
     const identifier = category || params.categoryUrlPath || params.categoryId;
 
-    const { data } = await useAsyncData(`useProducts-${identifier}-${JSON.stringify(params)}`, () =>
-      useSdk().plentysystems.getFacet(params),
-    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let facetData: any = null;
+
+    if (import.meta.server) {
+      const { data } = await useAsyncData(`useProducts-${identifier}-${JSON.stringify(params)}`, () =>
+        useSdk().plentysystems.getFacet(params),
+      );
+      facetData = data.value?.data ?? null;
+    } else {
+      try {
+        const result = await useSdk().plentysystems.getFacet(params);
+        facetData = result?.data ?? null;
+      } catch {
+        facetData = null;
+      }
+    }
 
     state.value.productsPerPage = params.itemsPerPage || defaults.DEFAULT_ITEMS_PER_PAGE;
 
-    if (data.value?.data) {
-      data.value.data.pagination.perPageOptions = defaults.PER_PAGE_STEPS;
-      state.value.data = data.value.data;
+    if (facetData) {
+      facetData.pagination.perPageOptions = defaults.PER_PAGE_STEPS;
+      state.value.data = facetData;
       handlePreviewProducts(state, $i18n.locale.value);
 
-      const defaultData =
-        state.value.data.category.type === 'item' ? await useBlockTemplatesData($i18n.locale.value) : [];
+      const defaultData = state.value.data.category.type === 'item' ? useCategoryTemplateData() : [];
 
-      setupBlocks((state.value.data?.blocks?.length ? state.value.data.blocks : defaultData) as Block[]);
+      await setupBlocks((state.value.data?.blocks?.length ? state.value.data.blocks : defaultData) as Block[]);
     }
 
     state.value.loading = false;
     return state.value.data;
   };
 
-  /**
-   * @description Function for setting the current product.
-   * @param product { Product }
-   * @return SetCurrentProduct
-   * @example
-   * ``` ts
-   *  setCurrentProduct({} as Product)
-   * ```
-   */
   const setCurrentProduct: SetCurrentProduct = async (product: Product) => {
-    state.value.loading = true;
-
+    if (state.value.currentProduct === product) return;
     state.value.currentProduct = product;
-
-    state.value.loading = false;
   };
 
   return {

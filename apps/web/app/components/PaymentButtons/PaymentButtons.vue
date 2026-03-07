@@ -3,7 +3,6 @@
     :is="component.componentName"
     v-for="(component, index) in filteredComponents"
     :key="index"
-    :payment-key="paymentKey"
     :disabled="disableBuyButton"
     @click="validateOnClickComponents($event, component)"
   />
@@ -27,12 +26,12 @@
       :disabled="disableBuyButton || paypalCardDialog"
       @click="openPayPalCardDialog"
     />
-    <ApplePayButton
+    <PayPalApplePayButton
       v-else-if="selectedPaymentId === paypalApplePayPaymentId"
       :style="disableBuyButton ? 'pointer-events: none;' : ''"
       @button-clicked="handlePreparePayment"
     />
-    <GooglePayButton
+    <PayPalGooglePayButton
       v-else-if="selectedPaymentId === paypalGooglePayPaymentId"
       :style="disableBuyButton ? 'pointer-events: none;' : ''"
       @button-clicked="handlePreparePayment"
@@ -84,10 +83,8 @@ import {
   PayPalPaymentKey,
   PayPalGooglePayKey,
   PayPalApplePayKey,
-  PayPalPayUponInvoiceKey,
-  PayPalAlternativeFundingSourceMapper,
-} from '#paypal/types';
-import type { PayPalAddToCartCallback } from '#paypal/types';
+} from '~/composables/usePayPal/types';
+import type { PayPalAddToCartCallback } from '~/components/PayPal/types';
 import { keyBy } from '~/utils/keyBy';
 import type { PaymentButtonComponent } from '@plentymarkets/shop-core';
 
@@ -131,12 +128,6 @@ const disableBuyButton = computed(
     navigationInProgress.value ||
     processingOrder.value,
 );
-
-const paymentKey = computed(() => {
-  const paymentId = paymentProviderGetters.getMethodOfPaymentId(cart.value);
-  const paymentMethod = paymentProviderGetters.getPaymentMethodById(paymentMethods.value.list, Number(paymentId));
-  return paymentMethod ? paymentProviderGetters.getPaymentKey(paymentMethod) : null;
-});
 
 const paypalPaymentId = computed(() => {
   if (!paymentMethods.value.list) return null;

@@ -19,16 +19,15 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { SfInput } from '@storefront-ui/vue';
 import { paths } from '~/utils/paths';
-import type { Locale } from '#i18n';
+
+const localePath = useLocalePath();
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
-const localePath = useLocalePath();
-
 definePageMeta({
   layout: false,
 });

@@ -58,15 +58,14 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import type { ApiError } from '@plentymarkets/shop-api';
 import { AddressType, cartGetters } from '@plentymarkets/shop-api';
-import type { Locale } from '#i18n';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({
   layout: 'simplified-header-and-footer',
   pageType: 'static',

@@ -3,7 +3,7 @@ import { getHorizontalClass, DEFAULT_HORIZONTAL_CLASS } from '../layout-spacing'
 
 describe('layout-spacing/getHorizontalClass', () => {
   it('should map known keys to classes', () => {
-    expect(getHorizontalClass('s')).toBe('max-w-screen-3xl');
+    expect(getHorizontalClass('s')).toBe('max-w-[1536px]');
     expect(getHorizontalClass('m')).toBe('max-w-screen-2xl');
     expect(getHorizontalClass('l')).toBe('max-w-screen-xl');
   });

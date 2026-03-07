@@ -1,88 +1,81 @@
 <template>
-  <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="category-layout">
-    <h1 class="my-10 font-bold typography-headline-3 md:typography-headline-2">{{ title }}</h1>
-    <div class="md:flex gap-6" data-testid="category-page-content">
-      <CategorySidebar class="md:w-[303px]" :is-open="isOpen" @close="close">
-        <NuxtLazyHydrate when-visible>
-          <slot name="sidebar" />
-        </NuxtLazyHydrate>
-      </CategorySidebar>
-      <div class="flex-1">
-        <div class="flex justify-between items-center mb-6">
-          <span class="font-bold md:text-lg">
-            {{
-              t('search.numberOfProducts', {
-                count: products?.length ?? 0,
-                total: totalProducts,
-              })
-            }}
+  <NarrowContainer class="mb-20" data-testid="category-layout">
+    <div class="pt-8 pb-6 md:pt-10 md:pb-8">
+      <h1 class="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight">{{ title }}</h1>
+      <p v-if="totalProducts > 0" class="mt-2 text-sm text-neutral-500">
+        {{ t('search.numberOfProducts', { count: products?.length ?? 0, total: totalProducts }) }}
+      </p>
+    </div>
+
+    <div data-testid="category-page-content">
+      <template v-if="hasSidebar">
+        <div class="flex items-center justify-between mb-4 pb-4 border-b border-neutral-100">
+          <span class="text-sm font-medium text-neutral-600">
+            {{ t('search.numberOfProducts', { count: products?.length ?? 0, total: totalProducts }) }}
           </span>
-          <UiButton variant="tertiary" class="md:hidden whitespace-nowrap" @click="open">
-            <template #prefix>
-              <SfIconTune />
-            </template>
-            {{ t('common.labels.listSettings') }}
-          </UiButton>
-        </div>
-        <section
-          v-if="products?.length"
-          class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 mb-10 md:mb-5"
-          data-testid="category-grid"
-        >
-          <NuxtLazyHydrate
-            v-for="(product, index) in products"
-            :key="productGetters.getVariationId(product)"
-            when-visible
+          <button
+            type="button"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 text-sm font-medium text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-colors cursor-pointer"
+            @click="open"
           >
-            <UiProductCard
-              :product="product"
-              :name="productGetters.getName(product) ?? ''"
-              :rating-count="productGetters.getTotalReviews(product)"
-              :rating="productGetters.getAverageRating(product, 'half')"
-              :image-url="addModernImageExtension(productGetters.getCoverImage(product))"
-              :image-alt="
-                productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
-                productGetters.getName(product) ||
-                ''
-              "
-              :image-title="productImageGetters.getImageName(productImageGetters.getFirstImage(product)) || ''"
-              :image-height="productGetters.getImageHeight(product) || 600"
-              :image-width="productGetters.getImageWidth(product) || 600"
-              :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
-              :priority="index < 5"
-              :base-price="productGetters.getDefaultBasePrice(product)"
-              :unit-content="productGetters.getUnitContent(product)"
-              :unit-name="productGetters.getUnitName(product)"
-              :show-base-price="productGetters.showPricePerUnit(product)"
-            />
-          </NuxtLazyHydrate>
-        </section>
-        <LazyCategoryEmptyState v-else />
-        <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
-          <span>{{ t('common.labels.asterisk') }}</span>
-          <span v-if="showNetPrices">{{ t('product.priceExclVAT') }}</span>
-          <span v-else>{{ t('product.priceInclVAT') }}</span>
-          <i18n-t keypath="shipping.excludedLabel" scope="global">
-            <template #shipping>
-              <SfLink
-                :href="localePath(paths.shipping)"
-                target="_blank"
-                class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-              >
-                {{ t('common.labels.delivery') }}
-              </SfLink>
-            </template>
-          </i18n-t>
+            <SfIconTune class="!w-4 !h-4" />
+            {{ t('common.labels.filters') }}
+          </button>
         </div>
-        <UiPagination
-          v-if="totalProducts > 0"
-          :key="`${totalProducts}-${itemsPerPage}`"
-          :current-page="getFacetsFromURL().page ?? 1"
-          :total-items="totalProducts"
-          :page-size="itemsPerPage"
-          :max-visible-pages="maxVisiblePages"
-        />
-      </div>
+
+        <CategorySidebar :is-open="isOpen" @close="close">
+          <NuxtLazyHydrate when-visible>
+            <slot name="sidebar" />
+          </NuxtLazyHydrate>
+        </CategorySidebar>
+      </template>
+
+      <section
+        v-if="products?.length"
+        class="grid grid-cols-2 gap-4 md:gap-5 md:grid-cols-3 lg:grid-cols-4 mb-10"
+        data-testid="category-grid"
+      >
+        <NuxtLazyHydrate
+          v-for="(product, index) in products"
+          :key="productGetters.getVariationId(product)"
+          when-visible
+        >
+          <UiProductCard
+            :product="product"
+            :name="productGetters.getName(product) ?? ''"
+            :rating-count="productGetters.getTotalReviews(product)"
+            :rating="productGetters.getAverageRating(product, 'half')"
+            :image-url="addModernImageExtension(productGetters.getCoverImage(product))"
+            :image-alt="
+              productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+              productGetters.getName(product) ||
+              ''
+            "
+            :image-title="productImageGetters.getImageName(productImageGetters.getFirstImage(product)) || ''"
+            :image-height="productGetters.getImageHeight(product) || 600"
+            :image-width="productGetters.getImageWidth(product) || 600"
+            :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
+            :priority="index < 5"
+            :base-price="productGetters.getDefaultBasePrice(product)"
+            :unit-content="productGetters.getUnitContent(product)"
+            :unit-name="productGetters.getUnitName(product)"
+            :show-base-price="productGetters.showPricePerUnit(product)"
+          />
+        </NuxtLazyHydrate>
+      </section>
+
+      <LazyCategoryEmptyState v-else />
+
+      <!-- Legal footnote hidden -->
+
+      <UiPagination
+        v-if="totalProducts > 0"
+        :key="`${totalProducts}-${itemsPerPage}`"
+        :current-page="getFacetsFromURL().page ?? 1"
+        :total-items="totalProducts"
+        :page-size="itemsPerPage"
+        :max-visible-pages="maxVisiblePages"
+      />
     </div>
   </NarrowContainer>
 </template>
@@ -95,16 +88,17 @@ import { paths } from '~/utils/paths';
 
 const { title, totalProducts, itemsPerPage = 24, products = [] } = defineProps<CategoryPageContentProps>();
 
+const { t } = useI18n({ useScope: 'global' });
 const localePath = useLocalePath();
 const { getFacetsFromURL } = useCategoryFilter();
 const { addModernImageExtension } = useModernImage();
 
 const { showNetPrices } = useCart();
 
+const slots: Record<string, ((...args: any[]) => any) | undefined> = useSlots();
+const hasSidebar = computed((): boolean => !!slots.sidebar);
 const { isOpen, open, close } = useDisclosure();
 const viewport = useViewport();
 
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 2));
-
-if (viewport.isLessThan('md')) close();
 </script>

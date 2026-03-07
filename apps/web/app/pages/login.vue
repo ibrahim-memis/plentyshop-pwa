@@ -7,11 +7,9 @@
 
 <script setup lang="ts">
 import type { Locale } from '#i18n';
-
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({
   layout: false,
   middleware: ['guest-guard'],

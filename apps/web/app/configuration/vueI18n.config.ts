@@ -1,5 +1,5 @@
 export default {
-  fallbackLocale: process.env.DEFAULTLANGUAGE ?? 'en',
+  fallbackLocale: process.env.DEFAULTLANGUAGE ?? 'de',
   detectBrowserLanguage: false,
   numberFormats: {
     de: {
@@ -12,14 +12,14 @@ export default {
     en: {
       currency: {
         style: 'currency',
-        currency: 'GBP',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     bg: {
       currency: {
         style: 'currency',
-        currency: 'BGN',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
@@ -47,7 +47,7 @@ export default {
     tr: {
       currency: {
         style: 'currency',
-        currency: 'TRY',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
@@ -61,7 +61,7 @@ export default {
     pl: {
       currency: {
         style: 'currency',
-        currency: 'PLN',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
@@ -75,42 +75,42 @@ export default {
     no: {
       currency: {
         style: 'currency',
-        currency: 'NOK',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     ro: {
       currency: {
         style: 'currency',
-        currency: 'RON',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     da: {
       currency: {
         style: 'currency',
-        currency: 'DKK',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     sv: {
       currency: {
         style: 'currency',
-        currency: 'SEK',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     cs: {
       currency: {
         style: 'currency',
-        currency: 'CZK',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     ru: {
       currency: {
         style: 'currency',
-        currency: 'RUB',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
@@ -124,14 +124,14 @@ export default {
     zh: {
       currency: {
         style: 'currency',
-        currency: 'CNY',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
     vi: {
       currency: {
         style: 'currency',
-        currency: 'VND',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },
@@ -180,7 +180,7 @@ export default {
     hu: {
       currency: {
         style: 'currency',
-        currency: 'HUF',
+        currency: 'EUR',
         currencyDisplay: 'symbol',
       },
     },

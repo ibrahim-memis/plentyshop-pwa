@@ -44,16 +44,14 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import { cartGetters } from '@plentymarkets/shop-api';
-import type { Locale } from '#i18n';
+const { setPageMeta } = usePageMeta();
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
-const { setPageMeta } = usePageMeta();
-
 definePageMeta({ pageType: 'static' });
 
 const NuxtLink = resolveComponent('NuxtLink');

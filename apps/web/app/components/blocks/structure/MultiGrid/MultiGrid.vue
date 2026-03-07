@@ -77,6 +77,7 @@ const gapClassMap: Record<string, string> = {
   M: 'gap-y-2 md:gap-x-2 md:gap-y-0',
   L: 'gap-y-3 md:gap-x-3 md:gap-y-0',
   XL: 'gap-y-5 md:gap-x-5 md:gap-y-0',
+  XXL: 'gap-y-6 md:gap-x-10 md:gap-y-0',
 };
 const gridGapClass = computed(() => gapClassMap[configuration.layout?.gap || 'M']);
 const defaultMarginBottom = computed(() => getVerticalPixels(blockSize.value));
@@ -98,9 +99,8 @@ const getColumnClasses = (colIndex: number) => {
   const classes = [`col-span-${columnWidth}`];
 
   if (Array.isArray(configuration.sticky) && configuration.sticky.includes(colIndex)) {
-    classes.push('md:sticky');
-
-    const topValue = route.meta?.type === 'product' ? 'md:top-40' : 'md:top-5';
+    classes.push('md:sticky', 'md:self-start');
+    const topValue = route.meta?.type === 'product' ? 'md:top-24' : 'md:top-5';
     classes.push(topValue);
   }
 
@@ -153,19 +153,19 @@ const pairWithSlots = computed<Block[]>(() => {
 });
 
 const columns = computed<Block[][]>(() => {
-  const blocks = ref([] as Block[][]);
+  const blocks: Block[][] = [];
   pairWithSlots.value.forEach((block) => {
     if (block.parent_slot !== undefined) {
-      if (!blocks.value[block.parent_slot]) {
-        blocks.value[block.parent_slot] = [];
+      if (!blocks[block.parent_slot]) {
+        blocks[block.parent_slot] = [];
       }
 
-      const slot = blocks.value[block.parent_slot];
+      const slot = blocks[block.parent_slot];
       if (slot) {
         slot.push(block);
       }
     }
   });
-  return blocks.value;
+  return blocks;
 });
 </script>

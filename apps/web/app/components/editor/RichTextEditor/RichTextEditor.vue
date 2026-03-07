@@ -53,10 +53,10 @@
         :redo="redo"
         :clear-formatting="clearFormatting"
       />
-      <EditorRichTextEditorMenuButton icon-name="fullscreen" @click="openModal" />
+      <EditorRichTextEditorMenuButton icon-name="fullscreen" @click="toggleModal" />
     </div>
 
-    <div class="p-2.5 editor-parent" data-testid="rte-editor" @mousedown="editor?.chain().focus().run()">
+    <div class="p-2.5" data-testid="rte-editor" @mousedown="editor?.chain().focus().run()">
       <EditorContent :editor="editor" class="rte__content rte-prose" :style="editorStyle" />
     </div>
   </div>
@@ -81,8 +81,7 @@
     :redo="redo"
     :toggle-link="toggleLink"
     :clear-formatting="clearFormatting"
-    @switch-to-html="handleSwitchToHtml"
-    @close="closeModal"
+    @close="toggleModal"
   />
 </template>
 
@@ -111,7 +110,6 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'update:expanded', value: boolean): void;
-  (e: 'requestHtmlModal'): void;
 }>();
 
 const {
@@ -143,23 +141,14 @@ const {
   textAlign: toRef(props, 'textAlign'),
 });
 
+defineExpose({ editor, focus, clearFormatting, undo, redo });
+
 const editorStyle = computed(() => ({
   minHeight: `${props.minHeight}px`,
   ...textAlignStyle.value,
 }));
 
-const openModal = () => {
-  modalOpen.value = true;
+const toggleModal = () => {
+  modalOpen.value = !modalOpen.value;
 };
-
-const closeModal = () => {
-  modalOpen.value = false;
-};
-
-const handleSwitchToHtml = () => {
-  closeModal();
-  emit('requestHtmlModal');
-};
-
-defineExpose({ editor, focus, clearFormatting, undo, redo, openModal });
 </script>

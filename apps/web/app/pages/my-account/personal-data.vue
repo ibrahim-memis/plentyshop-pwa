@@ -67,14 +67,13 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { SfIconClose, useDisclosure } from '@storefront-ui/vue';
 import { unrefElement } from '@vueuse/core';
-import type { Locale } from '#i18n';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({
   layout: 'account',
   pageType: 'static',

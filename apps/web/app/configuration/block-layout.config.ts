@@ -40,6 +40,17 @@ export const BLOCK_LAYOUT_RULES: Record<string, BlockLayoutRule> = {
   SortFilter: { defaultFullWidth: false, padding: true },
 
   Carousel: { padding: false },
+
+  AboutUs: { defaultFullWidth: false, padding: false },
+  Testimonials: { container: false, padding: false },
+  FeaturedProducts: { defaultFullWidth: false, padding: false },
+  CategoryShowcase: { defaultFullWidth: false, padding: false },
+  BrandsShowcase: { defaultFullWidth: false, padding: false },
+  CategoryBanners: { defaultFullWidth: false, padding: false },
+  HeroSlider: { container: false, padding: false },
+  SubcategoryBar: { defaultFullWidth: false, padding: false },
+  CategoryDescription: { defaultFullWidth: false, padding: true },
+  B2BContactForm: { container: false, padding: false },
 };
 
 /**

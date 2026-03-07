@@ -54,10 +54,12 @@ export const getNestedValue = <T>(obj: unknown, path: string[], expectedType: st
  */
 // NOTE: FullWidth resolution and spacing mapping are handled in useBlockClasses/buildBlockClasses.
 
+const blockClassCache = new Map<string, ComputedRef<Record<string, boolean>>>();
+
 /**
  * Generates CSS classes for a block based on its properties and configuration,
  * including horizontal spacing setting.
- * Generates CSS classes for a block based on its properties and configuration
+ * Results are cached per block UUID to avoid creating new computed refs on each render.
  *
  * @param block - The block to generate classes for
  * @returns Computed ref with CSS class object
@@ -68,5 +70,16 @@ export const getNestedValue = <T>(obj: unknown, path: string[], expectedType: st
  * ```
  */
 export const getBlockClass = (block: Block): ComputedRef<Record<string, boolean>> => {
-  return useBlockClasses(block);
+  const uuid = block.meta?.uuid;
+  if (uuid && blockClassCache.has(uuid)) {
+    return blockClassCache.get(uuid)!;
+  }
+
+  const result = useBlockClasses(block);
+
+  if (uuid) {
+    blockClassCache.set(uuid, result);
+  }
+
+  return result;
 };

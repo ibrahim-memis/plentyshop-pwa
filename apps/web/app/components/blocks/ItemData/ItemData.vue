@@ -5,50 +5,54 @@
       <span class="italic">{{ getEditorTranslation('no-data-to-show') }}</span>
     </div>
     <template v-if="hasRows">
-      <div v-if="displayAsCollapsable">
+      <div v-if="displayAsCollapsable" class="border-t border-neutral-200">
         <UiAccordionItem
           v-model="isOpen"
-          summary-class="md:rounded-md w-full hover:bg-neutral-100 py-2 pl-4 pr-3 flex justify-between items-center select-none"
+          summary-class="w-full py-5 px-0 flex justify-between items-center select-none group cursor-pointer"
           data-testid="item-data"
         >
           <template #summary>
-            <h2 class="font-bold text-lg leading-6 md:text-2xl">
+            <h2 class="font-semibold text-base md:text-lg text-neutral-900">
               {{ title }}
             </h2>
           </template>
 
-          <v-table density="comfortable" class="item-info-table">
+          <div class="pb-5">
+            <table class="w-full text-sm">
+              <tbody>
+                <tr v-for="row in visibleRows" :key="row.key" class="border-b border-neutral-100 last:border-b-0">
+                  <td class="py-2.5 pr-4 text-neutral-500 font-medium whitespace-nowrap">
+                    {{ row.label }}
+                  </td>
+                  <td class="py-2.5 text-neutral-800">
+                    {{ row.value }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </UiAccordionItem>
+      </div>
+
+      <div v-else class="border-t border-neutral-200">
+        <h2 v-if="title" class="font-semibold text-base md:text-lg text-neutral-900 py-5">
+          {{ title }}
+        </h2>
+
+        <div class="pb-5">
+          <table class="w-full text-sm">
             <tbody>
-              <tr v-for="row in visibleRows" :key="row.key" class="item-info-table__row">
-                <td class="item-info-table__cell item-info-table__label">
+              <tr v-for="row in visibleRows" :key="row.key" class="border-b border-neutral-100 last:border-b-0">
+                <td class="py-2.5 pr-4 text-neutral-500 font-medium whitespace-nowrap">
                   {{ row.label }}
                 </td>
-                <td class="item-info-table__cell item-info-table__value">
+                <td class="py-2.5 text-neutral-800">
                   {{ row.value }}
                 </td>
               </tr>
             </tbody>
-          </v-table>
-        </UiAccordionItem>
-      </div>
-
-      <div v-else>
-        <h2 v-if="title" class="font-bold text-lg leading-6 md:text-2xl mb-2">
-          {{ title }}
-        </h2>
-
-        <v-table density="comfortable" class="item-info-table">
-          <tbody>
-            <tr v-for="row in visibleRows" :key="row.key" class="item-info-table__row">
-              <td class="item-info-table__cell item-info-table__label">
-                {{ row.label }}
-              </td>
-              <td class="item-info-table__cell item-info-table__value">
-                {{ row.value }}
-              </td>
-            </tr>
-          </tbody>
-        </v-table>
+          </table>
+        </div>
       </div>
     </template>
   </div>
@@ -67,7 +71,11 @@ const { currentProduct } = useProducts();
 
 const { isEditMode } = useEditorState();
 
-const { fieldValues } = useItemDataTable(currentProduct as Ref<Product | null>, {
+const safeProduct = computed(() =>
+  currentProduct.value?.item ? currentProduct.value : null,
+);
+
+const { fieldValues } = useItemDataTable(safeProduct as Ref<Product | null>, {
   t,
 });
 const fieldLabels = computed<ItemDataFieldLabels>(() => ({

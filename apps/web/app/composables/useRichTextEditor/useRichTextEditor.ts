@@ -44,11 +44,7 @@ export function useRichTextEditor(args: UseRichTextEditorArgs) {
     if (!editor.value) return;
     const wanted = next ?? '';
     const current = editor.value.getHTML();
-
-    const normalizedWanted = decodeHtmlEntities(wanted);
-    const normalizedCurrent = decodeHtmlEntities(current);
-
-    if (normalizedCurrent !== normalizedWanted) {
+    if (current !== wanted) {
       editor.value.commands.setContent(wanted, { emitUpdate: false });
     }
   });

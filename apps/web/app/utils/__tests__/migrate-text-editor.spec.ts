@@ -4,23 +4,23 @@ import { createOldTextCard, createMigratedTextCard } from './__fixtures__/TextCa
 import type { TextCardContent } from '@/components/blocks/TextCard/types';
 
 describe('migrateTextCardContent', () => {
-  it('should migrate old structure with all fields', () => {
-    const result = migrateTextCardContent(createOldTextCard(), true, true);
+  it('migrates old structure with all fields', () => {
+    const result = migrateTextCardContent(createOldTextCard(), true);
     expect(result).toEqual(createMigratedTextCard());
   });
 
-  it('should not migrate if feature flag is disabled', () => {
+  it('does not migrate if feature flag is disabled', () => {
     const content = createOldTextCard();
-    const result = migrateTextCardContent(content, false, true);
+    const result = migrateTextCardContent(content, false);
     expect(result).toEqual(content);
   });
 
-  it('should not migrate if pretitle, title, subtitle are empty', () => {
+  it('does not migrate if pretitle, title, subtitle are empty', () => {
     const content = createMigratedTextCard();
-    expect(migrateTextCardContent(content, true, true)).toEqual(content);
+    expect(migrateTextCardContent(content, true)).toEqual(content);
   });
 
-  it('should escape HTML in pretitle, title, subtitle', () => {
+  it('escapes HTML in pretitle, title, subtitle', () => {
     const content = createOldTextCard({
       text: {
         pretitle: '<b>Pretitle</b>',
@@ -30,30 +30,30 @@ describe('migrateTextCardContent', () => {
       },
     });
 
-    const result = migrateTextCardContent(content, true, true);
+    const result = migrateTextCardContent(content, true);
     expect(result.text?.htmlDescription).toContain('&lt;b&gt;Pretitle&lt;/b&gt;');
     expect(result.text?.htmlDescription).toContain('Title &amp; &quot;Special&quot;');
     expect(result.text?.htmlDescription).toContain('Subtitle&#039;s');
   });
 
-  it('should wrap htmlDescription in <p> if no HTML tags', () => {
+  it('wraps htmlDescription in <p> if no HTML tags', () => {
     const content = createOldTextCard();
-    const result = migrateTextCardContent(content, true, true);
+    const result = migrateTextCardContent(content, true);
     expect(result.text?.htmlDescription).toMatch(/<p>Some description<\/p>$/);
   });
 
-  it('should not wrap htmlDescription if it already contains HTML', () => {
+  it('does not wrap htmlDescription if it already contains HTML', () => {
     const content = createOldTextCard({
       text: {
         htmlDescription: '<ul><li>Item</li></ul>',
       },
     });
 
-    const result = migrateTextCardContent(content, true, true);
+    const result = migrateTextCardContent(content, true);
     expect(result.text?.htmlDescription).toMatch(/<ul><li>Item<\/li><\/ul>$/);
   });
 
-  it('should handle missing htmlDescription', () => {
+  it('handles missing htmlDescription', () => {
     const content: Partial<TextCardContent> = {
       text: {
         pretitle: 'P',
@@ -62,35 +62,24 @@ describe('migrateTextCardContent', () => {
       },
     };
 
-    const result = migrateTextCardContent(content, true, true);
-    expect(result.text?.htmlDescription).toBe('<p>P</p>\n<h1>T</h1>\n<h3>S</h3>');
+    const result = migrateTextCardContent(content, true);
+    expect(result.text?.htmlDescription).toBe('<h2>P</h2>\n<h1>T</h1>\n<h3>S</h3>');
   });
 
-  it('should handle missing text object', () => {
+  it('handles missing text object', () => {
     const content = {};
-    expect(migrateTextCardContent(content, true, true)).toEqual(content);
+    expect(migrateTextCardContent(content, true)).toEqual(content);
   });
 
-  it('should handle partial text object', () => {
+  it('handles partial text object', () => {
     const content: Partial<TextCardContent> = {
       text: {
         pretitle: 'Only pretitle',
       },
     };
 
-    const result = migrateTextCardContent(content, true, true);
-    expect(result.text?.htmlDescription).toBe('<p>Only pretitle</p>');
+    const result = migrateTextCardContent(content, true);
+    expect(result.text?.htmlDescription).toBe('<h2>Only pretitle</h2>');
     expect(result.text?.pretitle).toBe('');
-  });
-
-  it('should use <h2> for title when not first block', () => {
-    const content: Partial<TextCardContent> = {
-      text: {
-        title: 'Secondary title',
-      },
-    };
-
-    const result = migrateTextCardContent(content, true, false);
-    expect(result.text?.htmlDescription).toBe('<h2>Secondary title</h2>');
   });
 });

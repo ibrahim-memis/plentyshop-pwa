@@ -1,6 +1,18 @@
+import { markRaw } from 'vue';
 import type { CategoryTreeItem } from '@plentymarkets/shop-api';
 
 import type { UseCategoryTreeState, UseCategoryTreeMethodsReturn, GetCategoryTree, SetCategoryTree } from './types';
+
+const freezeTree = (items: CategoryTreeItem[]): CategoryTreeItem[] => {
+  for (const item of items) {
+    markRaw(item);
+    if (item.details?.length) {
+      for (const detail of item.details) markRaw(detail);
+    }
+    if (item.children?.length) freezeTree(item.children);
+  }
+  return items;
+};
 
 /**
  * @description Composable for managing the category tree.
@@ -27,7 +39,7 @@ export const useCategoryTree: UseCategoryTreeMethodsReturn = () => {
     state.value.loading = true;
     try {
       const data = await useSdk().plentysystems.getCategoryTree();
-      state.value.data = data?.data ?? state.value.data;
+      state.value.data = data?.data ? freezeTree(data.data) : state.value.data;
       return state.value.data;
     } catch (error) {
       throw new Error(error as string);
@@ -44,7 +56,7 @@ export const useCategoryTree: UseCategoryTreeMethodsReturn = () => {
    * ```
    */
   const setCategoryTree: SetCategoryTree = (data: CategoryTreeItem[]) => {
-    state.value.data = data;
+    state.value.data = freezeTree(data);
   };
 
   return {

@@ -7,14 +7,9 @@
       <div class="bg-white w-[90%] m-20 h-[90%] p-6 rounded-lg shadow-xl flex flex-col overflow-hidden">
         <header class="flex items-center justify-between mb-4">
           <h2 class="text-lg font-bold">{{ getEditorTranslation('heading') }}</h2>
-          <div class="flex items-center gap-2">
-            <UiButton variant="secondary" class="!px-3 !py-1 text-xs" @click="emit('switch-to-html')">
-              {{ getEditorTranslation('switch-to-html-label') }}
-            </UiButton>
-            <UiButton variant="tertiary" class="!p-2" @click="emit('close')">
-              <SfIconClose />
-            </UiButton>
-          </div>
+          <UiButton variant="tertiary" class="!p-2" @click="emit('close')">
+            <SfIconClose />
+          </UiButton>
         </header>
 
         <main class="flex-1 overflow-hidden flex flex-col">
@@ -84,19 +79,17 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: 'close' | 'switch-to-html'): void;
+  (e: 'close'): void;
 }>();
 </script>
 
 <i18n lang="json">
 {
   "en": {
-    "heading": "Editor",
-    "switch-to-html-label": "Switch to HTML"
+    "heading": "Editor"
   },
   "de": {
-    "heading": "Editor",
-    "switch-to-html-label": "Switch to HTML"
+    "heading": "Editor"
   }
 }
 </i18n>

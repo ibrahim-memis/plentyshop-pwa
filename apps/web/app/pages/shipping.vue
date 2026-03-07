@@ -9,13 +9,12 @@ import type { Locale } from '#i18n';
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({
   pageType: 'static',
 });
 const { setPageMeta } = usePageMeta();
 const { getSetting } = useSiteSettings('shippingTextCategoryId');
-const { categoryTemplateData, fetchCategoryTemplate } = useBlockTemplates();
+const { categoryTemplateData, fetchCategoryTemplate } = useCategoryTemplate();
 
 await fetchCategoryTemplate(Number(getSetting()));
 

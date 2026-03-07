@@ -1,14 +1,18 @@
 <template>
   <template v-for="key in renderOrder" :key="key">
     <template v-if="fields?.[key]">
-      <h1
-        v-if="key === 'name' && texts.name"
-        id="category-headline"
-        class="font-bold typography-headline-3 md:typography-headline-2"
-        data-testid="category-name"
-      >
-        {{ texts.name }}
-      </h1>
+      <div v-if="key === 'name' && texts.name" class="flex items-baseline gap-2">
+        <h1
+          id="category-headline"
+          class="font-bold typography-headline-3 md:typography-headline-2"
+          data-testid="category-name"
+        >
+          {{ texts.name }}
+        </h1>
+        <span v-if="totalProducts > 0" class="text-sm font-normal text-neutral-400">
+          / {{ totalProducts }} {{ t('categoryData.items') }}
+        </span>
+      </div>
 
       <div
         v-else-if="key === 'description1' && texts.description1"
@@ -43,6 +47,10 @@ const props = defineProps<{
   fieldsOrder: CategoryDataFieldKey[];
   texts: CategoryData;
 }>();
+
+const { t } = useI18n();
+const { data: productsCatalog } = useProducts();
+const totalProducts = computed(() => Number(productsCatalog.value.pagination?.totals) || 0);
 
 const renderOrder = computed<CategoryDataFieldKey[]>(() =>
   props.fieldsOrder?.length

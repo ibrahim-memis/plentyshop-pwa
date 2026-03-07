@@ -38,23 +38,7 @@
       </NuxtLazyHydrate>
     </section>
     <LazyCategoryEmptyState v-else />
-    <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
-      <span>{{ t('common.labels.asterisk') }}</span>
-      <span v-if="showNetPrices">{{ t('product.priceExclVAT') }}</span>
-      <span v-else>{{ t('product.priceInclVAT') }}</span>
-      <i18n-t keypath="shipping.excludedLabel" scope="global">
-        <template #shipping>
-          <SfLink
-            :href="localePath(paths.shipping)"
-            target="_blank"
-            class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-            data-testid="shipping-link"
-          >
-            {{ t('common.labels.delivery') }}
-          </SfLink>
-        </template>
-      </i18n-t>
-    </div>
+    <!-- Legal footnote hidden -->
     <template v-if="content?.paginationPosition === 'bottom' || content?.paginationPosition === 'both'">
       <UiPagination
         v-if="totalProducts > 0"

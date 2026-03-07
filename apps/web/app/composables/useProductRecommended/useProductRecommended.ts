@@ -44,15 +44,17 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
       categoryId: params.categoryId,
     };
 
-    const idForKey = params.type === 'cross_selling' ? params.itemId : params.categoryId;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let facetData: any = null;
 
-    const { data, error } = await useAsyncData(
-      `useProductRecommended-${params.type}-${idForKey}-${params.crossSellingRelation}`,
-      () => useSdk().plentysystems.getFacet(payload),
-    );
+    try {
+      const result = await useSdk().plentysystems.getFacet(payload);
+      facetData = result?.data ?? null;
+    } catch {
+      facetData = null;
+    }
 
-    useHandleError(error.value ?? null);
-    state.value.data = data?.value?.data?.products ?? state.value.data;
+    state.value.data = facetData?.products ?? state.value.data;
     state.value.loading = false;
     return state.value.data;
   };

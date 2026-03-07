@@ -14,7 +14,10 @@ const coreBlocks = import.meta.glob('@/components/**/blocks/**/*.vue', { import:
 
 const normalize = (path: string) => {
   const pop = path.split('/').pop();
-  if (pop) return pop.replace(/\.vue$/, '');
+
+  if (pop) {
+    return pop.replace(/\.vue$/, '');
+  }
   return path;
 };
 

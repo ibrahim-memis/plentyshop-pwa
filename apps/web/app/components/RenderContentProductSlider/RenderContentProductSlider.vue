@@ -1,6 +1,6 @@
 <template>
   <NuxtLazyHydrate when-visible>
-    <ProductSlider v-bind="$attrs" :wrapper-class="['max-w-screen-3xl mx-auto px-4 md:px-10 mb-20', $attrs.class]" />
+    <ProductSlider v-bind="$attrs" :wrapper-class="['max-w-[1536px] mx-auto px-6 lg:px-8 mb-20', $attrs.class]" />
   </NuxtLazyHydrate>
 </template>
 

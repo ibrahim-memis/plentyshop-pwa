@@ -17,8 +17,8 @@ export class SystemConfiguration {
 
   getLanguages(): Languages {
     return {
-      default: this.environment.DEFAULTLANGUAGE || 'en',
-      activated: this.environment.LANGUAGELIST || 'en,de',
+      default: this.environment.DEFAULTLANGUAGE || 'de',
+      activated: this.environment.LANGUAGELIST || 'de',
     };
   }
 }

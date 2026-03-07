@@ -26,23 +26,13 @@ const { getSetting: getMetaKeywords } = useSiteSettings('metaKeywords');
 const { getSetting: getRobots } = useSiteSettings('robots');
 const { getSetting: getPrimaryColor } = useSiteSettings('primaryColor');
 
-const ogTitle = ref(getOgTitle());
-const ogImage = ref(getOgImage());
-const description = ref(getMetaDescription());
-const keywords = ref(getMetaKeywords());
-const robots = ref(getRobots());
-const fav = ref(getFavicon());
-const themeColor = ref(getPrimaryColor());
-
-watchEffect(() => {
-  ogTitle.value = getOgTitle();
-  ogImage.value = getOgImage();
-  description.value = getMetaDescription();
-  keywords.value = getMetaKeywords();
-  robots.value = getRobots();
-  fav.value = getFavicon();
-  themeColor.value = getPrimaryColor();
-});
+const ogTitle = computed(() => getOgTitle());
+const ogImage = computed(() => getOgImage());
+const description = computed(() => getMetaDescription());
+const keywords = computed(() => getMetaKeywords());
+const robots = computed(() => getRobots());
+const fav = computed(() => getFavicon());
+const themeColor = computed(() => getPrimaryColor());
 
 useSeoMeta({
   title: `${props.error.statusCode} - ${props.error.statusCode === 404 ? t('error.pageNotFound') : t('error.errorPlain')}`,

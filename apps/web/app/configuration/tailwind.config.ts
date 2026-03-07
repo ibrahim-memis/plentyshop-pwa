@@ -3,7 +3,7 @@ import { tailwindConfig } from '@storefront-ui/vue/tailwind-config';
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-const fontFamilyText = process.env.NUXT_PUBLIC_FONT || 'Red Hat Text';
+const fontFamilyText = process.env.NUXT_PUBLIC_FONT || 'Urbanist';
 
 export default {
   presets: [tailwindConfig],
@@ -47,6 +47,7 @@ export default {
       fontFamily: {
         body: [`${fontFamilyText}`, ...defaultTheme.fontFamily.sans],
         editor: ['Red Hat Text', ...defaultTheme.fontFamily.sans],
+        urbanist: ['Urbanist', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: {
@@ -78,7 +79,6 @@ export default {
         editor: {
           'body-bg': '#F1F3F5',
           button: '#062633',
-          'toc-highlight': '#E6F0FF',
         },
 
         header: {

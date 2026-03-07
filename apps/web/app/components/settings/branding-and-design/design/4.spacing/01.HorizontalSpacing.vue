@@ -38,12 +38,12 @@ const blockSize = computed({
 const horizontalSpacingDescription = computed(() => {
   const key = blockSize.value ?? 's';
   const map: Record<string, { bp: string; class: string }> = {
-    s: { bp: '3xl', class: 'max-w-screen-3xl' },
+    s: { bp: '3xl', class: 'max-w-[1536px]' },
     m: { bp: '2xl', class: 'max-w-screen-2xl' },
     l: { bp: 'xl', class: 'max-w-screen-xl' },
   };
 
-  const entry = map[key] ?? map.s ?? { class: 'max-w-screen-3xl' };
+  const entry = map[key] ?? map.s ?? { class: 'max-w-[1536px]' };
   const description = `Sets container max-width to ${entry.class}. Applies on non-full-width blocks.`;
   return description;
 });

@@ -23,14 +23,13 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { facetGetters } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
-import type { Locale } from '#i18n';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({ layout: false });
 
 const route = useRoute();

@@ -56,13 +56,11 @@ export const useValidatorAggregator: UseValidatorAggregatorReturn = (type: strin
     } else {
       const existingField = invalidFields.find((invalidField) => invalidField.key === fieldUniqueId);
       if (existingField) {
-        existingField.name = name;
+        if (existingField.name !== name) existingField.name = name;
       } else {
         invalidFields.push({ key: fieldUniqueId, name });
       }
     }
-
-    state.value.invalidFields = invalidFields;
   };
 
   /** @description Function for validating fields.

@@ -84,15 +84,13 @@
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '#i18n';
 import { SfIconClose, SfInput, SfLink, SfLoaderCircular } from '@storefront-ui/vue';
 import { paths } from '~/utils/paths';
 import { cartGetters } from '@plentymarkets/shop-api';
-import type { Locale } from '#i18n';
-
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
-
 definePageMeta({
   pageType: 'static',
   middleware: ['guest-guard'],

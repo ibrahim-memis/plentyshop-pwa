@@ -1,12 +1,12 @@
 export type HorizontalSpacingKey = 's' | 'm' | 'l';
 
 const MAP: Record<HorizontalSpacingKey, string> = {
-  s: 'max-w-screen-3xl',
+  s: 'max-w-[1536px]',
   m: 'max-w-screen-2xl',
   l: 'max-w-screen-xl',
 };
 
-export const DEFAULT_HORIZONTAL_CLASS = 'max-w-screen-3xl';
+export const DEFAULT_HORIZONTAL_CLASS = 'max-w-[1536px]';
 
 export const getHorizontalClass = (key: string | undefined): string => {
   if (!key) return DEFAULT_HORIZONTAL_CLASS;

@@ -126,15 +126,15 @@ const getCategoryOgDescription = () => {
   return getMetaDescription();
 };
 
-const title = ref(getCategoryMetaTitle());
-const ogTitle = ref(getCategoryOgTitle());
-const ogImage = ref(getOgImage());
-const ogDescription = ref(getCategoryOgDescription());
-const description = ref(getCategoryMetaDescription());
-const keywords = ref(getCategoryMetaKeywords());
-const robots = ref(getRobots());
-const fav = ref(getFavicon());
-const themeColor = ref(getPrimaryColor());
+const title = computed(() => getCategoryMetaTitle());
+const ogTitle = computed(() => getCategoryOgTitle());
+const ogImage = computed(() => getOgImage());
+const ogDescription = computed(() => getCategoryOgDescription());
+const description = computed(() => getCategoryMetaDescription());
+const keywords = computed(() => getCategoryMetaKeywords());
+const robots = computed(() => getRobots());
+const fav = computed(() => getFavicon());
+const themeColor = computed(() => getPrimaryColor());
 
 const cssAssets = computed(() => (isSafeMode.value ? [] : getAssetsOfType('css')));
 
@@ -160,17 +160,6 @@ const jsExternalAssets = computed(() =>
   isSafeMode.value ? [] : getAssetsOfType('external').filter((asset) => asset.isActive && isJsUrl(asset.content)),
 );
 
-watchEffect(() => {
-  title.value = getCategoryMetaTitle();
-  ogTitle.value = getCategoryOgTitle();
-  ogImage.value = getOgImage();
-  ogDescription.value = getCategoryOgDescription();
-  description.value = getCategoryMetaDescription();
-  keywords.value = getCategoryMetaKeywords();
-  robots.value = getRobots();
-  fav.value = getFavicon();
-  themeColor.value = getPrimaryColor();
-});
 
 useSeoMeta({
   title: () => title.value,
@@ -237,7 +226,7 @@ if (route?.meta.pageType === 'static') setStaticPageMeta();
 usePageTitle();
 
 onMounted(() => {
-  bodyClass.value = 'hydrated'; // Need this class for cypress testing
+  bodyClass.value = 'hydrated';
 });
 
 const SafeModeBanner = defineAsyncComponent(() => import('~/components/SafeModeBanner/SafeModeBanner.vue'));

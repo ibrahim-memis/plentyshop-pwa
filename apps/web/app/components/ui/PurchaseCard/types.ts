@@ -3,7 +3,6 @@ import type { Product } from '@plentymarkets/shop-api';
 export type PriceCardFieldKey =
   | 'itemName'
   | 'price'
-  | 'tags'
   | 'availability'
   | 'starRating'
   | 'variationProperties'
@@ -14,6 +13,7 @@ export type PriceCardFieldKey =
   | 'graduatedPrices'
   | 'addToWishlist'
   | 'quantityAndAddToCart'
+  | 'requestQuote'
   | 'itemText'
   | 'technicalData';
 

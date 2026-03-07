@@ -1,44 +1,52 @@
 <template>
-  <div class="flex justify-center lg:justify-start mb-4 lg:mb-0" data-testid="average-section">
-    <div class="lg:flex my-2">
-      <div class="lg:w-1/2 flex flex-col lg:mr-8">
-        <p class="text-center text-sm" data-testid="average-info">{{ t('product.averageRating') }}</p>
-        <div class="flex justify-center">
-          <SfRating
-            class="pb-2"
-            size="lg"
-            :max="5"
-            :value="reviewAverageStars || reviewAverageText"
-            :half-increment="true"
-          />
-          <h3 class="font-bold text-xl ml-2">
+  <div class="mb-6" data-testid="average-section">
+    <div class="flex flex-col md:flex-row gap-8 items-start">
+      <!-- Sol: Ortalama Puan -->
+      <div class="flex flex-col items-center md:items-start min-w-[160px]">
+        <div class="flex items-baseline gap-2 mb-1">
+          <span class="text-5xl font-bold text-neutral-900 tracking-tight" data-testid="average-info">
             {{ reviewAverageText }}
-          </h3>
+          </span>
+          <span class="text-lg text-neutral-400 font-medium">/5</span>
         </div>
-        <p class="text-xs text-center" data-testid="review-count">
+        <SfRating
+          class="mb-2"
+          size="lg"
+          :max="5"
+          :value="reviewAverageStars || reviewAverageText"
+          :half-increment="true"
+        />
+        <p class="text-sm text-neutral-500 mb-4" data-testid="review-count">
           {{ t('product.basedOnRatings', { count: totalReviews }) }}
         </p>
         <UiButton
           data-testid="add-review-button"
-          class="mt-2 mb-4 mx-auto"
           size="base"
+          class="!rounded-lg !bg-primary-800 hover:!bg-primary-700 !text-white !font-semibold !text-sm !px-6 transition-colors duration-200"
           @click="openReviewModal(defaults.DEFAULT_REVIEW_MODAL_TYPES.createReview)"
         >
           {{ t('product.createReview') }}
         </UiButton>
       </div>
 
-      <div class="flex flex-col">
-        <div v-for="(proportionalRating, key) in ratingPercentages" :key="key" class="flex items-center">
-          <p class="w-4 text-center">{{ 5 - key }}</p>
-          <SfIconStarFilled class="mx-2 pb-1 text-warning-500" size="base" />
-          <SfProgressLinear
-            class="self-center"
-            size="sm"
-            :value="proportionalRating"
-            aria-label="proportional-rating-in-percent"
-          />
-          <p class="lg:w-20 ml-2">( {{ splitRatings[key] }} )</p>
+      <!-- Sag: Rating Breakdown -->
+      <div class="flex-1 w-full space-y-2">
+        <div
+          v-for="(proportionalRating, key) in ratingPercentages"
+          :key="key"
+          class="flex items-center gap-3 group"
+        >
+          <div class="flex items-center gap-1 w-10 justify-end shrink-0">
+            <span class="text-sm font-medium text-neutral-600">{{ 5 - key }}</span>
+            <SfIconStarFilled class="text-warning-500" size="xs" />
+          </div>
+          <div class="flex-1 h-2.5 bg-neutral-100 rounded-full overflow-hidden">
+            <div
+              class="h-full bg-warning-500 rounded-full transition-all duration-500 ease-out"
+              :style="{ width: `${proportionalRating}%` }"
+            />
+          </div>
+          <span class="text-sm text-neutral-400 w-8 text-right shrink-0">{{ splitRatings[key] }}</span>
         </div>
       </div>
     </div>
@@ -46,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { SfRating, SfProgressLinear, SfIconStarFilled } from '@storefront-ui/vue';
+import { SfRating, SfIconStarFilled } from '@storefront-ui/vue';
 import type { ReviewStatisticsProps } from './types';
 import { productGetters, reviewGetters } from '@plentymarkets/shop-api';
 import { defaults } from '~/composables';

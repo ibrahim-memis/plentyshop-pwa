@@ -195,7 +195,7 @@ import type { PriceCardFieldKey, PriceCardContent } from '~/components/ui/Purcha
 import type { PriceCardFormProps } from '~/components/blocks/PriceCard/types';
 
 const route = useRoute();
-const { data } = useBlockTemplates(
+const { data } = useCategoryTemplate(
   route?.meta?.identifier as string,
   route.meta.type as string,
   useNuxtApp().$i18n.locale.value,
@@ -215,10 +215,9 @@ const { isFullWidth } = useFullWidthToggleForContent(priceCardBlock);
 const { getSetting } = useSiteSettings('dontSplitItemBundle');
 priceCardBlock.value.fields['itemBundle'] = getSetting() !== '1';
 
-const fieldLabels = {
+const fieldLabels: Record<PriceCardFieldKey, string> = {
   itemName: getEditorTranslation('field-itemName'),
   price: getEditorTranslation('field-price'),
-  tags: getEditorTranslation('field-tags'),
   availability: getEditorTranslation('field-availability'),
   starRating: getEditorTranslation('field-starRating'),
   variationProperties: getEditorTranslation('variation-properties'),
@@ -229,6 +228,7 @@ const fieldLabels = {
   graduatedPrices: getEditorTranslation('field-graduatedPrices'),
   addToWishlist: getEditorTranslation('field-addToWishlist'),
   quantityAndAddToCart: getEditorTranslation('field-quantityAndAddToCart'),
+  requestQuote: getEditorTranslation('field-requestQuote'),
   itemText: getEditorTranslation('field-itemText'),
   technicalData: getEditorTranslation('field-technicalData'),
 };
@@ -254,7 +254,6 @@ const layoutOpen = ref(false);
 
     "field-itemName": "Item name",
     "field-price": "Price",
-    "field-tags": "Tags",
     "field-availability": "Availability",
     "field-starRating": "Star rating",
     "variation-properties": "Variation properties",
@@ -265,6 +264,7 @@ const layoutOpen = ref(false);
     "field-graduatedPrices": "Graduated prices",
     "field-addToWishlist": "Add to wishlist",
     "field-quantityAndAddToCart": "Quantity and add to cart",
+    "field-requestQuote": "Request a quote",
     "field-itemText": "Item text",
     "field-technicalData": "Technical data",
 
@@ -306,7 +306,6 @@ const layoutOpen = ref(false);
 
     "field-itemName": "Item name",
     "field-price": "Price",
-    "field-tags": "Tags",
     "field-availability": "Availability",
     "field-starRating": "Star rating",
     "variation-properties": "Variation properties",
@@ -317,6 +316,7 @@ const layoutOpen = ref(false);
     "field-graduatedPrices": "Graduated prices",
     "field-addToWishlist": "Add to wishlist",
     "field-quantityAndAddToCart": "Quantity and add to cart",
+    "field-requestQuote": "Angebot anfordern",
     "field-itemText": "Item text",
     "field-technicalData": "Technical data",
 

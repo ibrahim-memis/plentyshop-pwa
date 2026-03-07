@@ -21,13 +21,27 @@ const validateApiUrl = (url: string | undefined): string | undefined => {
   return url?.replace(/[/\\]+$/, '');
 };
 
+const getCorsOrigin = ():
+  | string
+  | ((origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => void) => {
+  const envOrigin = validateApiUrl(process.env.API_URL) || validateApiUrl(process.env.CORS_ORIGIN);
+  if (envOrigin) return envOrigin;
+  return (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    if (!origin || /^https?:\/\/localhost(:\d+)?$/.test(origin) || /^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  };
+};
+
 (async () => {
   const app = await createServer(
     { integrations: config.integrations },
     {
       cors: {
         credentials: true,
-        origin: validateApiUrl(process.env.API_URL) ?? 'http://localhost:3000',
+        origin: getCorsOrigin(),
       },
       bodyParser: {
         limit: '50mb',

@@ -79,7 +79,7 @@ const { isDrawerOpen } = useDrawerState();
 
 const route = useRoute();
 const initial = shallowRef(
-  useBlockTemplates(
+  useCategoryTemplate(
     String(route.meta?.identifier ?? ''),
     String(route.meta?.type ?? ''),
     useNuxtApp().$i18n.locale.value,
@@ -89,7 +89,7 @@ const initial = shallowRef(
 watch(
   () => [route.meta?.identifier, route.meta?.type],
   () => {
-    initial.value = useBlockTemplates(
+    initial.value = useCategoryTemplate(
       String(route.meta?.identifier ?? ''),
       String(route.meta?.type ?? ''),
       useNuxtApp().$i18n.locale.value,

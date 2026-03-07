@@ -19,22 +19,24 @@ export function useItemDataTable(productRef: Ref<Product | null>, options?: { t?
   const fieldValues = computed<ItemDataFieldValues>(() => {
     const product = productRef.value as Product | null;
 
-    if (!product) {
-      return {
-        itemId: '',
-        condition: '',
-        ageRating: '',
-        externalVariationId: '',
-        model: '',
-        manufacturer: '',
-        manufacturingCountry: '',
-        content: '',
-        grossWeight: '',
-        netWeight: '',
-        dimensions: '',
-        customTariffNumber: '',
-        properties: '',
-      };
+    const empty: ItemDataFieldValues = {
+      itemId: '',
+      condition: '',
+      ageRating: '',
+      externalVariationId: '',
+      model: '',
+      manufacturer: '',
+      manufacturingCountry: '',
+      content: '',
+      grossWeight: '',
+      netWeight: '',
+      dimensions: '',
+      customTariffNumber: '',
+      properties: '',
+    };
+
+    if (!product || !product.item || !product.variation) {
+      return empty;
     }
     const translate = options?.t;
     const { item, variation } = product;
