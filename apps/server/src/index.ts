@@ -23,9 +23,11 @@ const validateApiUrl = (url: string | undefined): string | undefined => {
 
 const getCorsOrigin = ():
   | string
+  | boolean
   | ((origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => void) => {
   const envOrigin = validateApiUrl(process.env.API_URL) || validateApiUrl(process.env.CORS_ORIGIN);
   if (envOrigin) return envOrigin;
+  if (process.env.NODE_ENV === 'production') return true;
   return (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
     if (!origin || /^https?:\/\/localhost(:\d+)?$/.test(origin) || /^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(origin)) {
       callback(null, true);
