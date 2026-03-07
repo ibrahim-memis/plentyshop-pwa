@@ -22,7 +22,6 @@ export default defineNuxtConfig({
   },
   app: {
     ...appConfiguration,
-    buildAssetsDir: '/_nuxt-plenty/',
   },
   experimental: {
     asyncContext: true,
