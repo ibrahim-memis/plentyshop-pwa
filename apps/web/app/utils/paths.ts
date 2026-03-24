@@ -28,6 +28,7 @@ export const paths = {
   cancellationForm: '/cancellation-form',
   declarationOfAccessibility: '/declaration-of-accessibility',
   contact: '/contact',
+  campaigns: '/campaigns',
   register: '/register',
   globalItemCategory: '/editor-layout-item-category',
   globalItemDetails: '/editor-layout-item-details_0',

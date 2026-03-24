@@ -1,4 +1,46 @@
 {
+  "header": {
+    "searchPlaceholder": "Suchbegriff oder Artikelnummer...",
+    "internationalShipping": "Internationaler Versand",
+    "fastShipping": "Versand innerhalb 24h an Werktagen",
+    "loginRegister": "Anmelden | Registrieren",
+    "phoneHours": "Telefonische Beratung: Di - Fr, 10 - 15 Uhr",
+    "bonusProgram": "Bonusprogramm",
+    "campaigns": "Kampagnen",
+    "welcome": "Willkommen",
+    "loginHint": "Anmelden",
+    "merklist": "Merkliste:",
+    "articles": "Artikel",
+    "cart": "Warenkorb:",
+    "b2bTitle": "Größere Mengen für Gewerbekunden?",
+    "b2bContact": "Kontaktieren Sie uns",
+    "pricePlan": "B2B Preise aktiv",
+    "discountLabel": "Rabatt"
+  },
+  "welcomePopup": {
+    "title": "Willkommen bei HafenX!",
+    "subtitle": "Ihr Konto wurde erfolgreich erstellt",
+    "currentPlan": "Aktuelle Preisstufe: Standardpreise (B2C)",
+    "currentPlanDesc": "Sie sehen derzeit unsere Standard-Endkundenpreise. Als registrierter Kunde haben Sie bereits Zugang zu allen Produkten und können sofort bestellen.",
+    "b2bTitle": "Exklusive B2B-Konditionen verfügbar",
+    "b2bDesc": "Als Geschäftskunde profitieren Sie von Staffelpreisen, individuellen Rabatten und persönlicher Betreuung.",
+    "benefit1": "Bis zu 30% Mengenrabatt",
+    "benefit2": "Individuelle Preislisten",
+    "benefit3": "Persönlicher Ansprechpartner",
+    "benefit4": "Flexible Zahlungsziele",
+    "contactTitle": "Jetzt B2B-Konditionen anfragen",
+    "contactBtn": "Kontakt",
+    "continueBtn": "Weiter einkaufen"
+  },
+  "sidebar": {
+    "categories": "Kategorien",
+    "pages": "Seiten",
+    "home": "Startseite",
+    "wishlist": "Wunschliste",
+    "myAccount": "Mein Konto",
+    "orders": "Meine Bestellungen",
+    "followUs": "Folgen Sie uns"
+  },
   "notifyMe": {
     "notifyButtonTooltip": "Wir benachrichtigen Sie, sobald das Produkt wieder verfügbar ist",
     "notifyButton": "Benachrichtige mich",
