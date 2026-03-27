@@ -21,8 +21,8 @@ export default defineNuxtConfig({
     asyncContext: true,
   },
   appConfig: {
-    titleSuffix: process.env.NAME || 'PlentyONE Shop',
-    fallbackCurrency: 'GBP',
+    titleSuffix: process.env.NAME || 'Nordic Schiller',
+    fallbackCurrency: 'EUR',
   },
   imports: {
     dirs: ['~/composables', '~/composables/**', '~/utils/**'],
@@ -293,10 +293,10 @@ export default defineNuxtConfig({
       cleanupOutdatedCaches: true,
     },
     manifest: {
-      name: process.env.NUXT_PUBLIC_OG_TITLE || process.env.OG_TITLE || 'PlentyONE Shop',
-      short_name: process.env.NUXT_PUBLIC_OG_TITLE || process.env.OG_TITLE || 'PlentyONE Shop',
-      description: process.env.NUXT_PUBLIC_META_DESCRIPTION || process.env.METADESC || 'PlentyONE Shop',
-      theme_color: process.env.NUXT_PUBLIC_PRIMARY_COLOR || '#062633',
+      name: process.env.NUXT_PUBLIC_OG_TITLE || process.env.OG_TITLE || 'Nordic Schiller',
+      short_name: process.env.NUXT_PUBLIC_OG_TITLE || process.env.OG_TITLE || 'Nordic Schiller',
+      description: process.env.NUXT_PUBLIC_META_DESCRIPTION || process.env.METADESC || 'Nordic Schiller B2B Shop',
+      theme_color: process.env.NUXT_PUBLIC_PRIMARY_COLOR || '#384d37',
       background_color: '#ffffff',
       display: 'standalone',
       start_url: '/',

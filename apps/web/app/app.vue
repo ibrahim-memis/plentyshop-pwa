@@ -188,6 +188,9 @@ useHead({
   link: () => [
     { rel: 'icon', href: fav.value },
     { rel: 'apple-touch-icon', href: fav.value },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap' },
     ...cssExternalAssets.value.map((asset, index) => ({
       key: `external-css-${asset.uuid ?? index}`,
       rel: 'stylesheet',
@@ -203,13 +206,27 @@ useHead({
         name: asset.name,
         content: asset.content,
       })),
-  style: () =>
-    cssAssets.value.map((asset) => ({
+  style: () => [
+    {
+      key: 'hafenx-critical-css',
+      textContent: `
+        :root {
+          --hafenx-primary: #384d37;
+          --hafenx-primary-dark: #2c3e2b;
+          --hafenx-secondary: #4a6349;
+        }
+        body, html { font-family: 'Urbanist', sans-serif !important; }
+        .font-body { font-family: 'Urbanist', sans-serif !important; }
+      `,
+      tagPriority: 0,
+    },
+    ...cssAssets.value.map((asset) => ({
       key: `custom-css-${asset.uuid}-o${asset.order ?? 0}`,
       textContent: asset.content,
       media: asset.isActive ? 'all' : 'not all',
       tagPriority: 100 + (asset.order ?? 0),
     })),
+  ],
 });
 
 if (import.meta.client) {
