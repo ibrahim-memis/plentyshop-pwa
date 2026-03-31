@@ -41,6 +41,31 @@
     "orders": "Meine Bestellungen",
     "followUs": "Folgen Sie uns"
   },
+  "heroSlider": {
+    "discoverProducts": "Produkte entdecken",
+    "browseCatalogs": "Kataloge durchsuchen",
+    "discover": "Entdecken",
+    "shopNow": "Jetzt einkaufen",
+    "learnMore": "Mehr erfahren",
+    "newCollection": "Neue Kollektion",
+    "topSeller": "Bestseller",
+    "exclusive": "Exklusiv",
+    "new": "NEU",
+    "fromPrice": "Ab",
+    "sloganDefault": "Minimaler Look, maximaler Platz.",
+    "discoverCategory": "Kategorie entdecken"
+  },
+  "categoryBanners": {
+    "title": "Produktkategorien",
+    "subtitle": "Schneller Zugang zu unseren wichtigsten B2B-Produktbereichen.",
+    "viewAll": "Alle Kategorien ansehen"
+  },
+  "categoryShowcase": {
+    "title": "Nach Kategorie einkaufen",
+    "subtitle": "Entdecken Sie unsere kuratierten Produktkategorien",
+    "viewAll": "Alle anzeigen",
+    "explore": "Entdecken"
+  },
   "notifyMe": {
     "notifyButtonTooltip": "Wir benachrichtigen Sie, sobald das Produkt wieder verfügbar ist",
     "notifyButton": "Benachrichtige mich",

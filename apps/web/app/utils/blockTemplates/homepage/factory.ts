@@ -3,14 +3,6 @@ import { v4 as uuid } from 'uuid';
 import { createFooter } from '../footer/factory';
 
 export function createHomepage(): Block[] {
-  const banner1Pretitle = t('defaultTemplate.homepage.carousel.banner1.pretitle');
-  const banner1Title = t('defaultTemplate.homepage.carousel.banner1.title');
-  const banner1Description = t('defaultTemplate.homepage.carousel.banner1.description');
-  const banner1ButtonLabel = t('defaultTemplate.homepage.carousel.banner1.buttonLabel');
-  const banner2Pretitle = t('defaultTemplate.homepage.carousel.banner2.pretitle');
-  const banner2Title = t('defaultTemplate.homepage.carousel.banner2.title');
-  const banner2Description = t('defaultTemplate.homepage.carousel.banner2.description');
-  const banner2ButtonLabel = t('defaultTemplate.homepage.carousel.banner2.buttonLabel');
   const welcomePretitle = t('defaultTemplate.homepage.textcard.welcome.pretitle');
   const welcomeTitle = t('defaultTemplate.homepage.textcard.welcome.title');
   const welcomeSubtitle = t('defaultTemplate.homepage.textcard.welcome.subtitle');
@@ -43,89 +35,49 @@ export function createHomepage(): Block[] {
 
   return [
     {
-      name: 'Carousel',
-      type: 'structure',
+      name: 'HeroSlider',
+      type: 'content',
       meta: {
-        uuid: '3e1f8c9a-d2b4-4f8d-9c2b-8e1f3a7d5c9b',
+        uuid: 'heroslider-de-001',
+        isGlobalTemplate: false,
       },
-      configuration: {
-        controls: {
-          displayArrows: true,
-          color: '#a39f9f',
+      content: {
+        maxSlides: 5,
+        autoplay: true,
+        autoplayInterval: 6000,
+        excludeNames: [],
+        staticSlides: [],
+      },
+    },
+    {
+      name: 'CategoryBanners',
+      type: 'content',
+      meta: {
+        uuid: 'catbanners-de-001',
+        isGlobalTemplate: false,
+      },
+      content: {
+        maxBanners: 6,
+        includeNames: [],
+      },
+    },
+    {
+      name: 'CategoryShowcase',
+      type: 'content',
+      meta: {
+        uuid: 'catshowcase-de-001',
+        isGlobalTemplate: false,
+      },
+      content: {
+        autoDetect: true,
+        maxCategories: 2,
+        maxItemsPerCategory: 4,
+        excludeNames: [],
+        layout: {
+          paddingTop: 20,
+          paddingBottom: 40,
         },
       },
-      content: [
-        {
-          name: 'Banner',
-          type: 'content',
-          meta: {
-            uuid: 'a7b3c1d9-2e6f-4a5b-8c7d-1e2f3b4c5a6d',
-            isGlobalTemplate: false,
-          },
-          content: {
-            image: {
-              wideScreen: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Person/guy-1024.avif',
-              desktop: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Person/guy-1024.avif',
-              tablet: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Person/guy-768.avif',
-              mobile: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Person/guy-320.avif',
-              alt: '',
-              brightness: 0.5,
-            },
-            text: {
-              color: '#000',
-              bgcolor: '#fff',
-              bgopacity: 0.9,
-              pretitle: banner1Pretitle,
-              title: banner1Title,
-              htmlDescription: banner1Description,
-              textAlignment: 'left',
-              justify: 'top',
-              align: 'left',
-              background: true,
-            },
-            button: {
-              label: banner1ButtonLabel,
-              link: '/gear/headphones-capybara_157',
-              variant: 'primary',
-            },
-          },
-        },
-        {
-          name: 'Banner',
-          type: 'content',
-          meta: {
-            uuid: 'd4e1f2a3-b7c8-4d9e-8f1a-2b3c4d5e6f7a',
-            isGlobalTemplate: false,
-          },
-          content: {
-            image: {
-              wideScreen: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Drone/drone-A-1024.avif',
-              desktop: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Drone/drone-A-1024.avif',
-              tablet: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Drone/drone-A-768.avif',
-              mobile: 'https://cdn02.plentymarkets.com/mevofvd5omld/frontend/Test_Banner_Drone/drone-A-320.avif',
-              alt: '',
-              brightness: 0.75,
-            },
-            text: {
-              color: '#000',
-              bgcolor: '#fff',
-              bgopacity: 1,
-              pretitle: banner2Pretitle,
-              title: banner2Title,
-              htmlDescription: banner2Description,
-              textAlignment: 'left',
-              justify: 'top',
-              align: 'left',
-              background: true,
-            },
-            button: {
-              label: banner2ButtonLabel,
-              link: '/gear/drone-omega_154',
-              variant: 'primary',
-            },
-          },
-        },
-      ],
     },
     {
       name: 'TextCard',
