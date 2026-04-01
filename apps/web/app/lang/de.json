@@ -58,7 +58,8 @@
   "categoryBanners": {
     "title": "Produktkategorien",
     "subtitle": "Schneller Zugang zu unseren wichtigsten B2B-Produktbereichen.",
-    "viewAll": "Alle Kategorien ansehen"
+    "viewAll": "Alle Kategorien ansehen",
+    "products": "Produkte"
   },
   "categoryShowcase": {
     "title": "Nach Kategorie einkaufen",

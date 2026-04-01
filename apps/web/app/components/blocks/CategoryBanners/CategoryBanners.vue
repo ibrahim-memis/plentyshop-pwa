@@ -21,9 +21,13 @@
         </NuxtLink>
       </div>
 
-      <div v-if="visibleCategories.length" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+      <div v-if="loading" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+        <div v-for="i in 6" :key="i" class="aspect-square rounded-xl bg-neutral-100 animate-pulse" />
+      </div>
+
+      <div v-else-if="sortedCategories.length" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
         <NuxtLink
-          v-for="(cat, idx) in visibleCategories"
+          v-for="(cat, idx) in sortedCategories"
           :key="cat.id"
           :to="localePath(cat.link)"
           class="relative rounded-xl overflow-hidden group aspect-square block border border-neutral-200 shadow-sm hover:shadow-xl hover:border-[#384d37]/30 hover:ring-2 hover:ring-[#384d37]/10 transition-all duration-300"
@@ -41,6 +45,9 @@
             <h3 class="text-sm md:text-base font-bold text-white leading-tight drop-shadow-lg">
               {{ cat.name }}
             </h3>
+            <span v-if="cat.productCount > 0" class="text-[11px] text-white/70 mt-0.5">
+              {{ cat.productCount }} {{ t('categoryBanners.products') }}
+            </span>
             <span class="mt-1.5 text-xs font-semibold text-white/90 group-hover:text-white transition-colors inline-flex items-center gap-1">
               {{ t('categoryShowcase.explore') }}
               <svg class="w-3.5 h-3.5 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -71,21 +78,30 @@ interface CategoryBannersProps {
   content?: {
     maxBanners?: number;
     excludeNames?: string[];
-    includeNames?: string[];
   };
   meta?: { uuid: string };
+}
+
+interface CategoryBannerItem {
+  id: number;
+  name: string;
+  link: string;
+  imageUrl: string;
+  productCount: number;
 }
 
 const props = defineProps<CategoryBannersProps>();
 const localePath = useLocalePath();
 const { t } = useI18n();
 const { buildDocumentUrl } = useBuildImageUrl();
-
-const maxBanners = computed(() => props.content?.maxBanners ?? 4);
-const excludeNames = computed(() => (props.content?.excludeNames || []).map((n) => n.toLowerCase()));
-const includeNames = computed(() => (props.content?.includeNames || []).map((n) => n.toLowerCase()));
 const { data: categoryTree } = useCategoryTree();
 const { buildCategoryMenuLink } = useLocalization();
+
+const maxBanners = computed(() => props.content?.maxBanners ?? 6);
+const excludeNames = computed(() => (props.content?.excludeNames || []).map((n) => n.toLowerCase()));
+
+const loading = ref(true);
+const sortedCategories = ref<CategoryBannerItem[]>([]);
 
 const gradients = [
   'linear-gradient(135deg, #384d37 0%, #2c3e2b 100%)',
@@ -93,75 +109,78 @@ const gradients = [
   'linear-gradient(135deg, #2c3e2b 0%, #1e2d1d 100%)',
   'linear-gradient(135deg, #3d5c3a 0%, #2a4028 100%)',
   'linear-gradient(135deg, #536b50 0%, #384d37 100%)',
+  'linear-gradient(135deg, #445e42 0%, #2c3e2b 100%)',
 ];
 
-interface CategoryBannerItem {
-  id: number;
-  name: string;
-  link: string;
-  imageUrl: string;
-}
-
-const flattenCategories = (cats: CategoryTreeItem[]): CategoryTreeItem[] => {
+const getLeafCategories = (): CategoryTreeItem[] => {
   const result: CategoryTreeItem[] = [];
-  const walk = (list: CategoryTreeItem[]) => {
-    for (const cat of list) {
-      result.push(cat);
+  const walk = (items: CategoryTreeItem[]) => {
+    for (const cat of items) {
+      if (cat.type === 'item') {
+        const name = (cat.details?.[0]?.name || '').toLowerCase();
+        const excluded = excludeNames.value.some((ex) => name.includes(ex));
+        if (!excluded) result.push(cat);
+      }
       if (cat.children?.length) walk(cat.children);
     }
   };
-  walk(cats);
+  walk(categoryTree.value || []);
   return result;
 };
 
-const visibleCategories = computed((): CategoryBannerItem[] => {
-  if (!categoryTree.value?.length) return [];
-
-  const allCats = flattenCategories(categoryTree.value);
-
-  if (includeNames.value.length) {
-    const matched: CategoryBannerItem[] = [];
-    const usedIds = new Set<number>();
-
-    for (const targetName of includeNames.value) {
-      const found = allCats.find((cat) => {
-        if (usedIds.has(cat.id)) return false;
-        const detail = cat.details?.[0];
-        const name = (detail?.name || '').toLowerCase();
-        const url = (detail?.nameUrl || '').toLowerCase();
-        return name.includes(targetName) || url.includes(targetName);
-      });
-      if (found) {
-        usedIds.add(found.id);
-        const detail = found.details?.[0];
-        const imgPath = detail?.imagePath || detail?.image2Path || '';
-        matched.push({
-          id: found.id,
-          name: String(detail?.name || `Category ${found.id}`),
-          link: buildCategoryMenuLink(found, categoryTree.value) || '/',
-          imageUrl: buildDocumentUrl(imgPath),
-        });
-      }
-    }
-    return matched.slice(0, maxBanners.value);
+const fetchProductCounts = async () => {
+  const categories = getLeafCategories();
+  if (!categories.length) {
+    loading.value = false;
+    return;
   }
 
-  return allCats
-    .filter((cat: CategoryTreeItem) => {
-      if (cat.type !== 'item') return false;
-      const name = (cat.details?.[0]?.name || '').toLowerCase();
-      return !excludeNames.value.some((ex) => name.includes(ex));
-    })
-    .slice(0, maxBanners.value)
-    .map((cat: CategoryTreeItem) => {
-      const detail = cat.details?.[0];
-      const imgPath = detail?.imagePath || detail?.image2Path || '';
-      return {
-        id: cat.id,
-        name: String(detail?.name || `Category ${cat.id}`),
-        link: buildCategoryMenuLink(cat, categoryTree.value) || '/',
-        imageUrl: buildDocumentUrl(imgPath),
-      };
-    });
-});
+  try {
+    const sdk = useSdk();
+    const results = await Promise.all(
+      categories.map((cat) =>
+        sdk.plentysystems.getFacet({
+          categoryId: String(cat.id),
+          itemsPerPage: 1,
+          page: 1,
+          type: 'category',
+        }).then((res) => ({
+          cat,
+          count: (res?.data as any)?.pagination?.totals ?? (res?.data?.products as any[])?.length ?? 0,
+        })).catch(() => ({ cat, count: 0 })),
+      ),
+    );
+
+    const withCounts: CategoryBannerItem[] = results
+      .filter((r) => r.count > 0)
+      .sort((a, b) => b.count - a.count)
+      .slice(0, maxBanners.value)
+      .map((r) => {
+        const detail = r.cat.details?.[0];
+        const imgPath = detail?.imagePath || detail?.image2Path || '';
+        return {
+          id: r.cat.id,
+          name: String(detail?.name || `Category ${r.cat.id}`),
+          link: buildCategoryMenuLink(r.cat, categoryTree.value) || '/',
+          imageUrl: buildDocumentUrl(imgPath),
+          productCount: r.count,
+        };
+      });
+
+    sortedCategories.value = withCounts;
+  } catch {
+    sortedCategories.value = [];
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(fetchProductCounts);
+
+watch(
+  () => categoryTree.value,
+  (val) => {
+    if (val?.length) fetchProductCounts();
+  },
+);
 </script>
