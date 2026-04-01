@@ -11,8 +11,15 @@
         <section class="px-4 pt-0 pb-3" style="margin-top: -30px">
           <template v-for="key in configuration?.fieldsOrder" :key="key">
             <template v-if="key === 'itemName' && configuration?.fields.itemName">
-              <div v-if="manufacturerName || storeName" class="mb-3">
-                <span class="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              <div v-if="manufacturerLogo || manufacturerName || storeName" class="mb-3">
+                <NuxtImg
+                  v-if="manufacturerLogo"
+                  :src="manufacturerLogo"
+                  :alt="manufacturerName || storeName"
+                  class="h-6 md:h-8 w-auto object-contain"
+                  loading="lazy"
+                />
+                <span v-else class="text-xs font-semibold uppercase tracking-widest text-neutral-400">
                   {{ manufacturerName || storeName }}
                 </span>
               </div>
@@ -395,7 +402,7 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-api';
+import { productGetters, reviewGetters, productBundleGetters, manufacturerGetters } from '@plentymarkets/shop-api';
 import { SfCounter, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip, SfLink } from '@storefront-ui/vue';
 import type { PriceCardPadding, PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import type { PayPalAddToCartCallback } from '#paypal/types';
@@ -488,10 +495,14 @@ const showNotifyMe = computed(() => getNotifyMeSetting().toString() === 'true');
 const localePath = useLocalePath();
 const runtimeConfig = useRuntimeConfig();
 const storeName = runtimeConfig.public.storename || '';
-const manufacturerName = computed(() => {
-  if (!props?.product?.item) return '';
-  const manufacturer = productGetters.getManufacturer(props.product);
-  return manufacturer?.externalName || '';
+const manufacturer = computed(() => {
+  if (!props?.product?.item) return null;
+  return productGetters.getManufacturer(props.product);
+});
+const manufacturerName = computed(() => manufacturer.value?.externalName || '');
+const manufacturerLogo = computed(() => {
+  if (!manufacturer.value) return '';
+  return manufacturerGetters.getManufacturerLogo(manufacturer.value) || '';
 });
 const variationNumber = computed(() => props.product?.variation?.number || '');
 
