@@ -31,5 +31,9 @@ export type ProductRecommendedProductsContent = {
   };
   layout?: {
     fullWidth?: boolean;
+    fullWidthContainer?: boolean;
+    displayMode?: 'slider' | 'grid';
+    gridColumns?: number;
+    maxItems?: number;
   };
 };

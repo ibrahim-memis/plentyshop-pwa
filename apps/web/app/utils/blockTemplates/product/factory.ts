@@ -6,8 +6,6 @@ export const createProduct = (): Block[] => {
   const itemTextTitle = t('defaultTemplate.product.itemText.title');
   const technicalDataTitle = t('defaultTemplate.product.technicalData.title');
   const customerReviewTitle = t('defaultTemplate.product.customerReview.title');
-  const legalInfoTitle = t('defaultTemplate.product.productLegalInformation.title');
-  const legalInfoLinkText = t('defaultTemplate.product.productLegalInformation.linkText');
 
   return [
     {
@@ -58,7 +56,7 @@ export const createProduct = (): Block[] => {
             fields: {
               itemName: true,
               price: true,
-              tags: true,
+              tags: false,
               availability: true,
               starRating: true,
               orderProperties: true,
@@ -66,32 +64,33 @@ export const createProduct = (): Block[] => {
               previewText: true,
               attributes: true,
               itemBundle: false,
-              graduatedPrices: false,
+              graduatedPrices: true,
               addToWishlist: true,
               quantityAndAddToCart: true,
+              requestQuote: true,
               itemText: false,
               technicalData: false,
             },
             fieldsOrder: [
               'itemName',
-              'price',
-              'tags',
-              'availability',
               'starRating',
+              'previewText',
+              'price',
+              'availability',
               'variationProperties',
               'orderProperties',
-              'previewText',
               'attributes',
               'itemBundle',
               'graduatedPrices',
               'addToWishlist',
               'quantityAndAddToCart',
+              'requestQuote',
               'itemText',
               'technicalData',
             ],
             fieldsDisabled: ['quantityAndAddToCart', 'price', 'itemBundle', 'attributes'],
             wishlistSize: 'small',
-            dropShadow: true,
+            dropShadow: false,
             borders: true,
             borderColor: '#EFF4F1',
             layout: {
@@ -105,81 +104,164 @@ export const createProduct = (): Block[] => {
       ],
     },
     {
-      name: 'ItemText',
-      type: 'content',
+      name: 'MultiGrid',
+      type: 'structure',
       meta: {
         uuid: uuid(),
         isGlobalTemplate: false,
       },
-      content: {
-        text: {
-          title: itemTextTitle,
-        },
+      configuration: {
+        columnWidths: [7, 5],
+        sticky: [0],
         layout: {
-          displayAsCollapsable: true,
-          initiallyCollapsed: false,
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
+          marginTop: '0',
+          marginBottom: '60',
         },
       },
-    },
-    {
-      name: 'TechnicalData',
-      type: 'content',
-      meta: {
-        uuid: uuid(),
-        isGlobalTemplate: false,
+      layout: {
+        gap: 'XXL',
+        narrowContainer: true,
       },
-      content: {
-        text: {
-          title: technicalDataTitle,
+      content: [
+        {
+          name: 'ItemText',
+          type: 'content',
+          meta: {
+            uuid: uuid(),
+            isGlobalTemplate: false,
+          },
+          parent_slot: 0,
+          content: {
+            text: {
+              title: itemTextTitle,
+            },
+            layout: {
+              displayAsCollapsable: true,
+              initiallyCollapsed: false,
+              paddingTop: 0,
+              paddingBottom: 8,
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+          },
         },
-        layout: {
-          displayAsCollapsable: true,
-          initiallyCollapsed: false,
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
+        {
+          name: 'ItemData',
+          type: 'content',
+          meta: {
+            uuid: uuid(),
+            isGlobalTemplate: false,
+          },
+          parent_slot: 0,
+          content: {
+            text: {
+              title: t('defaultTemplate.product.itemData.title'),
+            },
+            fields: {
+              itemId: true,
+              condition: true,
+              manufacturer: true,
+              manufacturingCountry: true,
+              content: true,
+              grossWeight: true,
+              netWeight: true,
+              dimensions: true,
+              model: true,
+              externalVariationId: false,
+              customTariffNumber: false,
+              ageRating: false,
+              properties: true,
+            },
+            fieldsOrder: [
+              'manufacturer',
+              'model',
+              'dimensions',
+              'grossWeight',
+              'netWeight',
+              'content',
+              'condition',
+              'manufacturingCountry',
+              'itemId',
+              'properties',
+            ],
+            layout: {
+              displayAsCollapsable: true,
+              initiallyCollapsed: true,
+              paddingTop: 0,
+              paddingBottom: 8,
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+          },
         },
-      },
-    },
-    {
-      name: 'CustomerReview',
-      type: 'content',
-      meta: {
-        uuid: uuid(),
-        isGlobalTemplate: false,
-      },
-      content: {
-        text: {
-          title: customerReviewTitle,
+        {
+          name: 'TechnicalData',
+          type: 'content',
+          meta: {
+            uuid: uuid(),
+            isGlobalTemplate: false,
+          },
+          parent_slot: 0,
+          content: {
+            text: {
+              title: technicalDataTitle,
+            },
+            layout: {
+              displayAsCollapsable: true,
+              initiallyCollapsed: true,
+              paddingTop: 0,
+              paddingBottom: 8,
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+          },
         },
-        layout: {
-          collapsible: true,
-          initiallyCollapsed: false,
+        {
+          name: 'CustomerReview',
+          type: 'content',
+          meta: {
+            uuid: uuid(),
+            isGlobalTemplate: false,
+          },
+          parent_slot: 0,
+          content: {
+            text: {
+              title: customerReviewTitle,
+            },
+            layout: {
+              collapsible: true,
+              initiallyCollapsed: true,
+              paddingTop: 0,
+              paddingBottom: 8,
+            },
+          },
         },
-      },
-    },
-    {
-      name: 'ProductLegalInformation',
-      type: 'content',
-      meta: {
-        uuid: uuid(),
-        isGlobalTemplate: false,
-      },
-      content: {
-        text: {
-          title: legalInfoTitle,
-          linkText: legalInfoLinkText,
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 15,
-          paddingRight: 0,
+        {
+          name: 'ProductRecommendedProducts',
+          type: 'content',
+          meta: {
+            uuid: uuid(),
+            isGlobalTemplate: false,
+          },
+          parent_slot: 1,
+          content: {
+            text: {
+              title: t('defaultTemplate.product.recommendedAccessory.title'),
+            },
+            source: {
+              type: 'cross_selling',
+              itemId: '',
+              categoryId: '',
+              crossSellingRelation: 'Accessory',
+            },
+            layout: {
+              displayMode: 'grid',
+              gridColumns: 2,
+              maxItems: 4,
+            },
+          },
         },
-      },
+      ],
     },
     {
       name: 'ProductRecommendedProducts',
@@ -189,11 +271,20 @@ export const createProduct = (): Block[] => {
         isGlobalTemplate: false,
       },
       content: {
+        text: {
+          title: t('defaultTemplate.product.recommendedSimilar.title'),
+        },
         source: {
-          type: 'category',
+          type: 'cross_selling',
           itemId: '',
           categoryId: '',
           crossSellingRelation: 'Similar',
+        },
+        layout: {
+          displayMode: 'grid',
+          gridColumns: 5,
+          maxItems: 5,
+          fullWidthContainer: true,
         },
       },
     },

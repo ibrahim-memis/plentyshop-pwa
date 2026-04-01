@@ -1295,6 +1295,15 @@
       "productLegalInformation": {
         "title": "Item legal details",
         "linkText": "EU Responsible Person - click for details"
+      },
+      "itemData": {
+        "title": "Product details"
+      },
+      "recommendedAccessory": {
+        "title": "Order together"
+      },
+      "recommendedSimilar": {
+        "title": "Similar Products"
       }
     },
     "homepage": {

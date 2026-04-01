@@ -14,6 +14,7 @@ export type PriceCardFieldKey =
   | 'graduatedPrices'
   | 'addToWishlist'
   | 'quantityAndAddToCart'
+  | 'requestQuote'
   | 'itemText'
   | 'technicalData';
 

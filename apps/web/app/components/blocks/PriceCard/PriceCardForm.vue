@@ -215,7 +215,7 @@ const { isFullWidth } = useFullWidthToggleForContent(priceCardBlock);
 const { getSetting } = useSiteSettings('dontSplitItemBundle');
 priceCardBlock.value.fields['itemBundle'] = getSetting() !== '1';
 
-const fieldLabels = {
+const fieldLabels: Record<PriceCardFieldKey, string> = {
   itemName: getEditorTranslation('field-itemName'),
   price: getEditorTranslation('field-price'),
   tags: getEditorTranslation('field-tags'),
@@ -229,6 +229,7 @@ const fieldLabels = {
   graduatedPrices: getEditorTranslation('field-graduatedPrices'),
   addToWishlist: getEditorTranslation('field-addToWishlist'),
   quantityAndAddToCart: getEditorTranslation('field-quantityAndAddToCart'),
+  requestQuote: getEditorTranslation('field-requestQuote'),
   itemText: getEditorTranslation('field-itemText'),
   technicalData: getEditorTranslation('field-technicalData'),
 };
@@ -265,6 +266,7 @@ const layoutOpen = ref(false);
     "field-graduatedPrices": "Graduated prices",
     "field-addToWishlist": "Add to wishlist",
     "field-quantityAndAddToCart": "Quantity and add to cart",
+    "field-requestQuote": "Request quote",
     "field-itemText": "Item text",
     "field-technicalData": "Technical data",
 
@@ -317,6 +319,7 @@ const layoutOpen = ref(false);
     "field-graduatedPrices": "Graduated prices",
     "field-addToWishlist": "Add to wishlist",
     "field-quantityAndAddToCart": "Quantity and add to cart",
+    "field-requestQuote": "Angebotsanfrage",
     "field-itemText": "Item text",
     "field-technicalData": "Technical data",
 

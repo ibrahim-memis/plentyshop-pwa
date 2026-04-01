@@ -1124,6 +1124,25 @@
     "loginToPurchase": "Einloggen & Bestellen",
     "loginRequiredDesc": "Melden Sie sich an, um Preise zu sehen und Bestellungen aufzugeben.",
     "viewProduct": "Produkt ansehen",
+    "allPricesExclVAT": "Alle Preise zzgl. MwSt.",
+    "requestQuote": "Kontakt aufnehmen",
+    "requestQuoteDesc": "Für Großhandelspreise und individuelle Konditionen kontaktieren Sie unser B2B-Team.",
+    "stockInfo": {
+      "level": "Bestandslevel",
+      "delivery": "Lieferzeit",
+      "status": "Bestellstatus",
+      "high": "Hoch",
+      "medium": "Mittel",
+      "low": "Niedrig",
+      "veryLow": "Sehr niedrig",
+      "outOfStock": "Ausverkauft",
+      "orderable": "Bestellbar",
+      "notOrderable": "Nicht bestellbar",
+      "sameDay": "Sofort",
+      "day": "Tag",
+      "days": "Tage",
+      "pieces": "Stk."
+    },
     "showAll": "alle Filter",
     "graduatedPrices": {
       "discount": "RABATT",
@@ -1386,6 +1405,15 @@
       "productLegalInformation": {
         "title": "Rechtliche Artikeldetails",
         "linkText": "EU-Verantwortliche Person - klicken Sie für Details"
+      },
+      "itemData": {
+        "title": "Produktdetails"
+      },
+      "recommendedAccessory": {
+        "title": "Zusammen kaufen"
+      },
+      "recommendedSimilar": {
+        "title": "Ähnliche Produkte"
       }
     },
     "homepage": {
@@ -1451,5 +1479,15 @@
         "title": "Services"
       }
     }
+  },
+  "volumeDiscount": {
+    "title": "Mengenrabatte",
+    "subtitle": "Mehr kaufen, mehr sparen",
+    "quantity": "Menge",
+    "discount": "Rabatt",
+    "savings": "Sie sparen",
+    "pieces": "Stück",
+    "save": "Sparen",
+    "info": "Rabatte werden automatisch an der Kasse angewendet."
   }
 }
