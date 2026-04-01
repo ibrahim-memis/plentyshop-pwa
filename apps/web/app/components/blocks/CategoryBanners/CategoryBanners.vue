@@ -98,7 +98,12 @@ const { data: categoryTree } = useCategoryTree();
 const { buildCategoryMenuLink } = useLocalization();
 
 const maxBanners = computed(() => props.content?.maxBanners ?? 6);
-const excludeNames = computed(() => (props.content?.excludeNames || []).map((n) => n.toLowerCase()));
+
+const defaultExclude = ['marken', 'kollektionen'];
+const excludeNames = computed(() => {
+  const custom = (props.content?.excludeNames || []).map((n) => n.toLowerCase());
+  return [...defaultExclude, ...custom];
+});
 
 const loading = ref(true);
 const sortedCategories = ref<CategoryBannerItem[]>([]);
@@ -112,24 +117,19 @@ const gradients = [
   'linear-gradient(135deg, #445e42 0%, #2c3e2b 100%)',
 ];
 
-const getLeafCategories = (): CategoryTreeItem[] => {
-  const result: CategoryTreeItem[] = [];
-  const walk = (items: CategoryTreeItem[]) => {
-    for (const cat of items) {
-      if (cat.type === 'item') {
-        const name = (cat.details?.[0]?.name || '').toLowerCase();
-        const excluded = excludeNames.value.some((ex) => name.includes(ex));
-        if (!excluded) result.push(cat);
-      }
-      if (cat.children?.length) walk(cat.children);
-    }
-  };
-  walk(categoryTree.value || []);
-  return result;
+const getTopLevelCategories = (): CategoryTreeItem[] => {
+  if (!categoryTree.value?.length) return [];
+
+  return categoryTree.value.filter((cat) => {
+    if (cat.type !== 'item') return false;
+    const name = (cat.details?.[0]?.name || '').toLowerCase();
+    const url = (cat.details?.[0]?.nameUrl || '').toLowerCase();
+    return !excludeNames.value.some((ex) => name.includes(ex) || url.includes(ex));
+  });
 };
 
 const fetchProductCounts = async () => {
-  const categories = getLeafCategories();
+  const categories = getTopLevelCategories();
   if (!categories.length) {
     loading.value = false;
     return;
