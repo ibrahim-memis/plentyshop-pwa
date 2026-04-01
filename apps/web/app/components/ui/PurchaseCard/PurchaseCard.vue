@@ -243,6 +243,11 @@
                   </span>
                 </div>
 
+                <UnitContentSelect
+                  v-if="product && productGetters.possibleUnitCombination(product).length > 1"
+                  :product="product"
+                />
+
                 <div class="mb-4">
                   <div class="flex items-stretch gap-2">
                     <WishlistButton
@@ -253,6 +258,30 @@
                       square
                       class="!m-0 !rounded-xl !border !border-neutral-200 hover:!border-[#384d37]/30 !bg-white !text-neutral-500 hover:!text-[#384d37] !w-11 !h-11 shrink-0 transition-all duration-200"
                     />
+                    <div class="flex items-stretch border border-neutral-200 rounded-xl overflow-hidden shrink-0">
+                      <button
+                        type="button"
+                        class="w-9 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 hover:text-[#384d37] transition-colors cursor-pointer"
+                        :disabled="quantitySelectorValue <= minimumOrderQuantity"
+                        @click="decrementQuantity"
+                      >
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" /></svg>
+                      </button>
+                      <input
+                        :value="quantitySelectorValue"
+                        type="number"
+                        class="w-10 text-center text-sm font-semibold text-neutral-800 border-x border-neutral-200 outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                        :min="minimumOrderQuantity"
+                        @change="handleQuantityInput"
+                      />
+                      <button
+                        type="button"
+                        class="w-9 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 hover:text-[#384d37] transition-colors cursor-pointer"
+                        @click="incrementQuantity"
+                      >
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                      </button>
+                    </div>
                     <div v-if="showNotifyMe && !productGetters.isSalable(product)" class="flex-1">
                       <NotifyMe :variation-id="Number(productGetters.getVariationId(product))" />
                     </div>
@@ -563,6 +592,21 @@ const paypalHandleAddToCart = async (callback: PayPalAddToCartCallback) => {
 
 const changeQuantity = (quantity: string) => {
   quantitySelectorValue.value = Number(quantity);
+};
+
+const incrementQuantity = () => {
+  quantitySelectorValue.value += 1;
+};
+
+const decrementQuantity = () => {
+  if (quantitySelectorValue.value > minimumOrderQuantity.value) {
+    quantitySelectorValue.value -= 1;
+  }
+};
+
+const handleQuantityInput = (e: Event) => {
+  const val = Number((e.target as HTMLInputElement).value);
+  quantitySelectorValue.value = Math.max(minimumOrderQuantity.value, val || minimumOrderQuantity.value);
 };
 
 const isReviewsAccordionOpen = () => {
