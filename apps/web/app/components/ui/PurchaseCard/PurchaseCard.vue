@@ -8,8 +8,8 @@
   >
     <div class="relative">
       <div class="drift-zoom-image">
-        <section class="px-4 pt-0 pb-3" style="margin-top: -30px">
-          <div v-if="manufacturerLogo || manufacturerName || storeName" class="mb-[20px] mt-[15px]">
+        <section class="px-4 pt-0 pb-3" :style="{ marginTop: configuration?.borders ? '0px' : '-30px' }">
+          <div v-if="configuration?.fields.itemName && (manufacturerLogo || manufacturerName || storeName)" class="mb-[20px] mt-[15px]">
             <NuxtImg
               v-if="manufacturerLogo"
               :src="manufacturerLogo"
@@ -176,6 +176,11 @@
                       <span class="text-[10px] font-semibold uppercase tracking-wider" :class="realStock > 0 ? 'text-[#384d37]/60' : 'text-red-400'">{{ t('product.stockInfo.pieces') }}</span>
                     </div>
                     <div v-else-if="stockLoading" class="w-14 h-7 bg-neutral-100 rounded-lg animate-pulse" />
+                    <div v-else class="flex items-center gap-1.5">
+                      <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" :class="availabilityId <= 2 ? 'bg-[#384d37]/10 text-[#384d37]' : availabilityId <= 4 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-600'">
+                        {{ stockLevelLabel }}
+                      </span>
+                    </div>
                   </div>
 
                   <div class="h-1 w-full bg-neutral-100">
@@ -209,23 +214,23 @@
               <!-- Rendered inline under itemName -->
             </template>
 
-            <template v-if="key === 'variationProperties' && configuration?.fields.variationProperties && isAuthorized">
+            <template v-if="key === 'variationProperties' && configuration?.fields.variationProperties">
               <div class="mb-5 variation-properties">
                 <VariationProperties :product="product" />
               </div>
             </template>
 
-            <template v-if="key === 'attributes' && configuration?.fields.attributes && isAuthorized">
+            <template v-if="key === 'attributes' && configuration?.fields.attributes">
               <div class="mb-5">
                 <ProductAttributes :product="product" />
               </div>
             </template>
 
-            <template v-if="key === 'itemBundle' && isAuthorized">
+            <template v-if="key === 'itemBundle'">
               <BundleOrderItems v-if="product.bundleComponents && showBundleComponents" :product="product" />
             </template>
 
-            <template v-if="key === 'orderProperties' && configuration?.fields.orderProperties && isAuthorized">
+            <template v-if="key === 'orderProperties' && configuration?.fields.orderProperties">
               <OrderProperties :product="product" />
             </template>
 
@@ -238,6 +243,11 @@
             </template>
 
             <template v-if="key === 'quantityAndAddToCart' && configuration?.fields.quantityAndAddToCart">
+              <UnitContentSelect
+                v-if="product && productGetters.possibleUnitCombination(product).length > 1"
+                :product="product"
+              />
+
               <template v-if="isAuthorized">
                 <div
                   v-if="minimumOrderQuantity > 1"
@@ -251,11 +261,6 @@
                   </span>
                 </div>
 
-                <UnitContentSelect
-                  v-if="product && productGetters.possibleUnitCombination(product).length > 1"
-                  :product="product"
-                />
-
                 <div class="mb-4">
                   <div class="flex items-stretch gap-2">
                     <WishlistButton
@@ -266,30 +271,6 @@
                       square
                       class="!m-0 !rounded-xl !border !border-neutral-200 hover:!border-[#384d37]/30 !bg-white !text-neutral-500 hover:!text-[#384d37] !w-11 !h-11 shrink-0 transition-all duration-200"
                     />
-                    <div class="flex items-stretch border border-neutral-200 rounded-xl overflow-hidden shrink-0">
-                      <button
-                        type="button"
-                        class="w-9 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 hover:text-[#384d37] transition-colors cursor-pointer"
-                        :disabled="quantitySelectorValue <= minimumOrderQuantity"
-                        @click="decrementQuantity"
-                      >
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" /></svg>
-                      </button>
-                      <input
-                        :value="quantitySelectorValue"
-                        type="number"
-                        class="w-10 text-center text-sm font-semibold text-neutral-800 border-x border-neutral-200 outline-none appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                        :min="minimumOrderQuantity"
-                        @change="handleQuantityInput"
-                      />
-                      <button
-                        type="button"
-                        class="w-9 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 hover:text-[#384d37] transition-colors cursor-pointer"
-                        @click="incrementQuantity"
-                      >
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
-                      </button>
-                    </div>
                     <div v-if="showNotifyMe && !productGetters.isSalable(product)" class="flex-1">
                       <NotifyMe :variation-id="Number(productGetters.getVariationId(product))" />
                     </div>
@@ -669,6 +650,15 @@ const deliveryDaysText = computed(() => {
   return `${days} ${t('product.stockInfo.days')}`;
 });
 
+const stockLevelLabel = computed(() => {
+  const id = availabilityId.value;
+  if (id <= 1) return t('product.stockInfo.high');
+  if (id === 2) return t('product.stockInfo.medium');
+  if (id === 3) return t('product.stockInfo.low');
+  if (id === 4) return t('product.stockInfo.veryLow');
+  return t('product.stockInfo.outOfStock');
+});
+
 const realStock = ref<number | null>(null);
 const stockLoading = ref(false);
 
@@ -676,7 +666,10 @@ const fetchRealStock = async (varId: number) => {
   if (!varId) return;
   stockLoading.value = true;
   try {
-    const data = await $fetch<{ netStock: number | null; configured: boolean }>(`/api/stock/${varId}`);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+    const data = await $fetch<{ netStock: number | null; configured: boolean }>(`/api/stock/${varId}`, { signal: controller.signal });
+    clearTimeout(timeout);
     realStock.value = data?.netStock ?? null;
   } catch {
     realStock.value = null;

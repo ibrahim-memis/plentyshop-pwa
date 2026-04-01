@@ -1,37 +1,30 @@
 <template>
   <div
     v-if="productGetters.possibleUnitCombination(product).length > 1"
-    class="mt-2"
+    class="mb-4"
     data-testing="variation-select-unit-wrapper"
   >
-    <div class="input-unit w-full">
-      <label
-        class="leading-5 text-sm text-zinc-900"
-        for="unit-combination"
-        data-testing="variation-select-unit-label"
-        >{{ t('common.labels.content') }}</label
+    <p class="text-xs text-neutral-500 mb-2" data-testing="variation-select-unit-label">
+      {{ t('common.labels.content') }}
+    </p>
+    <div class="flex flex-wrap gap-2">
+      <button
+        v-for="unit in productGetters.possibleUnitCombination(product)"
+        :key="unit.variationId"
+        type="button"
+        class="px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-150 cursor-pointer"
+        :class="unit.variationId.toString() === selectedUnit
+          ? 'border-[#384d37] bg-[#384d37]/5 text-[#384d37]'
+          : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50'"
+        @click="onChange(unit.variationId)"
       >
-      <SfSelect
-        id="unit-combination"
-        class="custom-select w-full"
-        data-testing="variation-select-unit"
-        :model-value="selectedUnit"
-        @update:model-value="(event) => onChange(Number(event))"
-      >
-        <option
-          v-for="unit in productGetters.possibleUnitCombination(product)"
-          :key="unit.variationId"
-          :value="unit.variationId"
-        >
-          {{ unit.unitName }}
-        </option>
-      </SfSelect>
+        {{ unit.unitName }}
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { SfSelect } from '@storefront-ui/vue';
 import { type Product, productGetters } from '@plentymarkets/shop-api';
 
 const props = defineProps<{

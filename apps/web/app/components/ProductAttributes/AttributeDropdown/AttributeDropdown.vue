@@ -1,35 +1,32 @@
 <template>
   <div>
-    <label
-      :for="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      class="leading-5 text-sm text-zinc-900"
-    >
+    <p class="text-xs text-neutral-500 mb-2">
       {{ productAttributeGetters.getAttributeName(attribute) }}
-    </label>
-    <SfSelect
-      :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      v-model="value"
-      size="lg"
-      :placeholder="t('form.selectPlaceholder')"
-      :invalid="Boolean(errors['selectedValue'])"
-      @update:model-value="(event) => doUpdateValue(Number(event))"
-    >
-      <option :value="-1">{{ t('form.selectPlaceholder') }}</option>
-      <option
+    </p>
+    <div class="flex flex-wrap gap-2">
+      <button
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
-        :value="productAttributeGetters.getAttributeValueId(item)"
+        type="button"
+        class="px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-150"
+        :class="[
+          productAttributeGetters.isAttributeValueDisabled(item)
+            ? 'border-neutral-100 bg-neutral-50 text-neutral-300 cursor-not-allowed line-through'
+            : value === productAttributeGetters.getAttributeValueId(item).toString()
+              ? 'border-[#384d37] bg-[#384d37]/5 text-[#384d37] cursor-pointer'
+              : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50 cursor-pointer'
+        ]"
         :disabled="productAttributeGetters.isAttributeValueDisabled(item)"
+        @click="doUpdateValue(productAttributeGetters.getAttributeValueId(item))"
       >
         {{ productAttributeGetters.getAttributeValueName(item) }}
-      </option>
-    </SfSelect>
+      </button>
+    </div>
     <ErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { SfSelect } from '@storefront-ui/vue';
 import type { AttributeSelectProps } from '../types';
 import { productAttributeGetters } from '@plentymarkets/shop-api';
 import { number, object } from 'yup';
