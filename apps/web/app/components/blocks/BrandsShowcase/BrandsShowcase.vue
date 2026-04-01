@@ -88,7 +88,12 @@ const brands = computed((): BrandItem[] => {
   if (!markenCat?.children?.length) return [];
 
   return markenCat.children
-    .filter((child: CategoryTreeItem) => child.type === 'item')
+    .filter((child: CategoryTreeItem) => {
+      if (child.type !== 'item') return false;
+      const detail = child.details?.[0];
+      const imgPath = detail?.imagePath || detail?.image2Path || '';
+      return !!imgPath;
+    })
     .slice(0, maxBrands.value)
     .map((child: CategoryTreeItem) => {
       const detail = child.details?.[0];
