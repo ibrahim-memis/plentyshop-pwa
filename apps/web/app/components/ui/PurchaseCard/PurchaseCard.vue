@@ -201,23 +201,23 @@
               <!-- Rendered inline under itemName -->
             </template>
 
-            <template v-if="key === 'variationProperties' && configuration?.fields.variationProperties">
+            <template v-if="key === 'variationProperties' && configuration?.fields.variationProperties && isAuthorized">
               <div class="mb-5 variation-properties">
                 <VariationProperties :product="product" />
               </div>
             </template>
 
-            <template v-if="key === 'attributes' && configuration?.fields.attributes">
+            <template v-if="key === 'attributes' && configuration?.fields.attributes && isAuthorized">
               <div class="mb-5">
                 <ProductAttributes :product="product" />
               </div>
             </template>
 
-            <template v-if="key === 'itemBundle'">
+            <template v-if="key === 'itemBundle' && isAuthorized">
               <BundleOrderItems v-if="product.bundleComponents && showBundleComponents" :product="product" />
             </template>
 
-            <template v-if="key === 'orderProperties' && configuration?.fields.orderProperties">
+            <template v-if="key === 'orderProperties' && configuration?.fields.orderProperties && isAuthorized">
               <OrderProperties :product="product" />
             </template>
 
