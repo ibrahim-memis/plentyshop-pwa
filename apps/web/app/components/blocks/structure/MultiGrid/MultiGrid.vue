@@ -77,6 +77,7 @@ const gapClassMap: Record<string, string> = {
   M: 'gap-y-2 md:gap-x-2 md:gap-y-0',
   L: 'gap-y-3 md:gap-x-3 md:gap-y-0',
   XL: 'gap-y-5 md:gap-x-5 md:gap-y-0',
+  XXL: 'gap-y-4 md:gap-x-[15px] md:gap-y-0',
 };
 const gridGapClass = computed(() => gapClassMap[configuration.layout?.gap || 'M']);
 const defaultMarginBottom = computed(() => getVerticalPixels(blockSize.value));
