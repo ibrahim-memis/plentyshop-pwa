@@ -17,7 +17,7 @@ export const createProduct = (): Block[] => {
       },
       configuration: {
         columnWidths: [5, 4, 3],
-        sticky: [2],
+        sticky: [],
         layout: {
           marginTop: '0',
           marginBottom: '80',

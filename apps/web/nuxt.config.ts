@@ -123,6 +123,9 @@ export default defineNuxtConfig({
   },
   pages: true,
   runtimeConfig: {
+    plentyAdminUser: process.env.PLENTY_ADMIN_USER || '',
+    plentyAdminPassword: process.env.PLENTY_ADMIN_PASSWORD || '',
+    plentyApiEndpoint: process.env.API_ENDPOINT || '',
     public: {
       domain: validateApiUrl(process.env.API_URL) ?? process.env.API_ENDPOINT,
       apiEndpoint: process.env.API_ENDPOINT,

@@ -109,7 +109,7 @@
 
             <template v-if="key === 'price' && configuration?.fields.price">
               <template v-if="isAuthorized">
-                <div class="mb-1" style="margin-top: 20px">
+                <div class="mb-1" style="margin-top: -5px">
                   <Price :price="priceWithProperties" :crossed-price="crossedPrice" :show-net-badge="showNetPrices" />
                   <div
                     v-if="(productBundleGetters?.getBundleDiscount(product) ?? 0) > 0 && showBundleComponents"
