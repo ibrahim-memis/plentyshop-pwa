@@ -32,6 +32,11 @@
     "contactBtn": "Kontakt",
     "continueBtn": "Weiter einkaufen"
   },
+  "filterBar": {
+    "filterBy": "Filtern nach",
+    "sortBy": "Sortieren nach",
+    "articles": "Artikel"
+  },
   "sidebar": {
     "categories": "Kategorien",
     "pages": "Seiten",

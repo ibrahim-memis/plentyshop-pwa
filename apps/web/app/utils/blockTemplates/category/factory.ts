@@ -1,5 +1,4 @@
 import type { Block } from '@plentymarkets/shop-api';
-import { v4 as uuid } from 'uuid';
 import { createFooter } from '../footer/factory';
 
 export function createCategory(): Block[] {
@@ -10,7 +9,7 @@ export function createCategory(): Block[] {
       name: 'CategoryData',
       type: 'content',
       meta: {
-        uuid: uuid(),
+        uuid: 'catdata-de-001',
         isGlobalTemplate: false,
       },
       content: {
@@ -39,94 +38,87 @@ export function createCategory(): Block[] {
           background: true,
         },
         layout: {
-          paddingTop: 40,
-          paddingBottom: 40,
+          paddingTop: 6,
+          paddingBottom: 2,
           paddingLeft: 0,
           paddingRight: 0,
         },
       },
     },
     {
-      name: 'MultiGrid',
-      type: 'structure',
+      name: 'SubcategoryBar',
+      type: 'content',
       meta: {
-        uuid: uuid(),
+        uuid: 'subcategory-bar-001',
         isGlobalTemplate: false,
       },
-      configuration: {
-        columnWidths: [3, 9],
+      content: {
+        enabled: true,
       },
-      layout: {
-        gap: 'XL',
-        narrowContainer: true,
+    },
+    {
+      name: 'SortFilter',
+      type: 'content',
+      meta: {
+        uuid: 'sortfilter-de-001',
+        isGlobalTemplate: false,
       },
-      content: [
-        {
-          name: 'SortFilter',
-          type: 'content',
-          meta: {
-            uuid: uuid(),
-            isGlobalTemplate: false,
-          },
-          parent_slot: 0,
-          content: {
-            fields: {
-              category: true,
-              sortBy: true,
-              perPage: true,
-              itemRating: true,
-              manufacturer: true,
-              price: true,
-              availability: true,
-              customizedFilters: true,
-            },
-            filtersOrder: [
-              'category',
-              'sortBy',
-              'perPage',
-              'itemRating',
-              'manufacturer',
-              'price',
-              'availability',
-              'customizedFilters',
-            ],
-            filtersDisabled: [],
-            showAllFiltersImmediately: true,
-            numberOfFiltersToShowInitially: 0,
-          },
+      content: {
+        fields: {
+          category: true,
+          sortBy: true,
+          perPage: true,
+          itemRating: true,
+          manufacturer: true,
+          price: true,
+          availability: true,
+          customizedFilters: true,
         },
-        {
-          name: 'ItemGrid',
-          type: 'content',
-          meta: {
-            uuid: uuid(),
-            isGlobalTemplate: false,
-          },
-          parent_slot: 1,
-          content: {
-            itemsPerRowDesktop: 4,
-            itemsPerRowTablet: 3,
-            itemsPerRowMobile: 1,
-            showItemCount: true,
-            itemCountPosition: 'left',
-            fields: {
-              title: true,
-              rating: true,
-              previewText: true,
-              price: true,
-              addToCart: true,
-            },
-            fieldsOrder: ['title', 'rating', 'previewText', 'price', 'addToCart'],
-            fieldsDisabled: ['title'],
-            contentAlignment: 'left',
-            cardBorders: true,
-            showSecondImageOnHover: false,
-            showWishlistButton: true,
-            addToCartStyle: 'primary',
-            paginationPosition: 'bottom',
-          },
+        filtersOrder: [
+          'category',
+          'sortBy',
+          'perPage',
+          'itemRating',
+          'manufacturer',
+          'price',
+          'availability',
+          'customizedFilters',
+        ],
+        filtersDisabled: [],
+        showAllFiltersImmediately: true,
+        numberOfFiltersToShowInitially: 0,
+      },
+    },
+    {
+      name: 'ItemGrid',
+      type: 'content',
+      meta: {
+        uuid: 'itemgrid-de-001',
+        isGlobalTemplate: false,
+      },
+      content: {
+        itemsPerRowDesktop: 4,
+        itemsPerRowTablet: 3,
+        itemsPerRowMobile: 2,
+        showItemCount: true,
+        itemCountPosition: 'left',
+        fields: {
+          title: true,
+          rating: true,
+          previewText: false,
+          price: true,
+          addToCart: true,
+          manufacturer: true,
         },
-      ],
+        fieldsOrder: ['manufacturer', 'title', 'rating', 'previewText', 'price', 'addToCart'],
+        fieldsDisabled: ['title'],
+        contentAlignment: 'left',
+        cardBorders: true,
+        showSecondImageOnHover: false,
+        showWishlistButton: true,
+        addToCartStyle: 'primary',
+        paginationPosition: 'bottom',
+      },
     },
     createFooter(),
   ] as Block[];
