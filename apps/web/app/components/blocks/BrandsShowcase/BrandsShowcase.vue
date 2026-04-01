@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="brands-showcase-block" class="bg-white">
+  <div v-if="brands.length" data-testid="brands-showcase-block" class="bg-white">
     <div class="max-w-[1536px] mx-auto px-6 lg:px-8 py-12 md:py-16">
       <div class="flex items-end justify-between mb-8 md:mb-10">
         <div>
@@ -12,11 +12,7 @@
         </div>
       </div>
 
-      <div v-if="loading" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        <div v-for="i in 8" :key="i" class="aspect-[2/1] rounded-xl bg-neutral-50 border border-neutral-200 animate-pulse" />
-      </div>
-
-      <div v-else-if="brands.length" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         <NuxtLink
           v-for="brand in brands"
           :key="brand.id"
@@ -40,22 +36,17 @@
           </div>
         </NuxtLink>
       </div>
-
-      <div v-else class="text-center py-12 rounded-xl border-2 border-dashed border-neutral-200 bg-neutral-50/50">
-        <p class="text-neutral-600">{{ t('brandsShowcase.noBrands') }}</p>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@plentymarkets/shop-api';
-import { productGetters, manufacturerGetters } from '@plentymarkets/shop-api';
 import type { CategoryTreeItem } from '@plentymarkets/shop-api';
 
 interface BrandsShowcaseProps {
   content?: {
     maxBrands?: number;
+    parentCategoryName?: string;
   };
   meta?: { uuid: string };
 }
@@ -71,94 +62,43 @@ const props = defineProps<BrandsShowcaseProps>();
 const localePath = useLocalePath();
 const { t } = useI18n();
 const { buildDocumentUrl } = useBuildImageUrl();
+const { buildCategoryMenuLink } = useLocalization();
 
 const maxBrands = computed(() => props.content?.maxBrands ?? 100);
+const parentName = computed(() => (props.content?.parentCategoryName || 'marken').toLowerCase());
 const { data: categoryTree } = useCategoryTree();
 
-const loading = ref(true);
-const brands = ref<BrandItem[]>([]);
-
-const getAllCategoryIds = (): string[] => {
-  const ids: string[] = [];
-  const walk = (items: CategoryTreeItem[]) => {
-    for (const item of items) {
-      if (item.type === 'item') ids.push(String(item.id));
-      if (item.children?.length) walk(item.children);
+const findMarkenCategory = (cats: CategoryTreeItem[]): CategoryTreeItem | undefined => {
+  for (const cat of cats) {
+    const name = (cat.details?.[0]?.name || '').toLowerCase();
+    const url = (cat.details?.[0]?.nameUrl || '').toLowerCase();
+    if (name.includes(parentName.value) || url.includes(parentName.value)) return cat;
+    if (cat.children?.length) {
+      const found = findMarkenCategory(cat.children);
+      if (found) return found;
     }
-  };
-  walk(categoryTree.value || []);
-  return ids;
+  }
+  return undefined;
 };
 
-const extractBrandsFromProducts = (
-  products: Product[],
-  seen: Set<number>,
-  list: BrandItem[],
-) => {
-  for (const product of products) {
-    const manu = productGetters.getManufacturer(product);
-    const manufacturerId = product.item?.manufacturerId ?? 0;
-    if (!manu || manufacturerId === 0 || seen.has(manufacturerId)) continue;
+const brands = computed((): BrandItem[] => {
+  if (!categoryTree.value?.length) return [];
 
-    seen.add(manufacturerId);
-    const name =
-      manufacturerGetters.getManufacturerName(manu) ||
-      manufacturerGetters.getManufacturerExternalName(manu) ||
-      '';
-    const logoPath = manufacturerGetters.getManufacturerLogo(manu);
-    const logoUrl = buildDocumentUrl(logoPath);
+  const markenCat = findMarkenCategory(categoryTree.value);
+  if (!markenCat?.children?.length) return [];
 
-    list.push({
-      id: manufacturerId,
-      name: name || `Brand ${manufacturerId}`,
-      logoUrl,
-      link: `/search?term=${encodeURIComponent(name || String(manufacturerId))}`,
+  return markenCat.children
+    .filter((child: CategoryTreeItem) => child.type === 'item')
+    .slice(0, maxBrands.value)
+    .map((child: CategoryTreeItem) => {
+      const detail = child.details?.[0];
+      const imgPath = detail?.imagePath || detail?.image2Path || '';
+      return {
+        id: child.id,
+        name: String(detail?.name || `Brand ${child.id}`),
+        logoUrl: buildDocumentUrl(imgPath),
+        link: buildCategoryMenuLink(child, categoryTree.value) || '/',
+      };
     });
-  }
-};
-
-const fetchBrands = async () => {
-  const categoryIds = getAllCategoryIds();
-  if (!categoryIds.length) {
-    loading.value = false;
-    return;
-  }
-
-  try {
-    const seen = new Set<number>();
-    const list: BrandItem[] = [];
-
-    const sdk = useSdk();
-    const results = await Promise.all(
-      categoryIds.map((catId) =>
-        sdk.plentysystems.getFacet({
-          categoryId: catId,
-          itemsPerPage: 100,
-          sort: 'sorting.item.position_asc',
-          type: 'category',
-        }),
-      ),
-    );
-
-    for (const result of results) {
-      const products = (result?.data?.products as Product[]) || [];
-      extractBrandsFromProducts(products, seen, list);
-    }
-
-    list.sort((a, b) => a.name.localeCompare(b.name));
-    brands.value = list.slice(0, maxBrands.value);
-  } catch {
-    brands.value = [];
-  } finally {
-    loading.value = false;
-  }
-};
-
-onMounted(fetchBrands);
-
-watch(
-  () => categoryTree.value,
-  () => fetchBrands(),
-  { deep: true },
-);
+});
 </script>
