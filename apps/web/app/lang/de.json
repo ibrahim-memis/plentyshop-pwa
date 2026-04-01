@@ -72,10 +72,122 @@
     "viewAll": "Alle anzeigen",
     "explore": "Entdecken"
   },
+  "aboutHorecax": {
+    "badge": "Über HafenX",
+    "title": "Ihr B2B-Partner für professionelle Gastronomieausstattung",
+    "description": "HafenX ist Ihr zuverlässiger Großhandelspartner für hochwertige Produkte in der HoReCa-Branche. Von Gläsern und Geschirr bis hin zu professionellem Küchenzubehör – wir liefern alles, was Ihr Betrieb braucht, schnell und zu fairen Großhandelspreisen.",
+    "cta": "Mehr über uns erfahren",
+    "tags": {
+      "gastronomy": "Gastronomie",
+      "hotel": "Hotellerie",
+      "catering": "Catering & Events",
+      "wholesale": "B2B Großhandel"
+    },
+    "stats": {
+      "products": "Produkte im Sortiment",
+      "customers": "Zufriedene Kunden",
+      "shipping": "Versand an Werktagen",
+      "region": "Liefergebiet"
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "desc": "Wir machen professionelle Gastronomieausstattung zugänglich und erschwinglich – mit erstklassigen Marken, persönlicher Beratung und einem Service, der auf Ihre Bedürfnisse zugeschnitten ist."
+    }
+  },
   "brandsShowcase": {
     "title": "Unsere Marken",
     "subtitle": "Vertrauen Sie auf Qualität – entdecken Sie unsere Partner und Hersteller.",
     "noBrands": "Keine Marken verfügbar."
+  },
+  "industrySegments": {
+    "badge": "Für Ihre Branche",
+    "title": "Maßgeschneiderte Lösungen für die Gastronomie",
+    "subtitle": "Ob Café, Restaurant oder Hotel – wir liefern hochwertige Produkte, die perfekt zu Ihrem Betrieb passen.",
+    "explore": "Entdecken",
+    "cafe": {
+      "name": "Café & Bäckerei",
+      "desc": "Geschirr, Gläser & Zubehör für den perfekten Kaffeegenuss."
+    },
+    "restaurant": {
+      "name": "Restaurant",
+      "desc": "Professionelle Ausstattung für gehobene Küche und Service."
+    },
+    "hotel": {
+      "name": "Hotel & Pension",
+      "desc": "Alles für Zimmerausstattung, Frühstück und Empfang."
+    },
+    "bar": {
+      "name": "Bar & Lounge",
+      "desc": "Gläser, Mixzubehör und stilvolles Bar-Equipment."
+    },
+    "catering": {
+      "name": "Catering & Event",
+      "desc": "Großmengen, Transportbehälter und Event-Ausstattung."
+    }
+  },
+  "b2bRegister": {
+    "badge": "B2B Partner werden",
+    "title": "Registrieren Sie sich als Geschäftskunde",
+    "subtitle": "Profitieren Sie von exklusiven Großhandelspreisen, persönlicher Beratung und schneller Lieferung – speziell für die HoReCa-Branche.",
+    "formTitle": "Jetzt Konto erstellen",
+    "formSubtitle": "In wenigen Minuten zum B2B-Zugang.",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Ihr Vorname",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Ihr Nachname",
+    "company": "Firma / Betrieb",
+    "companyPlaceholder": "z.B. Café Sonnenschein GmbH",
+    "email": "Geschäftliche E-Mail",
+    "emailPlaceholder": "info{'@'}ihrefirma.de",
+    "businessType": "Betriebsart",
+    "selectType": "Betriebsart auswählen",
+    "other": "Sonstige",
+    "cta": "Kostenlos registrieren",
+    "terms": "Mit der Registrierung stimmen Sie unseren AGB und Datenschutzbestimmungen zu.",
+    "benefit1": {
+      "title": "Exklusive B2B-Preise",
+      "desc": "Großhandelspreise nur für registrierte Geschäftskunden."
+    },
+    "benefit2": {
+      "title": "Persönlicher Ansprechpartner",
+      "desc": "Ihr dedizierter Berater für Bestellungen und Fragen."
+    },
+    "benefit3": {
+      "title": "Flexible Zahlungsoptionen",
+      "desc": "Kauf auf Rechnung, Ratenzahlung und weitere Optionen."
+    },
+    "benefit4": {
+      "title": "Schnelle Lieferung",
+      "desc": "Versand innerhalb von 24h an Werktagen."
+    }
+  },
+  "b2bAdvantages": {
+    "title": "Warum HafenX für Ihren Betrieb?",
+    "subtitle": "Wir sind Ihr zuverlässiger B2B-Partner für professionelle Gastronomie- und Hotelausstattung.",
+    "wholesale": {
+      "title": "Großhandelspreise",
+      "desc": "Attraktive Staffelpreise und Mengenrabatte für Großbestellungen."
+    },
+    "delivery": {
+      "title": "Express-Lieferung",
+      "desc": "Schneller, zuverlässiger Versand – meist innerhalb von 24 Stunden."
+    },
+    "support": {
+      "title": "Persönliche Beratung",
+      "desc": "Fachkundige Beratung per Telefon, E-Mail oder vor Ort."
+    },
+    "quality": {
+      "title": "Geprüfte Qualität",
+      "desc": "Nur Markenprodukte von renommierten Herstellern."
+    },
+    "stats": {
+      "products": "Produkte im Sortiment",
+      "productsDesc": "Professionelle Gastro-Ausstattung",
+      "customers": "Zufriedene Kunden",
+      "customersDesc": "In der DACH-Region",
+      "shipping": "Versand an Werktagen",
+      "shippingDesc": "Schnell und zuverlässig"
+    }
   },
   "notifyMe": {
     "notifyButtonTooltip": "Wir benachrichtigen Sie, sobald das Produkt wieder verfügbar ist",

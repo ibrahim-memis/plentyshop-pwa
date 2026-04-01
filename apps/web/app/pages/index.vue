@@ -1,6 +1,6 @@
 <template>
   <div>
-    <EditableBlocks :identifier="'index'" :type="'immutable'" />
+    <EditableBlocks :identifier="'index'" :type="'immutable'" :blocks="homepageBlocks" />
   </div>
 </template>
 
@@ -35,6 +35,8 @@ setPageMeta(t('homepage.title'), icon);
 
 const homepageTemplate = await getHomepageTemplate($i18n.locale.value);
 setDefaultTemplate(homepageTemplate);
+
+const homepageBlocks = ref(homepageTemplate);
 
 const { getRobots, setRobotForStaticPage } = useRobots();
 getRobots();

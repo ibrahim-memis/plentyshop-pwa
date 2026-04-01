@@ -1369,5 +1369,117 @@
         "title": "Services"
       }
     }
+  },
+  "aboutHorecax": {
+    "badge": "About HafenX",
+    "title": "Your B2B Partner for Professional Hospitality Equipment",
+    "description": "HafenX is your reliable wholesale partner for premium products in the HoReCa industry. From glassware and tableware to professional kitchen accessories – we deliver everything your business needs, fast and at fair wholesale prices.",
+    "cta": "Learn more about us",
+    "tags": {
+      "gastronomy": "Gastronomy",
+      "hotel": "Hospitality",
+      "catering": "Catering & Events",
+      "wholesale": "B2B Wholesale"
+    },
+    "stats": {
+      "products": "Products in Stock",
+      "customers": "Satisfied Customers",
+      "shipping": "Shipping on Business Days",
+      "region": "Delivery Area"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "desc": "We make professional hospitality equipment accessible and affordable – with top brands, personal consultation and a service tailored to your needs."
+    }
+  },
+  "industrySegments": {
+    "badge": "For Your Industry",
+    "title": "Tailored Solutions for Hospitality",
+    "subtitle": "Whether café, restaurant or hotel – we deliver premium products that fit your business perfectly.",
+    "explore": "Explore",
+    "cafe": {
+      "name": "Café & Bakery",
+      "desc": "Tableware, glasses & accessories for the perfect coffee experience."
+    },
+    "restaurant": {
+      "name": "Restaurant",
+      "desc": "Professional equipment for fine dining and service."
+    },
+    "hotel": {
+      "name": "Hotel & B&B",
+      "desc": "Everything for room furnishing, breakfast and reception."
+    },
+    "bar": {
+      "name": "Bar & Lounge",
+      "desc": "Glasses, mixing accessories and stylish bar equipment."
+    },
+    "catering": {
+      "name": "Catering & Events",
+      "desc": "Bulk quantities, transport containers and event equipment."
+    }
+  },
+  "b2bRegister": {
+    "badge": "Become a B2B Partner",
+    "title": "Register as a Business Customer",
+    "subtitle": "Benefit from exclusive wholesale prices, personal consultation and fast delivery – specifically for the HoReCa industry.",
+    "formTitle": "Create your account",
+    "formSubtitle": "Get B2B access in just a few minutes.",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Your first name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Your last name",
+    "company": "Company / Business",
+    "companyPlaceholder": "e.g. Sunshine Café Ltd.",
+    "email": "Business Email",
+    "emailPlaceholder": "info{'@'}yourcompany.com",
+    "businessType": "Business Type",
+    "selectType": "Select business type",
+    "other": "Other",
+    "cta": "Register for free",
+    "terms": "By registering you agree to our terms and privacy policy.",
+    "benefit1": {
+      "title": "Exclusive B2B Prices",
+      "desc": "Wholesale prices only for registered business customers."
+    },
+    "benefit2": {
+      "title": "Personal Account Manager",
+      "desc": "Your dedicated advisor for orders and inquiries."
+    },
+    "benefit3": {
+      "title": "Flexible Payment Options",
+      "desc": "Purchase on invoice, installments and more."
+    },
+    "benefit4": {
+      "title": "Fast Delivery",
+      "desc": "Shipping within 24h on business days."
+    }
+  },
+  "b2bAdvantages": {
+    "title": "Why HafenX for Your Business?",
+    "subtitle": "We are your reliable B2B partner for professional hospitality and hotel equipment.",
+    "wholesale": {
+      "title": "Wholesale Prices",
+      "desc": "Attractive tiered prices and volume discounts for bulk orders."
+    },
+    "delivery": {
+      "title": "Express Delivery",
+      "desc": "Fast, reliable shipping – usually within 24 hours."
+    },
+    "support": {
+      "title": "Personal Consultation",
+      "desc": "Expert advice by phone, email or on-site."
+    },
+    "quality": {
+      "title": "Certified Quality",
+      "desc": "Only brand products from renowned manufacturers."
+    },
+    "stats": {
+      "products": "Products in Stock",
+      "productsDesc": "Professional hospitality equipment",
+      "customers": "Satisfied Customers",
+      "customersDesc": "In the DACH region",
+      "shipping": "Shipping on Business Days",
+      "shippingDesc": "Fast and reliable"
+    }
   }
 }

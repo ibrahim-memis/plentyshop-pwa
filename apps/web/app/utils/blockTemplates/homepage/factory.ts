@@ -59,6 +59,17 @@ export function createHomepage(): Block[] {
         },
       },
     },
+    {
+      name: 'AboutHorecax',
+      type: 'content',
+      meta: {
+        uuid: 'about-horecax-001',
+        isGlobalTemplate: false,
+      },
+      content: {
+        enabled: true,
+      },
+    },
     createFooter(),
   ];
 }
