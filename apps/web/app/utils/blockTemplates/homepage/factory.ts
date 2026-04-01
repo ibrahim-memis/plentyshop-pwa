@@ -19,6 +19,17 @@ export function createHomepage(): Block[] {
       },
     },
     {
+      name: 'BrandsShowcase',
+      type: 'content',
+      meta: {
+        uuid: 'brandsshowcase-de-001',
+        isGlobalTemplate: false,
+      },
+      content: {
+        maxBrands: 8,
+      },
+    },
+    {
       name: 'CategoryBanners',
       type: 'content',
       meta: {

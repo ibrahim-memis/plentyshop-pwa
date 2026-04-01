@@ -66,6 +66,11 @@
     "viewAll": "Alle anzeigen",
     "explore": "Entdecken"
   },
+  "brandsShowcase": {
+    "title": "Unsere Marken",
+    "subtitle": "Vertrauen Sie auf Qualität – entdecken Sie unsere Partner und Hersteller.",
+    "noBrands": "Keine Marken verfügbar."
+  },
   "notifyMe": {
     "notifyButtonTooltip": "Wir benachrichtigen Sie, sobald das Produkt wieder verfügbar ist",
     "notifyButton": "Benachrichtige mich",
