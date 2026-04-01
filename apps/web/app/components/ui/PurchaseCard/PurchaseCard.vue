@@ -9,20 +9,21 @@
     <div class="relative">
       <div class="drift-zoom-image">
         <section class="px-4 pt-0 pb-3" style="margin-top: -30px">
+          <div v-if="manufacturerLogo || manufacturerName || storeName" class="mb-[20px] mt-[15px]">
+            <NuxtImg
+              v-if="manufacturerLogo"
+              :src="manufacturerLogo"
+              :alt="manufacturerName || storeName"
+              class="h-6 md:h-8 w-auto object-contain"
+              loading="lazy"
+            />
+            <span v-else class="text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              {{ manufacturerName || storeName }}
+            </span>
+          </div>
+
           <template v-for="key in configuration?.fieldsOrder" :key="key">
             <template v-if="key === 'itemName' && configuration?.fields.itemName">
-              <div v-if="manufacturerLogo || manufacturerName || storeName" class="mb-3">
-                <NuxtImg
-                  v-if="manufacturerLogo"
-                  :src="manufacturerLogo"
-                  :alt="manufacturerName || storeName"
-                  class="h-6 md:h-8 w-auto object-contain"
-                  loading="lazy"
-                />
-                <span v-else class="text-xs font-semibold uppercase tracking-widest text-neutral-400">
-                  {{ manufacturerName || storeName }}
-                </span>
-              </div>
               <h1 class="font-bold text-2xl md:text-[2rem] leading-tight text-neutral-900 break-word mb-1" data-testid="product-name">
                 {{ productGetters.getName(product) }}
               </h1>

@@ -8,12 +8,12 @@ export default {
   showConfigurationDrawer: process.env.SHOW_CONFIGURATION_DRAWER === '1',
   defaultItemsPerPage: Number(process.env.DEFAULT_FEEDBACK_ITEMS_PER_PAGE ?? 10),
   favicon: process.env.NUXT_PUBLIC_FAVICON || '/_nuxt-plenty/favicon.ico',
-  ogTitle: process.env.NUXT_PUBLIC_OG_TITLE || process.env.OG_TITLE || 'Nordic Schiller',
+  ogTitle: process.env.NUXT_PUBLIC_OG_TITLE || process.env.OG_TITLE || 'HafenX',
   ogImg: process.env.NUXT_PUBLIC_OG_IMG || process.env.OG_IMG || '/_nuxt-plenty/images/logo.svg',
   ogType: process.env.NUXT_PUBLIC_OG_TYPE || process.env.OG_TYPE || 'website',
-  metaTitle: process.env.NUXT_PUBLIC_META_TITLE || process.env.METATITLE || 'Nordic Schiller - B2B Shop',
-  metaDescription: process.env.NUXT_PUBLIC_META_DESCRIPTION || process.env.METADESC || 'Nordic Schiller B2B Shop - HafenX',
-  metaKeywords: process.env.NUXT_PUBLIC_META_KEYWORDS || process.env.METAKEYWORDS || 'Nordic Schiller, HafenX, B2B, Shop',
+  metaTitle: process.env.NUXT_PUBLIC_META_TITLE || process.env.METATITLE || 'HafenX - B2B Shop',
+  metaDescription: process.env.NUXT_PUBLIC_META_DESCRIPTION || process.env.METADESC || 'HafenX B2B Shop',
+  metaKeywords: process.env.NUXT_PUBLIC_META_KEYWORDS || process.env.METAKEYWORDS || 'HafenX, B2B, Shop',
   passwordMinLength: Number(process.env.PASSWORD_MIN_LENGTH ?? 8),
   passwordMaxLength: Number(process.env.PASSWORD_MAX_LENGTH ?? 64),
   robots: process.env.NUXT_PUBLIC_ROBOTS || 'all',
@@ -75,8 +75,8 @@ export default {
   headerLogo:
     process.env.NUXT_PUBLIC_HEADER_LOGO ||
     process.env.LOGO ||
-    'https://abdullahy2.sg-host.com/wp-content/uploads/2024/08/logo-1-dark1-1536x411-1.png',
-  storename: process.env.NAME || 'Nordic Schiller',
+    '/_nuxt-plenty/images/logo.png',
+  storename: process.env.NAME || 'HafenX',
   font: process.env.NUXT_PUBLIC_FONT || 'Urbanist',
   verticalBlockSize: process.env.NUXT_PUBLIC_VERTICAL_BLOCK_SIZE || 'm',
   horizontalBlockSize: process.env.NUXT_PUBLIC_HORIZONTAL_BLOCK_SIZE || 's',

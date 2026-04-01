@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center">
-    <picture v-if="hasCustomLogo">
+    <picture v-if="hasCustomLogo && !logoError">
       <template v-if="imageExtension === 'svg'">
         <NuxtImg
           ref="logo"
@@ -10,6 +10,7 @@
           width="180"
           height="40"
           preload
+          @error="logoError = true"
         />
       </template>
       <template v-else>
@@ -20,6 +21,7 @@
           :alt="`${storeName} logo`"
           class="h-8 md:h-10 w-auto object-contain max-w-[180px]"
           preload
+          @error="logoError = true"
         />
       </template>
     </picture>
@@ -35,13 +37,18 @@ const { getSetting: getHeaderLogo } = useSiteSettings('headerLogo');
 
 const headerLogo = computed(() => getHeaderLogo());
 
-const storeName = runtimeConfig.public.storename || 'Nordic Schiller';
+const storeName = runtimeConfig.public.storename || 'HafenX';
+const logoError = ref(false);
 
 const isDefaultLogo = computed(() => {
-  return headerLogo.value.includes('plentymarkets.com') || !headerLogo.value;
+  return !headerLogo.value || headerLogo.value.includes('plentymarkets.com');
 });
 const hasCustomLogo = computed(() => !isDefaultLogo.value);
 
 const imageExtension = computed(() => headerLogo.value.split('.').pop());
 const logo = ref<HTMLImageElement | null>(null);
+
+watch(headerLogo, () => {
+  logoError.value = false;
+});
 </script>
