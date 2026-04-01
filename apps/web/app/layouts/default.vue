@@ -11,7 +11,7 @@
     <Cookiebar />
     <PreviewMode />
     <UiFooterBlocks />
-    <QuickCheckout v-if="isOpen" :product="product" />
+    <QuickCheckout />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ import type { DefaultLayoutProps } from '~/layouts/types';
 defineProps<DefaultLayoutProps>();
 
 const { setLogoMeta } = useStructuredData();
-const { isOpen, product } = useQuickCheckout();
+const { isOpen } = useQuickCheckout();
 const viewport = useViewport();
 
 setLogoMeta();
