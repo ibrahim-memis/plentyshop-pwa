@@ -42,21 +42,14 @@ export function createHomepage(): Block[] {
       },
     },
     {
-      name: 'CategoryShowcase',
+      name: 'NewProducts',
       type: 'content',
       meta: {
-        uuid: 'catshowcase-de-001',
+        uuid: 'newproducts-de-001',
         isGlobalTemplate: false,
       },
       content: {
-        autoDetect: true,
-        maxCategories: 2,
-        maxItemsPerCategory: 4,
-        excludeNames: [],
-        layout: {
-          paddingTop: 20,
-          paddingBottom: 40,
-        },
+        maxItems: 8,
       },
     },
     {

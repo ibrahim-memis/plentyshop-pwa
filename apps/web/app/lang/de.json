@@ -1601,5 +1601,10 @@
     "pieces": "Stück",
     "save": "Sparen",
     "info": "Rabatte werden automatisch an der Kasse angewendet."
+  },
+  "newProducts": {
+    "title": "Neue Produkte",
+    "subtitle": "Entdecken Sie unsere neuesten Produkte im Sortiment.",
+    "badge": "Neu"
   }
 }

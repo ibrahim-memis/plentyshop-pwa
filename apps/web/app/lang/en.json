@@ -1481,5 +1481,10 @@
       "shipping": "Shipping on Business Days",
       "shippingDesc": "Fast and reliable"
     }
+  },
+  "newProducts": {
+    "title": "New Products",
+    "subtitle": "Discover our latest additions to the catalog.",
+    "badge": "New"
   }
 }
