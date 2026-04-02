@@ -105,6 +105,15 @@ const getColumnClasses = (colIndex: number) => {
     classes.push(topValue);
   }
 
+  if (configuration.mobileReverse) {
+    if (colIndex === 0) {
+      classes.push('order-last', 'md:order-first');
+    } else {
+      classes.push('order-first', 'md:order-last');
+    }
+    classes.push('px-[10px]', 'md:px-0');
+  }
+
   return classes;
 };
 

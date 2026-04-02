@@ -1,6 +1,6 @@
 <template>
-  <div v-bind="$attrs" style="padding-left: 10px; margin-top: -15px;">
-    <TextContent data-testid="recommended-block" class="pb-4" :text="props.content.text" :index="props.index" />
+  <div v-bind="$attrs" class="md:pl-[10px] md:mt-[-15px] mt-0">
+    <TextContent data-testid="recommended-block" class="pb-4 ml-[10px] mt-[-60px] md:mt-[-15px]" :text="props.content.text" :index="props.index" />
     <template v-if="displayItems.length && (shouldRender || shouldRenderAfterUpdate)">
       <div v-if="isGridMode" class="grid gap-4" :class="gridClass">
         <UiProductCard

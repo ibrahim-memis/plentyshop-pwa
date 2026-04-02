@@ -155,6 +155,7 @@ export const createProduct = (): Block[] => {
       configuration: {
         columnWidths: [7, 5],
         sticky: [0],
+        mobileReverse: true,
         layout: {
           marginTop: '70',
           marginBottom: '60',

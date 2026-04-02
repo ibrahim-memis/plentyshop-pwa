@@ -9,7 +9,7 @@
     <div class="relative">
       <div class="drift-zoom-image">
         <section class="px-4 pt-0 pb-3" :style="{ marginTop: configuration?.borders ? '0px' : '-30px' }">
-          <div v-if="configuration?.fields.itemName && (manufacturerLogo || manufacturerName || storeName)" class="mb-[20px] mt-[15px]">
+          <div v-if="configuration?.fields.itemName && (manufacturerLogo || manufacturerName || storeName)" class="mb-[20px] mt-[20px] md:mt-[15px]">
             <NuxtImg
               v-if="manufacturerLogo"
               :src="manufacturerLogo"
@@ -147,7 +147,7 @@
                 <button
                   type="button"
                   class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-xl text-[13px] font-medium text-neutral-500 hover:bg-neutral-100 hover:text-[#384d37] transition-all duration-150 cursor-pointer"
-                  @click="openLoginModal"
+                  @click="handleLogin"
                 >
                   <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>
                   {{ t('product.loginToSeePrice') }}
@@ -262,6 +262,37 @@
                 </div>
 
                 <div class="mb-4">
+                  <!-- Quantity selector -->
+                  <div class="flex items-center gap-3 mb-3">
+                    <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider shrink-0">
+                      {{ t('product.quantity') }}
+                    </label>
+                    <div class="flex items-center border border-neutral-200 rounded-xl overflow-hidden bg-white">
+                      <button
+                        type="button"
+                        class="w-10 h-10 flex items-center justify-center text-neutral-400 hover:text-[#384d37] hover:bg-neutral-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                        :disabled="quantitySelectorValue <= minimumOrderQuantity"
+                        @click="decrementQuantity"
+                      >
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" /></svg>
+                      </button>
+                      <input
+                        type="number"
+                        :value="quantitySelectorValue"
+                        :min="minimumOrderQuantity"
+                        class="w-12 h-10 text-center text-sm font-semibold text-neutral-900 border-x border-neutral-200 bg-neutral-50/50 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                        @change="handleQuantityInput"
+                      >
+                      <button
+                        type="button"
+                        class="w-10 h-10 flex items-center justify-center text-neutral-400 hover:text-[#384d37] hover:bg-neutral-50 transition-colors"
+                        @click="incrementQuantity"
+                      >
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                      </button>
+                    </div>
+                  </div>
+
                   <div class="flex items-stretch gap-2">
                     <WishlistButton
                       v-if="configuration?.fields.addToWishlist"
@@ -321,7 +352,7 @@
                   <button
                     type="button"
                     class="w-full flex items-center justify-center gap-2.5 py-3 bg-[#384d37] text-white font-semibold text-sm hover:bg-[#2c3e2b] active:bg-[#243524] transition-colors duration-200 cursor-pointer"
-                    @click="openLoginModal"
+                    @click="handleLogin"
                   >
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
                     {{ t('product.loginToPurchase') }}
@@ -455,6 +486,18 @@ const showBundleComponents = computed(() => {
 
 const { isAuthorized } = useCustomer();
 const { openLoginModal } = useLoginModal();
+const viewport = useViewport();
+const localePath = useLocalePath();
+const router = useRouter();
+
+const handleLogin = () => {
+  if (viewport.isGreaterOrEquals('md')) {
+    openLoginModal();
+  } else {
+    router.push(localePath(paths.authLogin));
+  }
+};
+
 const { showNetPrices } = useCart();
 const { getCombination } = useProductAttributes();
 const { getPropertiesForCart, getPropertiesPrice } = useProductOrderProperties();
@@ -474,7 +517,6 @@ const { crossedPrice } = useProductPrice(props?.product);
 const { reviewArea } = useProductReviews(Number(productGetters.getId(props?.product)));
 const { getSetting: getNotifyMeSetting } = useSiteSettings('showNotifyMe');
 const showNotifyMe = computed(() => getNotifyMeSetting().toString() === 'true');
-const localePath = useLocalePath();
 const runtimeConfig = useRuntimeConfig();
 const storeName = runtimeConfig.public.storename || '';
 const manufacturer = computed(() => {
