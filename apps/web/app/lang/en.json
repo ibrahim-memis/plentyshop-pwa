@@ -1486,5 +1486,15 @@
     "title": "New Products",
     "subtitle": "Discover our latest additions to the catalog.",
     "badge": "New"
+  },
+  "customFooter": {
+    "description": "Your B2B partner for professional hospitality and hotel equipment. Quality products for cafés, restaurants, hotels and more.",
+    "categoriesTitle": "Categories",
+    "legalTitle": "Legal",
+    "contactTitle": "Service",
+    "contactLink": "Contact",
+    "loginLink": "Sign In",
+    "registerLink": "Register",
+    "allRightsReserved": "All rights reserved."
   }
 }

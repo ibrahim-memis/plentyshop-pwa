@@ -1,105 +1,136 @@
 <template>
-  <footer
-    v-if="resolvedContent"
-    class="pt-10"
-    :style="{
-      backgroundColor: resolvedContent.colors?.background,
-      color: resolvedContent.colors?.text,
-    }"
-    data-testid="footer"
-  >
-    <div class="px-4 md:px-6 pb-10 max-w-screen-3xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div v-if="getColumnSwitches(resolvedContent.column1).length" class="max-w-[280px] break-words">
-          <div class="ml-4 text-lg font-medium leading-7">
-            {{ resolvedContent.column1?.title }}
-          </div>
-          <ul>
-            <SfListItem
-              v-for="switchConfig in getColumnSwitches(resolvedContent.column1)"
-              :key="switchConfig.id"
-              class="py-2 !bg-transparent typography-text-sm"
-            >
-              <SfLink
-                :tag="NuxtLink"
-                :style="{ color: resolvedContent.colors?.text || undefined }"
-                class="no-underline text-neutral-600 hover:underline active:underline"
-                variant="secondary"
-                :to="localePath(switchConfig.link)"
+  <footer v-if="resolvedContent" data-testid="footer">
+    <!-- Upper footer: logo + categories + legal -->
+    <div class="footer-upper">
+      <div class="max-w-[1536px] mx-auto px-6 lg:px-8 py-12 md:py-14">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
+          <!-- Logo + description -->
+          <div class="md:col-span-4">
+            <NuxtLink :to="localePath('/')" class="inline-block mb-4">
+              <img
+                v-if="headerLogo"
+                :src="headerLogo"
+                :alt="storeName"
+                class="h-9 md:h-11 w-auto object-contain brightness-0 invert"
+                @error="($event.target as HTMLImageElement).style.display = 'none'"
               >
-                {{ switchConfig.translationKey }}
-              </SfLink>
-            </SfListItem>
-          </ul>
-        </div>
+              <span v-else class="text-2xl font-light text-white italic tracking-wide">{{ storeName }}</span>
+            </NuxtLink>
+            <p class="text-sm leading-relaxed text-white/60 max-w-xs">
+              {{ t('customFooter.description') }}
+            </p>
+          </div>
 
-        <div
-          v-for="(column, i) in [resolvedContent.column2, resolvedContent.column3, resolvedContent.column4]"
-          :key="i"
-          class="max-w-[280px] break-words"
-        >
-          <div class="ml-4 text-lg font-medium leading-7">
-            {{ column?.title }}
-          </div>
-          <div v-if="getColumnSwitches(column).length" class="text-sm">
-            <ul>
-              <SfListItem
-                v-for="switchConfig in getColumnSwitches(column)"
-                :key="switchConfig.id"
-                class="inline-flex items-center gap-2 w-full hover:bg-neutral-100 active:bg-neutral-200 cursor-pointer focus-visible:outline focus-visible:outline-offset focus-visible:relative focus-visible:z-10 px-4 py-2 !bg-transparent typography-text-sm"
-              >
-                <SfLink
-                  :tag="NuxtLink"
-                  variant="secondary"
-                  class="no-underline text-neutral-900 hover:cursor-pointer hover:underline active:underline"
-                  :style="{ color: resolvedContent.colors?.text }"
-                  :to="localePath(switchConfig.link)"
+          <!-- Category links -->
+          <div class="md:col-span-3">
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
+              {{ t('customFooter.categoriesTitle') }}
+            </h4>
+            <ul class="space-y-2.5">
+              <li v-for="cat in footerCategories" :key="cat.id">
+                <NuxtLink
+                  :to="localePath(cat.link)"
+                  class="text-sm text-white/70 hover:text-white transition-colors"
                 >
-                  {{ switchConfig.translationKey }}
-                </SfLink>
-              </SfListItem>
+                  {{ cat.name }}
+                </NuxtLink>
+              </li>
             </ul>
           </div>
-          <div
-            v-if="column?.description"
-            class="custom-html ml-4 text-sm hover:cursor-pointer"
-            v-html="column.description"
-          />
+
+          <!-- Plenty footer columns (legal etc.) -->
+          <div class="md:col-span-3">
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
+              {{ t('customFooter.legalTitle') }}
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <NuxtLink :to="localePath(paths.termsAndConditions)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('legal.termsAndConditions') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath(paths.privacyPolicy)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('legal.privacyPolicy') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath(paths.cancellationRights)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('legal.cancellationRights') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath(paths.legalDisclosure)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('legal.legalDisclosure') }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="md:col-span-2">
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
+              {{ t('customFooter.contactTitle') }}
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <NuxtLink :to="localePath(paths.contact)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('customFooter.contactLink') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath(paths.authLogin)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('customFooter.loginLink') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath(paths.register)" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('customFooter.registerLink') }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-    <div>
-      <div
-        v-if="resolvedContent.footnote && resolvedContent.footnote.trim() !== ''"
-        class="text-sm py-10 md:py-6 px-10"
-        :class="{
-          'text-left': resolvedContent.footnoteAlign === 'left',
-          'text-center': resolvedContent.footnoteAlign === 'center',
-          'text-right': resolvedContent.footnoteAlign === 'right',
-        }"
-        :style="{
-          color: resolvedContent.colors?.footnoteText,
-          backgroundColor: resolvedContent.colors?.footnoteBackground,
-        }"
-        v-html="resolvedContent.footnote"
-      />
+
+    <!-- Copyright bar -->
+    <div class="footer-copyright">
+      <div class="max-w-[1536px] mx-auto px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span class="text-xs text-white/40">
+          &copy; {{ currentYear }} {{ storeName }}. {{ t('customFooter.allRightsReserved') }}
+        </span>
+        <span class="text-xs text-white/30">
+          Powered by PlentyMarkets
+        </span>
+      </div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-import { SfLink, SfListItem } from '@storefront-ui/vue';
-import type { FooterProps, FooterContent, FooterColumn } from './types';
+import type { FooterProps, FooterContent } from './types';
+import type { CategoryTreeItem } from '@plentymarkets/shop-api';
 
 const props = defineProps<FooterProps>();
 const route = useRoute();
 const localePath = useLocalePath();
-const NuxtLink = resolveComponent('NuxtLink');
-const { getFooterBlock, mapFooterData, FOOTER_SWITCH_DEFINITIONS, createFooterBlock } = useBlockTemplates(
+const { t } = useI18n();
+const runtimeConfig = useRuntimeConfig();
+
+const { getFooterBlock, mapFooterData, createFooterBlock } = useBlockTemplates(
   'index',
   'immutable',
   useNuxtApp().$i18n.locale.value,
 );
+
+const { getSetting: getHeaderLogo } = useSiteSettings('headerLogo');
+const headerLogo = computed(() => getHeaderLogo());
+const storeName = runtimeConfig.public.storename || 'HafenX';
+const currentYear = new Date().getFullYear();
+
+const { data: categoryTree } = useCategoryTree();
+const { buildCategoryMenuLink } = useLocalization();
 
 const shouldRender = computed(() => {
   if (route.meta.isBlockified) return !!props.content;
@@ -108,29 +139,43 @@ const shouldRender = computed(() => {
 
 const resolvedContent = computed(() => {
   if (!shouldRender.value) return null;
-
   const block = props.content ? createFooterBlock(props.content, props.meta) : getFooterBlock();
-
   return mapFooterData(block).content as FooterContent;
 });
 
-const getColumnSwitches = (column: FooterColumn) => {
-  return FOOTER_SWITCH_DEFINITIONS.filter((switchConfig) => column[switchConfig.key] === true).map((switchConfig) => ({
-    id: `${switchConfig.key}-switch`,
-    translationKey: t(switchConfig.shopTranslationKey),
-    link: switchConfig.link,
-    state: true,
-  }));
-};
+interface FooterCategoryItem {
+  id: number;
+  name: string;
+  link: string;
+}
+
+const footerCategories = computed((): FooterCategoryItem[] => {
+  if (!categoryTree.value?.length) return [];
+
+  const exclude = ['marken', 'kollektionen'];
+
+  return categoryTree.value
+    .filter((cat: CategoryTreeItem) => {
+      if (cat.type !== 'item') return false;
+      const name = (cat.details?.[0]?.name || '').toLowerCase();
+      return !exclude.some((ex) => name.includes(ex));
+    })
+    .slice(0, 6)
+    .map((cat: CategoryTreeItem) => ({
+      id: cat.id,
+      name: String(cat.details?.[0]?.name || `Category ${cat.id}`),
+      link: buildCategoryMenuLink(cat, categoryTree.value) || '/',
+    }));
+});
 </script>
 
 <style scoped>
-::v-deep(.custom-html li) {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.footer-upper {
+  background-color: #384d37;
+  color: #ffffff;
 }
 
-::v-deep(.custom-html li:hover) {
-  text-decoration: underline;
+.footer-copyright {
+  background-color: #2c3e2b;
 }
 </style>

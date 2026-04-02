@@ -1606,5 +1606,15 @@
     "title": "Neue Produkte",
     "subtitle": "Entdecken Sie unsere neuesten Produkte im Sortiment.",
     "badge": "Neu"
+  },
+  "customFooter": {
+    "description": "Ihr B2B-Partner für professionelle Gastronomie- und Hotelausstattung. Qualitätsprodukte für Cafés, Restaurants, Hotels und mehr.",
+    "categoriesTitle": "Kategorien",
+    "legalTitle": "Rechtliches",
+    "contactTitle": "Service",
+    "contactLink": "Kontakt",
+    "loginLink": "Anmelden",
+    "registerLink": "Registrieren",
+    "allRightsReserved": "Alle Rechte vorbehalten."
   }
 }
