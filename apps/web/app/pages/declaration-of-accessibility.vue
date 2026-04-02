@@ -1,14 +1,20 @@
 <template>
-  <div class="w-full p-5 overflow-x-auto no-preflight" v-html="getHTMLTexts()" />
+  <NarrowContainer class="mt-5 pt-3 pb-1">
+    <nav class="text-sm text-neutral-500 mb-4">
+      <NuxtLink :to="localePath(paths.home)" class="hover:text-[#384d37] transition-colors">{{ t('sidebar.home') }}</NuxtLink>
+      <span class="mx-2 text-neutral-300">&rarr;</span>
+      <span class="text-neutral-800 font-medium">{{ t('legal.declarationOfAccessibility') }}</span>
+    </nav>
+  </NarrowContainer>
+  <NarrowContainer class="pb-12 mb-[15px]">
+    <div class="rounded-xl border border-neutral-200/60 bg-white p-6 md:p-10 overflow-x-auto no-preflight" v-html="getHTMLTexts()" />
+  </NarrowContainer>
 </template>
 
 <script setup lang="ts">
 import type { Locale } from '#i18n';
-
-defineI18nRoute({
-  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
-});
-
+const { t } = useI18n();
+const localePath = useLocalePath();
 const { data, getLegalTexts } = useLegalInformation();
 const { setPageMeta } = usePageMeta();
 const { getRobots, setRobotForStaticPage } = useRobots();
@@ -16,6 +22,9 @@ const { getRobots, setRobotForStaticPage } = useRobots();
 const icon = 'page';
 setPageMeta(t('legal.declarationOfAccessibility'), icon);
 
+defineI18nRoute({
+  locales: process.env.LANGUAGELIST?.split(',') as Locale[],
+});
 definePageMeta({
   pageType: 'static',
 });
