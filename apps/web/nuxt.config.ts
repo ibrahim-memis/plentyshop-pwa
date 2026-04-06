@@ -123,9 +123,9 @@ export default defineNuxtConfig({
   },
   pages: true,
   runtimeConfig: {
-    plentyAdminUser: process.env.PLENTY_ADMIN_USER || '',
-    plentyAdminPassword: process.env.PLENTY_ADMIN_PASSWORD || '',
-    plentyApiEndpoint: process.env.API_ENDPOINT || '',
+    plentyAdminUser: process.env.PLENTY_ADMIN_USER || 'plenty_pricing_rest_api',
+    plentyAdminPassword: process.env.PLENTY_ADMIN_PASSWORD || 'fQ9vR7!mK2x@T6pZ#nY4sH8dW1cL0JgE5uB3aN',
+    plentyApiEndpoint: process.env.API_ENDPOINT || 'https://www.b2b-hafenx.de',
     public: {
       domain: validateApiUrl(process.env.API_URL) ?? process.env.API_ENDPOINT,
       apiEndpoint: process.env.API_ENDPOINT,
