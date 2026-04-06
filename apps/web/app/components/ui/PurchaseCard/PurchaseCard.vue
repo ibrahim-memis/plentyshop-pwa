@@ -490,11 +490,16 @@ const viewport = useViewport();
 const localePath = useLocalePath();
 const router = useRouter();
 
+const route = useRoute();
+
 const handleLogin = () => {
   if (viewport.isGreaterOrEquals('md')) {
     openLoginModal();
   } else {
-    router.push(localePath(paths.authLogin));
+    router.push({
+      path: localePath(paths.authLogin),
+      query: { redirect: route.fullPath },
+    });
   }
 };
 

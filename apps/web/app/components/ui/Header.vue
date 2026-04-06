@@ -364,7 +364,9 @@ const navigateAfterAuth = (reload: boolean) => {
   closeAuthentication();
   closeLoginModal();
   if (reload) {
-    nextTick(() => window.location.reload());
+    nextTick(() => {
+      window.location.href = window.location.href;
+    });
   }
 };
 
