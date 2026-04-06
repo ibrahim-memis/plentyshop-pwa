@@ -87,12 +87,17 @@ const brands = computed((): BrandItem[] => {
   const markenCat = findMarkenCategory(categoryTree.value);
   if (!markenCat?.children?.length) return [];
 
+  const seen = new Set<string>();
   return markenCat.children
     .filter((child: CategoryTreeItem) => {
       if (child.type !== 'item') return false;
       const detail = child.details?.[0];
       const imgPath = detail?.imagePath || detail?.image2Path || '';
-      return !!imgPath;
+      if (!imgPath) return false;
+      const name = (detail?.name || '').toLowerCase();
+      if (seen.has(name)) return false;
+      seen.add(name);
+      return true;
     })
     .slice(0, maxBrands.value)
     .map((child: CategoryTreeItem) => {
