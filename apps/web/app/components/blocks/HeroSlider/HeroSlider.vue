@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="hero-slider-block" class="relative w-full overflow-hidden bg-[#384d37] max-w-[1536px] mx-auto rounded-sm mt-[15px]" style="min-height: 520px">
+  <div data-testid="hero-slider-block" class="relative w-full overflow-hidden bg-[#384d37] max-w-[1536px] mx-auto mt-[15px]" style="min-height: 520px; border-radius: 15px">
     <div v-if="!slides.length" class="flex items-center justify-center h-[520px] md:h-[600px] lg:h-[680px]">
       <div class="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
     </div>
@@ -25,11 +25,11 @@
           <div v-else class="w-full h-full" :style="{ background: gradients[idx % gradients.length] }" />
         </div>
 
-        <div class="absolute inset-0 z-[1] bg-gradient-to-r from-[#384d37]/95 via-[#384d37]/70 to-transparent md:via-[#384d37]/40" />
+        <div class="absolute inset-0 z-[1] bg-gradient-to-r from-[#384d37]/90 via-[#384d37]/50 to-transparent md:via-[#384d37]/25" />
 
         <div class="absolute inset-0 z-[2] flex items-end md:items-center pb-16 md:pb-0">
-          <div class="w-full max-w-[1536px] mx-auto px-6 lg:px-8">
-            <div class="max-w-xl">
+          <div class="w-full max-w-[1536px] mx-auto px-6 lg:px-8 pl-16 md:pl-20 lg:pl-24">
+            <div class="max-w-md">
               <span class="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-widest mb-4 rounded-lg border border-white/30">
                 {{ slide.badge || badges[idx % badges.length] || t('heroSlider.new') }}
               </span>
@@ -253,7 +253,8 @@ const categorySlides = computed((): SlideItem[] => {
     });
 });
 
-const slides = computed((): SlideItem[] => [...staticSlides.value, ...categorySlides.value]);
+const onlyStatic = computed(() => !!(props.content as any)?.onlyStatic);
+const slides = computed((): SlideItem[] => onlyStatic.value ? staticSlides.value : [...staticSlides.value, ...categorySlides.value]);
 
 const stripHtml = (html: string) => {
   if (!import.meta.server) {

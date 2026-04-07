@@ -11,11 +11,29 @@ export function createHomepage(): Block[] {
         isGlobalTemplate: false,
       },
       content: {
-        maxSlides: 5,
+        maxSlides: 2,
         autoplay: true,
         autoplayInterval: 6000,
         excludeNames: [],
-        staticSlides: [],
+        onlyStatic: true,
+        staticSlides: [
+          {
+            imageUrl: '/_nuxt-plenty/images/slider-tableware.png',
+            name: 'Tischkultur',
+            subtitle: 'B2B Großhandelspreise',
+            description: 'Porzellan, Gläser & Besteck für Gastronomie-Profis.',
+            link: '/geschirr-tischaccessoires/',
+            badge: 'B2B Sortiment',
+          },
+          {
+            imageUrl: '/_nuxt-plenty/images/slider-bedding.png',
+            name: 'Hotelbedarf',
+            subtitle: 'Staffelpreise ab 10 Stück',
+            description: 'Bettwäsche & Textilien in Hotelqualität.',
+            link: '/heimtextilien/',
+            badge: 'Für Hotels & Pensionen',
+          },
+        ],
       },
     },
     {
