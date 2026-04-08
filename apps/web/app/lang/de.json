@@ -1626,6 +1626,19 @@
     "subtitle": "Entdecken Sie unsere neuesten Produkte im Sortiment.",
     "badge": "Neu"
   },
+  "expertBanner": {
+    "title": "Profitieren Sie von unserer HoReCa-Expertise!",
+    "description": "Unser erfahrenes Team unterstützt Sie – sei es bei der Wahl Ihrer professionellen Gastronomie-Ausstattung oder der Planung Ihrer Großbestellung.",
+    "point1": "Mehr als 10 Jahre HoReCa-Erfahrung",
+    "point2": "Persönliche Beratung & individuelle Lösungen für Großbestellungen",
+    "point3": "Kompetenter Service & schneller Versand",
+    "contactBtn": "Kostenlos beraten lassen",
+    "contactLabel": "Jetzt kontaktieren",
+    "emailHint": "Antwort innerhalb von 24 Std.",
+    "onlineLabel": "Online verfügbar",
+    "scheduleMeeting": "Online-Beratung buchen",
+    "meetingHint": "Kostenlos & unverbindlich – Termin in 2 Min. buchen"
+  },
   "aboutUs": {
     "label": "Über uns",
     "breadcrumbHome": "Startseite",

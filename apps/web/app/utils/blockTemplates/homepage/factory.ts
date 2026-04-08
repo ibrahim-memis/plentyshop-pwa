@@ -71,10 +71,10 @@ export function createHomepage(): Block[] {
       },
     },
     {
-      name: 'AboutHorecax',
+      name: 'ExpertBanner',
       type: 'content',
       meta: {
-        uuid: 'about-horecax-001',
+        uuid: 'expert-banner-home-001',
         isGlobalTemplate: false,
       },
       content: {

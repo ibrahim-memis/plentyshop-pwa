@@ -307,6 +307,17 @@ export const createProduct = (): Block[] => {
       ],
     },
     {
+      name: 'ExpertBanner',
+      type: 'content',
+      meta: {
+        uuid: uuid(),
+        isGlobalTemplate: false,
+      },
+      content: {
+        enabled: true,
+      },
+    },
+    {
       name: 'ProductRecommendedProducts',
       type: 'content',
       meta: {

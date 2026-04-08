@@ -1506,6 +1506,19 @@
     "subtitle": "Discover our latest additions to the catalog.",
     "badge": "New"
   },
+  "expertBanner": {
+    "title": "Benefit from our HoReCa expertise!",
+    "description": "Our experienced team supports you – whether choosing your professional hospitality equipment or planning your bulk order.",
+    "point1": "More than 10 years of HoReCa experience",
+    "point2": "Personal consultation & individual solutions for bulk orders",
+    "point3": "Competent service & fast shipping",
+    "contactBtn": "Get free consultation",
+    "contactLabel": "Contact us now",
+    "emailHint": "Response within 24 hours",
+    "onlineLabel": "Available online",
+    "scheduleMeeting": "Book online consultation",
+    "meetingHint": "Free & no obligation – book in 2 min."
+  },
   "aboutUs": {
     "label": "About Us",
     "breadcrumbHome": "Home",
