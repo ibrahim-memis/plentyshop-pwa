@@ -45,6 +45,9 @@
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
+      <ClientOnly>
+        <UiConsultantWidget />
+      </ClientOnly>
     </div>
   </div>
   <ClientOnly>

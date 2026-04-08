@@ -1639,6 +1639,20 @@
     "scheduleMeeting": "Online-Beratung buchen",
     "meetingHint": "Kostenlos & unverbindlich – Termin in 2 Min. buchen"
   },
+  "consultant": {
+    "tabLabel": "Beratung",
+    "online": "Jetzt erreichbar",
+    "title": "Brauchen Sie Hilfe?",
+    "subtitle": "Unser Experten-Team berät Sie gerne persönlich.",
+    "name": "HorecaX Beratung",
+    "role": "Ihr persönlicher Ansprechpartner",
+    "rating": "4.9 / 5",
+    "callTitle": "Jetzt anrufen",
+    "meetingTitle": "Online-Beratung",
+    "meetingDesc": "Kostenlos Termin buchen – Video oder Telefon",
+    "whatsappDesc": "Schnell & unkompliziert schreiben",
+    "footer": "Wir antworten in der Regel innerhalb von 2 Stunden."
+  },
   "aboutUs": {
     "label": "Über uns",
     "breadcrumbHome": "Startseite",

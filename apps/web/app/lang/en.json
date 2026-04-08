@@ -1519,6 +1519,20 @@
     "scheduleMeeting": "Book online consultation",
     "meetingHint": "Free & no obligation – book in 2 min."
   },
+  "consultant": {
+    "tabLabel": "Consult",
+    "online": "Available now",
+    "title": "Need help?",
+    "subtitle": "Our expert team is happy to advise you personally.",
+    "name": "HorecaX Consulting",
+    "role": "Your personal contact",
+    "rating": "4.9 / 5",
+    "callTitle": "Call now",
+    "meetingTitle": "Online consultation",
+    "meetingDesc": "Book a free appointment – video or phone",
+    "whatsappDesc": "Quick & easy messaging",
+    "footer": "We usually respond within 2 hours."
+  },
   "aboutUs": {
     "label": "About Us",
     "breadcrumbHome": "Home",
