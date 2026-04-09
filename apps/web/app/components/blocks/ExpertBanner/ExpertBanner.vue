@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="expert-banner-block" class="bg-white">
+  <div data-testid="expert-banner-block" class="bg-white -mt-[60px] md:mt-0">
     <div class="max-w-[1536px] mx-auto px-6 lg:px-8 py-6">
       <div class="bg-gradient-to-r from-[#384d37]/[0.04] via-white to-[#384d37]/[0.06] border border-[#384d37]/10 rounded-2xl overflow-hidden">
         <div class="flex flex-col md:flex-row items-stretch min-h-[220px]">

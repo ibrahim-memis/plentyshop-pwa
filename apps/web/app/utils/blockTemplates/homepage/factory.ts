@@ -45,6 +45,7 @@ export function createHomepage(): Block[] {
       },
       content: {
         maxBrands: 8,
+        excludeNames: ['schäfer', 'schafer', 'schaefer'],
       },
     },
     {

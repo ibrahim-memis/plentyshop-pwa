@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="hero-slider-block" class="relative w-full overflow-hidden bg-[#384d37] max-w-[1536px] mx-auto mt-[15px]" style="min-height: 520px; border-radius: 15px">
+  <div data-testid="hero-slider-block" class="relative w-full overflow-hidden bg-[#384d37] max-w-[1536px] mx-auto -mt-[15px] md:mt-[15px] rounded-none md:rounded-[15px]" style="min-height: 520px">
     <div v-if="!slides.length" class="flex items-center justify-center h-[520px] md:h-[600px] lg:h-[680px]">
       <div class="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
     </div>

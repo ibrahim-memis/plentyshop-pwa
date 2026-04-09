@@ -17,19 +17,18 @@
             </h2>
           </template>
 
-          <div class="pb-5">
-            <table class="w-full text-sm">
-              <tbody>
-                <tr v-for="row in visibleRows" :key="row.key" class="border-b border-neutral-100 last:border-b-0">
-                  <td class="py-2.5 pr-4 text-neutral-500 font-medium whitespace-nowrap">
-                    {{ row.label }}
-                  </td>
-                  <td class="py-2.5 text-neutral-800">
-                    {{ row.value }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="pb-5 -ml-[15px]">
+            <div>
+              <div
+                v-for="row in visibleRows"
+                :key="row.key"
+                class="flex items-baseline gap-1 py-2.5 text-sm"
+              >
+                <span class="text-neutral-500 shrink-0 whitespace-nowrap">{{ row.label }}</span>
+                <span class="flex-1 border-b border-dotted border-neutral-300 min-w-[20px] translate-y-[-3px]" />
+                <span class="font-semibold text-neutral-900 shrink-0 text-right">{{ row.value }}</span>
+              </div>
+            </div>
           </div>
         </UiAccordionItem>
       </div>
@@ -39,19 +38,18 @@
           {{ title }}
         </h2>
 
-        <div class="pb-5">
-          <table class="w-full text-sm">
-            <tbody>
-              <tr v-for="row in visibleRows" :key="row.key" class="border-b border-neutral-100 last:border-b-0">
-                <td class="py-2.5 pr-4 text-neutral-500 font-medium whitespace-nowrap">
-                  {{ row.label }}
-                </td>
-                <td class="py-2.5 text-neutral-800">
-                  {{ row.value }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="pb-5 -ml-[15px]">
+          <div>
+            <div
+              v-for="row in visibleRows"
+              :key="row.key"
+              class="flex items-baseline gap-1 py-2.5 text-sm"
+            >
+              <span class="text-neutral-500 shrink-0 whitespace-nowrap">{{ row.label }}</span>
+              <span class="flex-1 border-b border-dotted border-neutral-300 min-w-[20px] translate-y-[-3px]" />
+              <span class="font-semibold text-neutral-900 shrink-0 text-right">{{ row.value }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </template>

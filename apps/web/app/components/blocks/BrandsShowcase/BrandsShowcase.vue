@@ -47,6 +47,7 @@ interface BrandsShowcaseProps {
   content?: {
     maxBrands?: number;
     parentCategoryName?: string;
+    excludeNames?: string[];
   };
   meta?: { uuid: string };
 }
@@ -66,6 +67,7 @@ const { buildCategoryMenuLink } = useLocalization();
 
 const maxBrands = computed(() => props.content?.maxBrands ?? 100);
 const parentName = computed(() => (props.content?.parentCategoryName || 'marken').toLowerCase());
+const excludeNames = computed(() => (props.content?.excludeNames || []).map((n) => n.toLowerCase()));
 const { data: categoryTree } = useCategoryTree();
 
 const findMarkenCategory = (cats: CategoryTreeItem[]): CategoryTreeItem | undefined => {
@@ -87,15 +89,25 @@ const brands = computed((): BrandItem[] => {
   const markenCat = findMarkenCategory(categoryTree.value);
   if (!markenCat?.children?.length) return [];
 
+  if (import.meta.dev) {
+    console.log('[BrandsShowcase] Marken category children:', markenCat.children.map((c: CategoryTreeItem) => ({
+      id: c.id,
+      type: c.type,
+      name: c.details?.[0]?.name,
+      imagePath: c.details?.[0]?.imagePath,
+      image2Path: c.details?.[0]?.image2Path,
+    })));
+  }
+
   const seen = new Set<string>();
   return markenCat.children
     .filter((child: CategoryTreeItem) => {
-      if (child.type !== 'item') return false;
       const detail = child.details?.[0];
       const imgPath = detail?.imagePath || detail?.image2Path || '';
       if (!imgPath) return false;
       const name = (detail?.name || '').toLowerCase();
       if (seen.has(name)) return false;
+      if (excludeNames.value.some((ex) => name.includes(ex))) return false;
       seen.add(name);
       return true;
     })

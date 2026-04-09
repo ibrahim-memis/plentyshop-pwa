@@ -167,28 +167,6 @@ export const createProduct = (): Block[] => {
       },
       content: [
         {
-          name: 'ItemText',
-          type: 'content',
-          meta: {
-            uuid: uuid(),
-            isGlobalTemplate: false,
-          },
-          parent_slot: 0,
-          content: {
-            text: {
-              title: itemTextTitle,
-            },
-            layout: {
-              displayAsCollapsable: true,
-              initiallyCollapsed: false,
-              paddingTop: 0,
-              paddingBottom: 8,
-              paddingLeft: 0,
-              paddingRight: 0,
-            },
-          },
-        },
-        {
           name: 'ItemData',
           type: 'content',
           meta: {
@@ -227,6 +205,28 @@ export const createProduct = (): Block[] => {
               'itemId',
               'properties',
             ],
+            layout: {
+              displayAsCollapsable: true,
+              initiallyCollapsed: false,
+              paddingTop: 0,
+              paddingBottom: 8,
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+          },
+        },
+        {
+          name: 'ItemText',
+          type: 'content',
+          meta: {
+            uuid: uuid(),
+            isGlobalTemplate: false,
+          },
+          parent_slot: 0,
+          content: {
+            text: {
+              title: itemTextTitle,
+            },
             layout: {
               displayAsCollapsable: true,
               initiallyCollapsed: true,
@@ -336,8 +336,8 @@ export const createProduct = (): Block[] => {
         },
         layout: {
           displayMode: 'grid',
-          gridColumns: 5,
-          maxItems: 5,
+          gridColumns: 4,
+          maxItems: 4,
           fullWidthContainer: true,
         },
       },
