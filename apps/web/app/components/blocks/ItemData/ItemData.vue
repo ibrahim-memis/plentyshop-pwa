@@ -5,7 +5,7 @@
       <span class="italic">{{ getEditorTranslation('no-data-to-show') }}</span>
     </div>
     <template v-if="hasRows">
-      <div v-if="displayAsCollapsable" class="border-t border-neutral-200">
+      <div v-if="displayAsCollapsable">
         <UiAccordionItem
           v-model="isOpen"
           summary-class="w-full py-5 px-0 flex justify-between items-center select-none group cursor-pointer"
@@ -33,7 +33,7 @@
         </UiAccordionItem>
       </div>
 
-      <div v-else class="border-t border-neutral-200">
+      <div v-else>
         <h2 v-if="title" class="font-semibold text-base md:text-lg text-neutral-900 py-5">
           {{ title }}
         </h2>
