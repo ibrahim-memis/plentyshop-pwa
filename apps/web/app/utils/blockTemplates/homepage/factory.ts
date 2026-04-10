@@ -18,20 +18,20 @@ export function createHomepage(): Block[] {
         onlyStatic: true,
         staticSlides: [
           {
+            imageUrl: '/_nuxt-plenty/images/slider-wilmax-banner.png',
+            name: 'Wilmax',
+            subtitle: 'Premium Porzellan',
+            description: 'Elegantes Geschirr für gehobene Ansprüche.',
+            link: '/geschirr-tischaccessoires/',
+            badge: 'Neu im Sortiment',
+          },
+          {
             imageUrl: '/_nuxt-plenty/images/slider-tableware.png',
             name: 'Tischkultur',
             subtitle: 'B2B Großhandelspreise',
             description: 'Porzellan, Gläser & Besteck für Gastronomie-Profis.',
             link: '/geschirr-tischaccessoires/',
             badge: 'B2B Sortiment',
-          },
-          {
-            imageUrl: '/_nuxt-plenty/images/slider-bedding.png',
-            name: 'Hotelbedarf',
-            subtitle: 'Staffelpreise ab 10 Stück',
-            description: 'Bettwäsche & Textilien in Hotelqualität.',
-            link: '/heimtextilien/',
-            badge: 'Für Hotels & Pensionen',
           },
         ],
       },
@@ -57,7 +57,8 @@ export function createHomepage(): Block[] {
       },
       content: {
         maxBanners: 6,
-        includeNames: [],
+        excludeNames: ['neuheiten'],
+        includeNames: ['serviergeschirr'],
       },
     },
     {

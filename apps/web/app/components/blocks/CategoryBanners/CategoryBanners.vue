@@ -78,6 +78,7 @@ interface CategoryBannersProps {
   content?: {
     maxBanners?: number;
     excludeNames?: string[];
+    includeNames?: string[];
   };
   meta?: { uuid: string };
 }
@@ -104,6 +105,7 @@ const excludeNames = computed(() => {
   const custom = (props.content?.excludeNames || []).map((n) => n.toLowerCase());
   return [...defaultExclude, ...custom];
 });
+const includeNames = computed(() => (props.content?.includeNames || []).map((n) => n.toLowerCase()));
 
 const loading = ref(true);
 const sortedCategories = ref<CategoryBannerItem[]>([]);
@@ -117,6 +119,24 @@ const gradients = [
   'linear-gradient(135deg, #445e42 0%, #2c3e2b 100%)',
 ];
 
+const findCategoriesByName = (cats: CategoryTreeItem[], names: string[]): CategoryTreeItem[] => {
+  const found: CategoryTreeItem[] = [];
+  const search = (items: CategoryTreeItem[]) => {
+    for (const cat of items) {
+      if (cat.type === 'item') {
+        const name = (cat.details?.[0]?.name || '').toLowerCase();
+        const url = (cat.details?.[0]?.nameUrl || '').toLowerCase();
+        if (names.some((n) => name.includes(n) || url.includes(n))) {
+          found.push(cat);
+        }
+      }
+      if (cat.children?.length) search(cat.children);
+    }
+  };
+  search(cats);
+  return found;
+};
+
 const getTopLevelCategories = (): CategoryTreeItem[] => {
   if (!categoryTree.value?.length) return [];
 
@@ -129,7 +149,21 @@ const getTopLevelCategories = (): CategoryTreeItem[] => {
 };
 
 const fetchProductCounts = async () => {
-  const categories = getTopLevelCategories();
+  const topLevel = getTopLevelCategories();
+
+  const included = includeNames.value.length && categoryTree.value?.length
+    ? findCategoriesByName(categoryTree.value, includeNames.value)
+    : [];
+
+  const seenIds = new Set<number>();
+  const categories: CategoryTreeItem[] = [];
+  for (const cat of [...topLevel, ...included]) {
+    if (!seenIds.has(cat.id)) {
+      seenIds.add(cat.id);
+      categories.push(cat);
+    }
+  }
+
   if (!categories.length) {
     loading.value = false;
     return;
@@ -151,9 +185,16 @@ const fetchProductCounts = async () => {
       ),
     );
 
+    const includedIds = new Set(included.map((c) => c.id));
+
     const withCounts: CategoryBannerItem[] = results
-      .filter((r) => r.count > 0)
-      .sort((a, b) => b.count - a.count)
+      .filter((r) => r.count > 0 || includedIds.has(r.cat.id))
+      .sort((a, b) => {
+        const aIncluded = includedIds.has(a.cat.id) ? 1 : 0;
+        const bIncluded = includedIds.has(b.cat.id) ? 1 : 0;
+        if (aIncluded !== bIncluded) return bIncluded - aIncluded;
+        return b.count - a.count;
+      })
       .slice(0, maxBanners.value)
       .map((r) => {
         const detail = r.cat.details?.[0];
