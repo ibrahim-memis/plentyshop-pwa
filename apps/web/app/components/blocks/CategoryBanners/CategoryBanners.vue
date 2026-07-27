@@ -34,11 +34,11 @@
         >
           <div class="absolute inset-0 w-full h-full" :style="{ background: gradients[idx % gradients.length] }" />
           <img
-            v-if="cat.imageUrl"
-            :src="cat.imageUrl"
+            :src="resolveImageUrl(cat)"
             :alt="cat.name"
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
+            @error="onImageError(cat.id)"
           >
           <div class="absolute inset-0 bg-gradient-to-t from-[#384d37]/90 via-[#384d37]/30 to-transparent group-hover:from-[#384d37]/95 transition-colors" />
           <div class="absolute inset-0 flex flex-col justify-end p-4 md:p-5">
@@ -109,6 +109,19 @@ const includeNames = computed(() => (props.content?.includeNames || []).map((n) 
 
 const loading = ref(true);
 const sortedCategories = ref<CategoryBannerItem[]>([]);
+
+// Fallback image shown while a category has no backend image (or its image
+// fails to load). As soon as an image is uploaded/updated in the plentyONE
+// backend, `cat.imageUrl` is populated again and takes precedence automatically.
+const categoryPlaceholder = '/_nuxt-plenty/images/slider-tableware.png';
+const failedImages = ref(new Set<number>());
+
+const resolveImageUrl = (cat: CategoryBannerItem): string =>
+  cat.imageUrl && !failedImages.value.has(cat.id) ? cat.imageUrl : categoryPlaceholder;
+
+const onImageError = (id: number): void => {
+  failedImages.value = new Set(failedImages.value).add(id);
+};
 
 const gradients = [
   'linear-gradient(135deg, #384d37 0%, #2c3e2b 100%)',
