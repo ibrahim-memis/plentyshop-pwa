@@ -276,11 +276,11 @@
 
                 <div class="mb-4">
                   <!-- Quantity selector -->
-                  <div class="flex items-center gap-3 mb-3">
+                  <div class="flex flex-wrap items-center gap-3 gap-y-2 mb-3">
                     <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider shrink-0">
                       {{ t('product.quantity') }}
                     </label>
-                    <div class="flex items-center border border-neutral-200 rounded-xl overflow-hidden bg-white">
+                    <div class="flex items-center border border-neutral-200 rounded-xl overflow-hidden bg-white shrink-0">
                       <button
                         type="button"
                         class="w-10 h-10 flex items-center justify-center text-neutral-400 hover:text-[#384d37] hover:bg-neutral-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
@@ -304,6 +304,16 @@
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
                       </button>
                     </div>
+                    <span
+                      v-if="unitContentPerSet > 1"
+                      data-testid="total-pieces"
+                      class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#384d37]/8 text-[#384d37] text-xs font-bold whitespace-nowrap"
+                    >
+                      <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                      </svg>
+                      {{ totalPieces }} {{ unitNameLabel }}
+                    </span>
                   </div>
 
                   <div class="flex items-stretch gap-2">
@@ -783,6 +793,12 @@ watch(
 const setsPerCarton = computed(() => Number(graduatedList.value[0]?.quantity) || 1);
 const cartonCount = (quantity: string | number): number =>
   Math.max(1, Math.round(Number(quantity) / setsPerCarton.value));
+
+// How many pieces ("Stück") one set contains (the "Inhalt" value), the unit label,
+// and the running total pieces for the chosen quantity — shown next to the selector.
+const unitContentPerSet = computed(() => Number(productGetters.getUnitContent(props?.product)) || 1);
+const unitNameLabel = computed(() => productGetters.getUnitName(props?.product) || '');
+const totalPieces = computed(() => Number(quantitySelectorValue.value) * unitContentPerSet.value);
 
 const isSalableText = computed(() => (productGetters.isSalable(props?.product) ? '' : t('product.notAvailable')));
 const isNotValidVariation = computed(() => (getCombination() ? '' : t('product.attributes.notValidVariation')));
