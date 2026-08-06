@@ -48,54 +48,6 @@
                   {{ t('product.showAllReviews') }}
                 </UiButton>
               </div>
-
-              <div v-if="graduatedList.length > 0" class="mb-5">
-                <div class="rounded-lg border border-neutral-100 overflow-hidden">
-                  <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-50/80">
-                    <div class="flex items-center gap-2">
-                      <svg class="w-4 h-4 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
-                      </svg>
-                      <span class="text-xs font-semibold text-neutral-800">{{ t('volumeDiscount.title') }}</span>
-                    </div>
-                    <span class="text-[10px] text-neutral-400">{{ t('volumeDiscount.subtitle') }}</span>
-                  </div>
-                  <table class="w-full text-xs">
-                    <thead>
-                      <tr class="border-t border-neutral-100 bg-neutral-50/40">
-                        <th class="px-4 py-2 text-left text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.quantity') }}</th>
-                        <th class="px-4 py-2 text-right text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.price') }}</th>
-                        <th class="px-4 py-2 text-right text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.discount') }}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        v-for="(tier, index) in graduatedList"
-                        :key="index"
-                        class="border-t border-neutral-100 transition-colors hover:bg-neutral-50/50"
-                        :class="{ 'bg-primary-50/30': tier.price === selectedGraduatedPrice?.price?.value }"
-                      >
-                        <td class="px-4 py-2 text-neutral-600">
-                          <span class="font-semibold text-neutral-800">{{ t('volumeDiscount.from') }} {{ cartonCount(tier.quantity) }} {{ cartonCount(tier.quantity) === 1 ? t('volumeDiscount.carton') : t('volumeDiscount.cartons') }}</span>
-                          <span class="ml-1">({{ tier.quantity }} {{ t('volumeDiscount.sets') }})</span>
-                        </td>
-                        <td class="px-4 py-2 text-right font-medium text-neutral-800">
-                          {{ format(tier.price) }}
-                        </td>
-                        <td class="px-4 py-2 text-right">
-                          <span
-                            class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold"
-                            :class="tier.price === selectedGraduatedPrice?.price?.value ? 'bg-green-100 text-green-800' : 'bg-neutral-100 text-neutral-700'"
-                          >
-                            -{{ tier.discount }}%
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </template>
 
             <template v-if="key === 'previewText' && configuration?.fields.previewText">
@@ -223,6 +175,67 @@
             <template v-if="key === 'attributes' && configuration?.fields.attributes">
               <div class="mb-5">
                 <ProductAttributes :product="product" />
+
+                <div v-if="graduatedList.length > 0" class="mt-4">
+                  <div class="rounded-lg border border-neutral-100 overflow-hidden">
+                    <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-50/80">
+                      <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                        </svg>
+                        <span class="text-xs font-semibold text-neutral-800">{{ t('volumeDiscount.title') }}</span>
+                      </div>
+                      <span class="text-[10px] text-neutral-400">{{ t('volumeDiscount.subtitle') }}</span>
+                    </div>
+                    <table class="w-full text-xs">
+                      <thead>
+                        <tr class="border-t border-neutral-100 bg-neutral-50/40">
+                          <th class="px-4 py-2 text-left text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.quantity') }}</th>
+                          <th class="px-4 py-2 text-right text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.price') }}</th>
+                          <th class="px-4 py-2 text-right text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.discount') }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          v-for="(tier, index) in graduatedList"
+                          :key="index"
+                          class="border-t border-neutral-100 transition-colors hover:bg-neutral-50/50"
+                          :class="[
+                            { 'bg-primary-50/30': tier.price === selectedGraduatedPrice?.price?.value },
+                            { 'tier-activated': tier.price === activatedTierPrice },
+                          ]"
+                        >
+                          <td class="px-4 py-2 text-neutral-600">
+                            <span class="font-semibold text-neutral-800">{{ t('volumeDiscount.from') }} {{ cartonCount(tier.quantity) }} {{ cartonCount(tier.quantity) === 1 ? t('volumeDiscount.carton') : t('volumeDiscount.cartons') }}</span>
+                            <span class="ml-1">({{ tier.quantity }} {{ t('volumeDiscount.sets') }})</span>
+                          </td>
+                          <td class="px-4 py-2 text-right font-medium text-neutral-800">
+                            {{ format(tier.price) }}
+                          </td>
+                          <td class="px-4 py-2 text-right">
+                            <span
+                              class="tier-discount-badge inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold"
+                              :class="tier.price === selectedGraduatedPrice?.price?.value ? 'bg-green-100 text-green-800' : 'bg-neutral-100 text-neutral-700'"
+                            >
+                              <svg
+                                v-if="tier.price === selectedGraduatedPrice?.price?.value"
+                                class="w-3 h-3"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="3"
+                              >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                              </svg>
+                              -{{ tier.discount }}%
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </template>
 
@@ -515,7 +528,14 @@ const {
 const { clear, send } = useNotification();
 const { addToCart, loading } = useCart();
 const minimumOrderQuantity = computed(() => productGetters.getMinimumOrderQuantity(props?.product));
-const quantitySelectorValue = ref(minimumOrderQuantity.value);
+// Share the chosen quantity across every PurchaseCard instance for this variation
+// (the info card and the buy box are separate instances). Keying by variation id
+// keeps them in sync, so changing MENGE in the buy box also drives the bulk-price
+// tier highlight/animation in the info-card table.
+const quantitySelectorValue = useState<number>(
+  `purchase-card-quantity-${productGetters.getVariationId(props?.product)}`,
+  () => minimumOrderQuantity.value,
+);
 const { isWishlistItem } = useWishlist();
 const { openQuickCheckout } = useQuickCheckout();
 const { crossedPrice } = useProductPrice(props?.product);
@@ -741,6 +761,21 @@ const selectedGraduatedPrice = computed(() => {
   return productGetters.getGraduatedPriceByQuantity(props.product, quantitySelectorValue.value);
 });
 
+// Flash the matching row whenever the chosen quantity crosses into a new bulk-price
+// tier, so the customer clearly sees a discount just became active.
+const activatedTierPrice = ref<number | null>(null);
+let activationTimer: ReturnType<typeof setTimeout> | null = null;
+watch(
+  () => selectedGraduatedPrice.value?.price?.value ?? null,
+  (newPrice, oldPrice) => {
+    if (newPrice !== null && oldPrice !== undefined && newPrice !== oldPrice) {
+      activatedTierPrice.value = newPrice;
+      if (activationTimer) clearTimeout(activationTimer);
+      activationTimer = setTimeout(() => (activatedTierPrice.value = null), 1200);
+    }
+  },
+);
+
 // The lowest graduated tier equals one carton ("Karton"), so its quantity tells
 // us how many sets fit in a carton — no hard-coded ratio needed. The set count
 // stays the raw graduated quantity; the carton number is derived purely for the
@@ -784,5 +819,42 @@ const scrollToReviews = () => {
 
 .product-bullet-list :deep(p) {
   margin-bottom: 0.25rem;
+}
+
+/* Bulk-price tier just became active: flash the row + pop the discount badge. */
+@keyframes tierRowFlash {
+  0% {
+    background-color: rgba(34, 197, 94, 0.3);
+  }
+  100% {
+    background-color: rgba(56, 77, 55, 0.12);
+  }
+}
+
+@keyframes tierBadgePop {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tier-activated {
+  animation: tierRowFlash 1s ease-out;
+}
+
+.tier-activated .tier-discount-badge {
+  animation: tierBadgePop 0.7s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tier-activated,
+  .tier-activated .tier-discount-badge {
+    animation: none;
+  }
 }
 </style>
