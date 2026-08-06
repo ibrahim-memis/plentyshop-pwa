@@ -1614,10 +1614,15 @@
   "volumeDiscount": {
     "title": "Mengenrabatte",
     "subtitle": "Mehr kaufen, mehr sparen",
-    "quantity": "Menge",
+    "quantity": "Bestellmenge",
+    "price": "Preis je Set",
     "discount": "Rabatt",
     "savings": "Sie sparen",
     "pieces": "Stück",
+    "from": "Ab",
+    "carton": "Karton",
+    "cartons": "Kartons",
+    "sets": "Sets",
     "save": "Sparen",
     "info": "Rabatte werden automatisch an der Kasse angewendet."
   },

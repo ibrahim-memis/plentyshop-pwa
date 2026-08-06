@@ -64,9 +64,9 @@
                   <table class="w-full text-xs">
                     <thead>
                       <tr class="border-t border-neutral-100 bg-neutral-50/40">
-                        <th class="px-4 py-2 text-left text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">{{ t('volumeDiscount.quantity') }}</th>
-                        <th class="px-4 py-2 text-right text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">{{ t('product.graduatedPrices.price') }}</th>
-                        <th class="px-4 py-2 text-right text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">{{ t('volumeDiscount.discount') }}</th>
+                        <th class="px-4 py-2 text-left text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.quantity') }}</th>
+                        <th class="px-4 py-2 text-right text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.price') }}</th>
+                        <th class="px-4 py-2 text-right text-[11px] font-semibold text-neutral-500 tracking-wide">{{ t('volumeDiscount.discount') }}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -77,8 +77,8 @@
                         :class="{ 'bg-primary-50/30': tier.price === selectedGraduatedPrice?.price?.value }"
                       >
                         <td class="px-4 py-2 text-neutral-600">
-                          <span class="font-semibold text-neutral-800">{{ tier.quantity }}+</span>
-                          <span class="ml-1">{{ t('volumeDiscount.pieces') }}</span>
+                          <span class="font-semibold text-neutral-800">{{ t('volumeDiscount.from') }} {{ cartonCount(tier.quantity) }} {{ cartonCount(tier.quantity) === 1 ? t('volumeDiscount.carton') : t('volumeDiscount.cartons') }}</span>
+                          <span class="ml-1">({{ tier.quantity }} {{ t('volumeDiscount.sets') }})</span>
                         </td>
                         <td class="px-4 py-2 text-right font-medium text-neutral-800">
                           {{ format(tier.price) }}
@@ -740,6 +740,14 @@ const selectedGraduatedPrice = computed(() => {
   if (!props?.product?.item) return null;
   return productGetters.getGraduatedPriceByQuantity(props.product, quantitySelectorValue.value);
 });
+
+// The lowest graduated tier equals one carton ("Karton"), so its quantity tells
+// us how many sets fit in a carton — no hard-coded ratio needed. The set count
+// stays the raw graduated quantity; the carton number is derived purely for the
+// label and never changes any price/discount value.
+const setsPerCarton = computed(() => Number(graduatedList.value[0]?.quantity) || 1);
+const cartonCount = (quantity: string | number): number =>
+  Math.max(1, Math.round(Number(quantity) / setsPerCarton.value));
 
 const isSalableText = computed(() => (productGetters.isSalable(props?.product) ? '' : t('product.notAvailable')));
 const isNotValidVariation = computed(() => (getCombination() ? '' : t('product.attributes.notValidVariation')));
