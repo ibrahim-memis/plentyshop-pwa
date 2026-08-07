@@ -445,7 +445,13 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters, reviewGetters, productBundleGetters, manufacturerGetters } from '@plentymarkets/shop-api';
+import {
+  productGetters,
+  productPropertyGetters,
+  reviewGetters,
+  productBundleGetters,
+  manufacturerGetters,
+} from '@plentymarkets/shop-api';
 import { SfCounter, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip, SfLink } from '@storefront-ui/vue';
 import type { CategoryTreeItem } from '@plentymarkets/shop-api';
 import type { PriceCardPadding, PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
@@ -593,18 +599,57 @@ const markenCategory = computed(() => {
 const brandCategory = computed(() => {
   const marken = markenCategory.value;
   if (!marken) return undefined;
-  // The product's linked category that sits directly under "Marken" is its brand.
-  // getProduct only exposes default categories, so this resolves the brand for
-  // products where the Marken subcategory is set as a default category.
+  const children = marken.children ?? [];
+
+  // Primary: match the product title against the "Marken" subcategory names. Product
+  // titles start with their brand, so this also covers products whose brand category
+  // is not their default one. Longest match wins ("Pasabahce Crystalin" > "Pasabahce").
+  const title = (props?.product ? productGetters.getName(props.product) : '').trim().toLowerCase();
+  if (title) {
+    let best: CategoryTreeItem | undefined;
+    let bestLength = 0;
+    for (const child of children) {
+      const name = (child.details?.[0]?.name || '').trim().toLowerCase();
+      if (name && title.startsWith(name) && name.length > bestLength) {
+        best = child;
+        bestLength = name.length;
+      }
+    }
+    if (best) return best;
+  }
+
+  // Fallback: a linked default category that sits directly under "Marken".
   const brandRef = (props?.product?.defaultCategories ?? []).find(
     (category) => Number(category.parentCategoryId) === Number(marken.id),
   );
-  if (!brandRef) return undefined;
-  return (marken.children ?? []).find((child) => Number(child.id) === Number(brandRef.id));
+  return brandRef ? children.find((child) => Number(child.id) === Number(brandRef.id)) : undefined;
 });
 
 const brandName = computed(() => brandCategory.value?.details?.[0]?.name || '');
+
+// Preferred source: a variation property ("Marken URL", Eigenschaft ID 555) that
+// holds the brand logo URL directly. This works for every product regardless of
+// how its brand category is assigned. Falls back to the linked "Marken" category.
+const BRAND_LOGO_PROPERTY_ID = 555;
+const brandPropertyLogo = computed(() => {
+  const groups = props?.product ? productGetters.getPropertyGroups(props.product) : [];
+  for (const group of groups ?? []) {
+    for (const property of group.properties ?? []) {
+      const name = (productPropertyGetters.getPropertyName(property) || '')
+        .replace(/[\s_-]/g, '')
+        .toLowerCase();
+      const idMatches = Number(productPropertyGetters.getPropertyId(property)) === BRAND_LOGO_PROPERTY_ID;
+      if (idMatches || name === 'brandlogourl' || name === 'markenurl') {
+        const value = productPropertyGetters.getPropertyValue(property);
+        if (value) return buildBrandImageUrl(String(value));
+      }
+    }
+  }
+  return '';
+});
+
 const brandLogo = computed(() => {
+  if (brandPropertyLogo.value) return brandPropertyLogo.value;
   const detail = brandCategory.value?.details?.[0];
   return detail ? buildBrandImageUrl(detail.imagePath || detail.image2Path || '') : '';
 });
