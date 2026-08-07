@@ -9,9 +9,16 @@
     <div class="relative">
       <div class="drift-zoom-image">
         <section class="px-4 pt-0 pb-3" :style="{ marginTop: configuration?.borders ? '0px' : '-30px' }">
-          <div v-if="configuration?.fields.itemName && (manufacturerLogo || manufacturerName || storeName)" class="mb-[15px] mt-[20px] md:mt-[15px]">
+          <div v-if="configuration?.fields.itemName && (brandLogo || manufacturerLogo || manufacturerName || storeName)" class="mb-[15px] mt-[20px] md:mt-[15px]">
+            <img
+              v-if="brandLogo"
+              :src="brandLogo"
+              :alt="brandName || manufacturerName || storeName"
+              class="h-7 md:h-9 w-auto object-contain"
+              loading="lazy"
+            >
             <NuxtImg
-              v-if="manufacturerLogo"
+              v-else-if="manufacturerLogo"
               :src="manufacturerLogo"
               :alt="manufacturerName || storeName"
               class="h-6 md:h-8 w-auto object-contain"
@@ -440,6 +447,7 @@
 <script setup lang="ts">
 import { productGetters, reviewGetters, productBundleGetters, manufacturerGetters } from '@plentymarkets/shop-api';
 import { SfCounter, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip, SfLink } from '@storefront-ui/vue';
+import type { CategoryTreeItem } from '@plentymarkets/shop-api';
 import type { PriceCardPadding, PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import type { PayPalAddToCartCallback } from '#paypal/types';
 import { paths } from '~/utils/paths';
@@ -563,6 +571,44 @@ const manufacturerLogo = computed(() => {
   if (!manufacturer.value) return '';
   return manufacturerGetters.getManufacturerLogo(manufacturer.value) || '';
 });
+
+// Brand logo above the title: the product is assigned to a subcategory of the
+// "Marken" category; we resolve that brand subcategory from the product's linked
+// categories and show its first category image ("Bild 1").
+const { data: brandCategoryTree } = useCategoryTree();
+const { buildDocumentUrl: buildBrandImageUrl } = useBuildImageUrl();
+
+const markenCategory = computed(() => {
+  const find = (nodes?: CategoryTreeItem[]): CategoryTreeItem | undefined => {
+    for (const node of nodes ?? []) {
+      if ((node.details?.[0]?.name || '').trim().toLowerCase() === 'marken') return node;
+      const inChild = find(node.children);
+      if (inChild) return inChild;
+    }
+    return undefined;
+  };
+  return find(brandCategoryTree.value);
+});
+
+const brandCategory = computed(() => {
+  const marken = markenCategory.value;
+  if (!marken) return undefined;
+  // The product's linked category that sits directly under "Marken" is its brand.
+  // getProduct only exposes default categories, so this resolves the brand for
+  // products where the Marken subcategory is set as a default category.
+  const brandRef = (props?.product?.defaultCategories ?? []).find(
+    (category) => Number(category.parentCategoryId) === Number(marken.id),
+  );
+  if (!brandRef) return undefined;
+  return (marken.children ?? []).find((child) => Number(child.id) === Number(brandRef.id));
+});
+
+const brandName = computed(() => brandCategory.value?.details?.[0]?.name || '');
+const brandLogo = computed(() => {
+  const detail = brandCategory.value?.details?.[0];
+  return detail ? buildBrandImageUrl(detail.imagePath || detail.image2Path || '') : '';
+});
+
 const variationNumber = computed(() => props.product?.variation?.number || '');
 
 const inlineStyle = computed(() => {
