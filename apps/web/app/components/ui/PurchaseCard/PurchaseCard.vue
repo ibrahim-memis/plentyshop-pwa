@@ -601,11 +601,23 @@ const brandCategory = computed(() => {
   if (!marken) return undefined;
   const children = marken.children ?? [];
 
-  // Primary: match the product title against the "Marken" subcategory names. Product
-  // titles start with their brand, so this also covers products whose brand category
-  // is not their default one. Longest match wins ("Pasabahce Crystalin" > "Pasabahce").
+  const byId = (id: number) => children.find((child) => Number(child.id) === id);
   const title = (props?.product ? productGetters.getName(props.product) : '').trim().toLowerCase();
   if (title) {
+    // Sub-brand keywords win over the parent "Pasabahce" brand, wherever they appear
+    // in the title. Güral products may only say "Güral", so match that too.
+    let keywordId = 0;
+    if (title.includes('crystalin') || title.includes('crystallin')) keywordId = 938; // Pasabahce Crystalin
+    else if (title.includes('nude')) keywordId = 648; // Nude
+    else if (title.includes('güral') || title.includes('gural')) keywordId = 972; // Güral Porselen
+    if (keywordId) {
+      const keywordCategory = byId(keywordId);
+      if (keywordCategory) return keywordCategory;
+    }
+
+    // Otherwise match the title against the "Marken" subcategory names. Titles start
+    // with their brand, so this also covers products whose brand category is not their
+    // default one. Longest match wins ("Pasabahce Crystalin" > "Pasabahce").
     let best: CategoryTreeItem | undefined;
     let bestLength = 0;
     for (const child of children) {
