@@ -9,7 +9,7 @@
     <div class="relative">
       <div class="drift-zoom-image">
         <section class="px-4 pt-0 pb-3" :style="{ marginTop: configuration?.borders ? '0px' : '-30px' }">
-          <div v-if="configuration?.fields.itemName && (brandLogo || manufacturerLogo || manufacturerName || storeName)" class="mb-[15px] mt-[20px] md:mt-[15px]">
+          <div v-if="configuration?.fields.itemName && (brandLogo || manufacturerLogo || manufacturerName || storeName)" class="mb-[15px] mt-11 md:mt-[15px]">
             <img
               v-if="brandLogo"
               :src="brandLogo"
