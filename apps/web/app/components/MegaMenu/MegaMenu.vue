@@ -106,7 +106,7 @@
         <div
           v-if="megaMenuCat && megaMenuData"
           class="absolute left-0 right-0 top-full z-50 bg-white border-b border-neutral-200 shadow-lg shadow-black/5"
-          @mouseenter="cancelMegaClose()"
+          @mouseenter="onMegaEnter()"
           @mouseleave="scheduleMegaClose()"
         >
           <div class="max-w-[1536px] mx-auto px-6 lg:px-8 py-8">
@@ -321,6 +321,7 @@ const drawerReference = ref();
 const megaMenuCat = ref<number | null>(null);
 
 let megaCloseTimer: ReturnType<typeof setTimeout> | null = null;
+let megaSwitchTimer: ReturnType<typeof setTimeout> | null = null;
 
 const megaMenuData = computed(() => {
   if (!megaMenuCat.value) return null;
@@ -334,25 +335,47 @@ const cancelMegaClose = () => {
   }
 };
 
+const cancelMegaSwitch = () => {
+  if (megaSwitchTimer) {
+    clearTimeout(megaSwitchTimer);
+    megaSwitchTimer = null;
+  }
+};
+
 const scheduleMegaClose = () => {
   cancelMegaClose();
   megaCloseTimer = setTimeout(() => {
+    cancelMegaSwitch();
     megaMenuCat.value = null;
-  }, 150);
+  }, 200);
 };
 
 const closeMegaMenu = () => {
   cancelMegaClose();
+  cancelMegaSwitch();
   megaMenuCat.value = null;
+};
+
+const applyMegaCat = (cat: CategoryTreeItem) => {
+  megaMenuCat.value = cat.children && cat.children.length > 0 ? cat.id : null;
 };
 
 const onCatEnter = (cat: CategoryTreeItem) => {
   cancelMegaClose();
-  if (cat.children && cat.children.length > 0) {
-    megaMenuCat.value = cat.id;
+  cancelMegaSwitch();
+  // When a dropdown is already open, delay switching to another category so the
+  // cursor can travel toward the dropdown (crossing the wrapped second nav row)
+  // without the passed-over items hijacking the open menu. Open instantly otherwise.
+  if (megaMenuCat.value !== null && megaMenuCat.value !== cat.id) {
+    megaSwitchTimer = setTimeout(() => applyMegaCat(cat), 180);
   } else {
-    megaMenuCat.value = null;
+    applyMegaCat(cat);
   }
+};
+
+const onMegaEnter = () => {
+  cancelMegaClose();
+  cancelMegaSwitch();
 };
 
 const topCategories = computed(() =>
