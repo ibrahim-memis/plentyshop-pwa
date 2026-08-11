@@ -90,6 +90,11 @@
             </h4>
             <ul class="space-y-2.5">
               <li>
+                <NuxtLink :to="localePath('/versandkosten')" class="text-sm text-white/70 hover:text-white transition-colors">
+                  {{ t('customFooter.shippingCostsLink') }}
+                </NuxtLink>
+              </li>
+              <li>
                 <NuxtLink :to="localePath(paths.contact)" class="text-sm text-white/70 hover:text-white transition-colors">
                   {{ t('customFooter.contactLink') }}
                 </NuxtLink>

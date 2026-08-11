@@ -1272,7 +1272,10 @@
       "sameDay": "Sofort",
       "day": "Tag",
       "days": "Tage",
-      "pieces": "Stk."
+      "pieces": "Stk.",
+      "available": "Auf Lager",
+      "exceedsStock": "Gewünschte Menge übersteigt den verfügbaren Bestand",
+      "onlyAvailable": "Nur noch {count} Stk. verfügbar"
     },
     "showAll": "alle Filter",
     "graduatedPrices": {
@@ -1724,6 +1727,7 @@
     "registerLink": "Registrieren",
     "allRightsReserved": "Alle Rechte vorbehalten.",
     "revocationButton": "Vertrag widerrufen",
-    "revocationButtonAria": "Widerrufsformular öffnen"
+    "revocationButtonAria": "Widerrufsformular öffnen",
+    "shippingCostsLink": "Versandkosten"
   }
 }
