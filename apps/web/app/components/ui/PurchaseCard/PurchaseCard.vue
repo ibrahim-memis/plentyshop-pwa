@@ -552,6 +552,12 @@ const {
 const { clear, send } = useNotification();
 const { addToCart, loading } = useCart();
 const minimumOrderQuantity = computed(() => productGetters.getMinimumOrderQuantity(props?.product));
+// Interval order quantity ("Intervallbestellmenge"): the +/- buttons step by this
+// amount so the quantity stays a valid multiple (e.g. 8, 16, 24…). Defaults to 1.
+const intervalOrderQuantity = computed(() => {
+  const interval = Number(props?.product?.variation?.intervalOrderQuantity) || 0;
+  return interval > 0 ? interval : 1;
+});
 // Share the chosen quantity across every PurchaseCard instance for this variation
 // (the info card and the buy box are separate instances). Keying by variation id
 // keeps them in sync, so changing MENGE in the buy box also drives the bulk-price
@@ -768,18 +774,23 @@ const changeQuantity = (quantity: string) => {
 };
 
 const incrementQuantity = () => {
-  quantitySelectorValue.value += 1;
+  quantitySelectorValue.value += intervalOrderQuantity.value;
 };
 
 const decrementQuantity = () => {
-  if (quantitySelectorValue.value > minimumOrderQuantity.value) {
-    quantitySelectorValue.value -= 1;
+  const next = quantitySelectorValue.value - intervalOrderQuantity.value;
+  if (next >= minimumOrderQuantity.value) {
+    quantitySelectorValue.value = next;
   }
 };
 
 const handleQuantityInput = (e: Event) => {
-  const val = Number((e.target as HTMLInputElement).value);
-  quantitySelectorValue.value = Math.max(minimumOrderQuantity.value, val || minimumOrderQuantity.value);
+  const min = minimumOrderQuantity.value;
+  const step = intervalOrderQuantity.value;
+  const raw = Number((e.target as HTMLInputElement).value) || min;
+  // Snap manual input to a valid interval multiple starting from the minimum.
+  const steps = Math.max(0, Math.round((Math.max(min, raw) - min) / step));
+  quantitySelectorValue.value = min + steps * step;
 };
 
 const isReviewsAccordionOpen = () => {
