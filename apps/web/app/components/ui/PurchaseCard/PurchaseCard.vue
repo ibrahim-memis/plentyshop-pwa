@@ -323,6 +323,26 @@
                     </span>
                   </div>
 
+                  <div v-if="realStock !== null" class="mb-3">
+                    <div
+                      v-if="exceedsStock"
+                      class="flex items-start gap-2 p-2.5 rounded-lg bg-amber-50 border border-amber-200"
+                      data-testid="stock-warning"
+                    >
+                      <svg class="w-4 h-4 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                      </svg>
+                      <span class="text-xs font-medium text-amber-800">
+                        {{ t('product.stockInfo.exceedsStock') }} — {{ t('product.stockInfo.onlyAvailable', { count: realStock }) }}
+                      </span>
+                    </div>
+                    <div v-else class="flex items-center gap-1.5 text-xs text-neutral-500">
+                      <span class="w-1.5 h-1.5 rounded-full" :class="realStock > 0 ? 'bg-[#384d37]' : 'bg-red-500'" />
+                      <span>{{ t('product.stockInfo.available') }}:</span>
+                      <span class="font-semibold" :class="realStock > 0 ? 'text-neutral-700' : 'text-red-600'">{{ realStock }} {{ t('product.stockInfo.pieces') }}</span>
+                    </div>
+                  </div>
+
                   <div class="flex items-stretch gap-2">
                     <WishlistButton
                       v-if="configuration?.fields.addToWishlist"
@@ -874,6 +894,12 @@ const currentVariationId = computed(() => props.product?.variation?.id);
 if (import.meta.client) {
   watch(currentVariationId, (id) => { if (id) fetchRealStock(id); }, { immediate: true });
 }
+
+// True once the chosen quantity is larger than the known net stock, so the buy box
+// can warn the customer and surface the remaining stock.
+const exceedsStock = computed(
+  () => realStock.value !== null && realStock.value >= 0 && Number(quantitySelectorValue.value) > realStock.value,
+);
 
 const { format } = usePriceFormatter();
 const graduatedList = computed(() => {
