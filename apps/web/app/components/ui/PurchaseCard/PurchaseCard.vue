@@ -130,12 +130,7 @@
                         {{ productGetters.getAvailabilityName(product) || t('product.notAvailable') }}
                       </span>
                     </div>
-                    <div v-if="realStock !== null" class="flex items-baseline gap-1">
-                      <span class="text-xl font-bold tabular-nums" :class="realStock > 0 ? 'text-[#384d37]' : 'text-red-500'">{{ realStock }}</span>
-                      <span class="text-[10px] font-semibold uppercase tracking-wider" :class="realStock > 0 ? 'text-[#384d37]/60' : 'text-red-400'">{{ t('product.stockInfo.pieces') }}</span>
-                    </div>
-                    <div v-else-if="stockLoading" class="w-14 h-7 bg-neutral-100 rounded-lg animate-pulse" />
-                    <div v-else class="flex items-center gap-1.5">
+                    <div class="flex items-center gap-1.5">
                       <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" :class="availabilityId <= 2 ? 'bg-[#384d37]/10 text-[#384d37]' : availabilityId <= 4 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-600'">
                         {{ stockLevelLabel }}
                       </span>
