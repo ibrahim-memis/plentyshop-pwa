@@ -85,7 +85,7 @@
                   <i18n-t keypath="shipping.excludedLabel" scope="global">
                     <template #shipping>
                       <SfLink
-                        :href="localePath(paths.shipping)"
+                        :href="localePath('/versandkosten')"
                         target="_blank"
                         class="text-neutral-500 underline hover:text-neutral-700 transition-colors"
                       >
