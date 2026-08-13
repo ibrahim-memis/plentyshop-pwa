@@ -35,7 +35,12 @@
   "filterBar": {
     "filterBy": "Filtern nach",
     "sortBy": "Sortieren nach",
-    "articles": "Artikel"
+    "articles": "Artikel",
+    "filter": "Filter",
+    "sort": "Sortieren",
+    "perPage": "Artikel pro Seite",
+    "reset": "Zurücksetzen",
+    "apply": "Anzeigen"
   },
   "sidebar": {
     "categories": "Kategorien",
