@@ -1277,10 +1277,10 @@
       "sameDay": "Sofort",
       "day": "Tag",
       "days": "Tage",
-      "pieces": "Stk.",
+      "pieces": "SET",
       "available": "Auf Lager",
       "exceedsStock": "Gewünschte Menge übersteigt den verfügbaren Bestand",
-      "onlyAvailable": "Nur noch {count} Stk. verfügbar"
+      "onlyAvailable": "Nur noch {count} SET verfügbar"
     },
     "showAll": "alle Filter",
     "graduatedPrices": {
