@@ -178,7 +178,7 @@
               <div class="mb-5">
                 <ProductAttributes :product="product" />
 
-                <div v-if="graduatedList.length > 0" class="mt-4">
+                <div v-if="isAuthorized && graduatedList.length > 0" class="mt-4">
                   <div class="rounded-lg border border-neutral-100 overflow-hidden">
                     <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-50/80">
                       <div class="flex items-center gap-2">
