@@ -26,10 +26,10 @@ const componentsMapper: ComponentsMapper = {
 const { attributes, setAttribute } = useProductAttributes();
 const props = defineProps<ProductAttributesProps>();
 const product = computed(() => props.product);
-const route = useRoute();
 
-const lastSegment = route.path.split('/').pop() ?? '';
-const selectAttributes = ref(lastSegment.split('_').length > 2 || useCallisto().isEnabled);
+// Always pre-select the loaded variation's attributes so the product is ready to
+// add to cart without manual selection (e.g. when arriving from a listing link).
+const selectAttributes = ref(true);
 
 watch(
   selectAttributes,
