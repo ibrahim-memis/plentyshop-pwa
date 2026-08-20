@@ -13,6 +13,14 @@
       data-testid="category-page-content"
       :prevent-blocks-request="productsCatalog.category?.type === 'item'"
     />
+
+    <section
+      v-if="categoryDescription"
+      class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10"
+      data-testid="category-description"
+    >
+      <div class="category-seo-text text-sm md:text-base text-neutral-600 leading-relaxed" v-html="categoryDescription" />
+    </section>
   </NuxtLayout>
 </template>
 
@@ -38,6 +46,16 @@ const { buildCategoryLanguagePath } = useLocalization();
 const identifier = computed(() =>
   productsCatalog.value.category?.type === 'content' ? productsCatalog.value.category?.id : 0,
 );
+
+// Category description (Beschreibung 1) shown as SEO text below a category listing.
+// Skipped on product-detail URLs (…_itemId or …_itemId_variationId).
+const categoryDescription = computed(() => {
+  const category = productsCatalog.value.category;
+  if (!category) return '';
+  const lastSegment = route.path.split('/').filter(Boolean).pop() ?? '';
+  if (/_\d+(_\d+)?$/.test(lastSegment)) return '';
+  return category.details?.[0]?.description || '';
+});
 
 definePageMeta({
   layout: false,
@@ -136,3 +154,31 @@ useHead({
   ],
 });
 </script>
+
+<style scoped>
+.category-seo-text :deep(h1),
+.category-seo-text :deep(h2),
+.category-seo-text :deep(h3) {
+  font-weight: 700;
+  color: #262626;
+  margin: 1.25rem 0 0.5rem;
+}
+.category-seo-text :deep(h2) {
+  font-size: 1.25rem;
+}
+.category-seo-text :deep(h3) {
+  font-size: 1.05rem;
+}
+.category-seo-text :deep(p) {
+  margin-bottom: 0.75rem;
+}
+.category-seo-text :deep(ul) {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.category-seo-text :deep(a) {
+  color: #384d37;
+  text-decoration: underline;
+}
+</style>
