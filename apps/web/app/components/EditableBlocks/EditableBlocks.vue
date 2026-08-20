@@ -19,6 +19,7 @@
           :is="block?.content?.layout?.narrowContainer || block?.layout?.narrowContainer ? NarrowContainer : 'div'"
           v-if="shouldShowBlock(block, enabledActions)"
         >
+          <slot v-if="isFooterBlock(block)" name="beforeFooter" />
           <PageBlock
             :index="index"
             :block="block"

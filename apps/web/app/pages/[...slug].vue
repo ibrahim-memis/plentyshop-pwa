@@ -12,15 +12,17 @@
       :type="'category'"
       data-testid="category-page-content"
       :prevent-blocks-request="productsCatalog.category?.type === 'item'"
-    />
-
-    <section
-      v-if="categoryDescription"
-      class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10"
-      data-testid="category-description"
     >
-      <div class="category-seo-text text-sm md:text-base text-neutral-600 leading-relaxed" v-html="categoryDescription" />
-    </section>
+      <template #beforeFooter>
+        <section
+          v-if="categoryDescription"
+          class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10"
+          data-testid="category-description"
+        >
+          <div class="category-seo-text text-sm md:text-base text-neutral-600 leading-relaxed" v-html="categoryDescription" />
+        </section>
+      </template>
+    </EditableBlocks>
   </NuxtLayout>
 </template>
 
