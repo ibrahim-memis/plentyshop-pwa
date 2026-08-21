@@ -606,15 +606,27 @@ const { data: brandCategoryTree } = useCategoryTree();
 const { buildDocumentUrl: buildBrandImageUrl } = useBuildImageUrl();
 
 const markenCategory = computed(() => {
-  const find = (nodes?: CategoryTreeItem[]): CategoryTreeItem | undefined => {
+  // Resolve the brand-hub category. It may be renamed in the backend
+  // (e.g. "Marken" → "Beliebste Marken"), so prefer an exact "marken" match
+  // and fall back to any category whose name contains "marken".
+  const find = (
+    nodes: CategoryTreeItem[] | undefined,
+    match: (name: string, url: string) => boolean,
+  ): CategoryTreeItem | undefined => {
     for (const node of nodes ?? []) {
-      if ((node.details?.[0]?.name || '').trim().toLowerCase() === 'marken') return node;
-      const inChild = find(node.children);
+      const detail = node.details?.[0];
+      const name = (detail?.name || '').trim().toLowerCase();
+      const url = (detail?.nameUrl || '').trim().toLowerCase();
+      if (match(name, url)) return node;
+      const inChild = find(node.children, match);
       if (inChild) return inChild;
     }
     return undefined;
   };
-  return find(brandCategoryTree.value);
+  return (
+    find(brandCategoryTree.value, (name, url) => name === 'marken' || url === 'marken') ??
+    find(brandCategoryTree.value, (name, url) => name.includes('marken') || url.includes('marken'))
+  );
 });
 
 const brandCategory = computed(() => {
