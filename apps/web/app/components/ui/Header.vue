@@ -125,11 +125,11 @@
     <!-- Mobil: sadece arama (hesap ve sepet alttaki navbar'da) -->
     <div v-if="viewport.isLessThan('md')" class="flex items-center ml-auto">
       <button
-        class="p-2.5 rounded-lg hover:bg-neutral-50 text-neutral-600 transition-colors cursor-pointer"
+        class="w-11 h-11 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-800 transition-colors cursor-pointer"
         :aria-label="t('common.navigation.openSearchModal')"
         @click="searchModalOpen"
       >
-        <SfIconSearch class="!w-5 !h-5" />
+        <SfIconSearch class="!w-6 !h-6" />
       </button>
     </div>
   </MegaMenu>

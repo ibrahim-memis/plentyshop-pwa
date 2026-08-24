@@ -37,7 +37,7 @@
 
     <!-- ROW 2: Ana header (logo + telefon + arama + aksiyonlar) -->
     <div data-testid="navbar-top" class="bg-white border-b border-neutral-200">
-      <div class="flex items-center gap-3 lg:gap-8 px-4 lg:px-8 py-4 w-full max-w-[1536px] mx-auto">
+      <div class="relative flex items-center gap-3 lg:gap-8 px-4 lg:px-8 py-4 w-full max-w-[1536px] mx-auto">
         <!-- Mobil: Hamburger -->
         <button
           type="button"
@@ -48,11 +48,11 @@
           <SfIconMenu aria-hidden="true" class="!w-7 !h-7" />
         </button>
 
-        <!-- Logo (mobilde ortalı, md+ solda) -->
+        <!-- Logo (mobilde tam ortalı absolute, md+ normal akışta solda) -->
         <NuxtLink
           :to="localePath(paths.home)"
           :aria-label="t('common.actions.goToHomepage')"
-          class="flex shrink-0 items-center mx-auto md:mx-0"
+          class="flex shrink-0 items-center absolute left-1/2 -translate-x-1/2 md:static md:left-auto md:translate-x-0"
         >
           <UiLogo />
         </NuxtLink>
