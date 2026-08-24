@@ -75,7 +75,7 @@ export default {
   headerLogo:
     process.env.NUXT_PUBLIC_HEADER_LOGO ||
     process.env.LOGO ||
-    '/_nuxt-plenty/images/logo.png',
+    'https://cdn02.plentyone.com/2axx1jehazxc/frontend/Horeca/horeca-x.svg',
   storename: process.env.NAME || 'HafenX',
   font: process.env.NUXT_PUBLIC_FONT || 'Urbanist',
   verticalBlockSize: process.env.NUXT_PUBLIC_VERTICAL_BLOCK_SIZE || 'm',
