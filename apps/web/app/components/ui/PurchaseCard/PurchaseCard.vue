@@ -131,8 +131,8 @@
                       </span>
                     </div>
                     <div class="flex items-center gap-1.5">
-                      <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" :class="availabilityId <= 2 ? 'bg-[#384d37]/10 text-[#384d37]' : availabilityId <= 4 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-600'">
-                        {{ stockLevelLabel }}
+                      <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full" :class="isPreorder ? 'bg-amber-50 text-amber-700' : availabilityId <= 2 ? 'bg-[#384d37]/10 text-[#384d37]' : availabilityId <= 4 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-600'">
+                        {{ isPreorder ? t('product.stockInfo.preorderable') : stockLevelLabel }}
                       </span>
                     </div>
                   </div>
@@ -367,7 +367,7 @@
                         <template #prefix>
                           <div v-if="!loading" class="flex items-center gap-2">
                             <SfIconShoppingCart size="sm" />
-                            {{ t('common.actions.addToCart') }}
+                            {{ isPreorder ? t('common.actions.preorder') : t('common.actions.addToCart') }}
                           </div>
                           <div v-else>
                             <SfLoaderCircular size="sm" />
@@ -836,6 +836,14 @@ const availabilityId = computed(() => {
   if (!props?.product?.variation) return 5;
   return props.product.variation.availability?.id ?? 5;
 });
+
+// Pre-order: the variation is still salable (orderable in plentyONE, e.g. stock
+// limitation allows ordering at 0) but its availability is out of stock (id >= 5).
+// Such products stay orderable and route to checkout, but the buy button and the
+// stock badge read "Vorbestellen"/"Vorbestellbar" instead of add-to-cart/sold-out.
+const isPreorder = computed(
+  () => productGetters.isSalable(props?.product) && Number(props?.product?.variation?.availability?.id ?? 0) >= 5,
+);
 
 const stockIndicatorDotClass = computed(() => {
   const id = availabilityId.value;
