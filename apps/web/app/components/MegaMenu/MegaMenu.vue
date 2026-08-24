@@ -48,11 +48,11 @@
           <SfIconMenu aria-hidden="true" class="!w-7 !h-7" />
         </button>
 
-        <!-- Logo -->
+        <!-- Logo (mobilde ortalı, md+ solda) -->
         <NuxtLink
           :to="localePath(paths.home)"
           :aria-label="t('common.actions.goToHomepage')"
-          class="flex shrink-0 items-center"
+          class="flex shrink-0 items-center mx-auto md:mx-0"
         >
           <UiLogo />
         </NuxtLink>

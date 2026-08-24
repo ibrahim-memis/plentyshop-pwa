@@ -122,35 +122,14 @@
       </nav>
     </template>
 
-    <!-- Mobil: İkonlar -->
-    <div v-if="viewport.isLessThan('lg')" class="flex items-center gap-0.5 ml-auto">
+    <!-- Mobil: sadece arama (hesap ve sepet alttaki navbar'da) -->
+    <div v-if="viewport.isLessThan('md')" class="flex items-center ml-auto">
       <button
-        class="p-2.5 rounded-lg hover:bg-neutral-50 text-neutral-600 transition-colors md:hidden cursor-pointer"
+        class="p-2.5 rounded-lg hover:bg-neutral-50 text-neutral-600 transition-colors cursor-pointer"
         :aria-label="t('common.navigation.openSearchModal')"
         @click="searchModalOpen"
       >
         <SfIconSearch class="!w-5 !h-5" />
-      </button>
-      <button
-        class="p-2.5 rounded-lg hover:bg-neutral-50 text-neutral-600 transition-colors cursor-pointer"
-        @click="navigateToLogin"
-      >
-        <SfIconPerson class="!w-5 !h-5" />
-      </button>
-      <button
-        class="p-2.5 rounded-lg hover:bg-neutral-50 text-neutral-600 transition-colors relative cursor-pointer"
-        :aria-label="t('cart.numberInCart', { count: cartItemsCount })"
-        @click="openCartSidebar"
-      >
-        <SfIconShoppingCart class="!w-5 !h-5" />
-        <SfBadge
-          v-if="cartItemsCount > 0"
-          :content="cartItemsCount"
-          class="!absolute !top-0.5 !right-0.5 !bg-[#384d37] text-white flex justify-center items-center !text-[9px] !min-w-[14px] !min-h-[14px] !rounded-full !p-0"
-          data-testid="cart-badge"
-          placement="top-right"
-          :max="99"
-        />
       </button>
     </div>
   </MegaMenu>
