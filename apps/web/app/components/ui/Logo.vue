@@ -6,7 +6,7 @@
           ref="logo"
           :src="headerLogo"
           :alt="`${storeName} logo`"
-          class="h-8 md:h-10 w-auto object-contain"
+          class="h-8 md:h-10 w-auto object-contain max-w-[150px] md:max-w-[180px]"
           width="180"
           height="40"
           preload
@@ -19,7 +19,7 @@
           ref="logo"
           :src="headerLogo"
           :alt="`${storeName} logo`"
-          class="h-8 md:h-10 w-auto object-contain max-w-[180px]"
+          class="h-8 md:h-10 w-auto object-contain max-w-[150px] md:max-w-[180px]"
           preload
           @error="logoError = true"
         />

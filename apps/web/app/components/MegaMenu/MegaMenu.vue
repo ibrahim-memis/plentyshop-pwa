@@ -37,7 +37,7 @@
 
     <!-- ROW 2: Ana header (logo + telefon + arama + aksiyonlar) -->
     <div data-testid="navbar-top" class="bg-white border-b border-neutral-200">
-      <div class="flex items-center gap-5 lg:gap-8 px-6 lg:px-8 py-4 w-full max-w-[1536px] mx-auto">
+      <div class="flex items-center gap-3 lg:gap-8 px-4 lg:px-8 py-4 w-full max-w-[1536px] mx-auto">
         <!-- Mobil: Hamburger -->
         <button
           type="button"
